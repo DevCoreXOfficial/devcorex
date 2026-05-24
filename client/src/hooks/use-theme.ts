@@ -1,9 +1,10 @@
-import { useThemeStore, type Theme } from '@/store'
+import { useThemeStore, type Theme } from "@/store";
 
 export function useTheme() {
-  const { theme, setTheme } = useThemeStore()
+  const { theme, setTheme } = useThemeStore();
 
-  const themes: Theme[] = ['light', 'dark', 'system']
+  const themes: Theme[] = ["light", "dark", "system"];
 
-  return { theme, setTheme, themes }
+  return { theme, setTheme, themes };
 }
+

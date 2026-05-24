@@ -1,200 +1,247 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { Sparkles, ExternalLink, Copy, Check, Box } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import Link from 'next/link'
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Sparkles, ExternalLink, Copy, Check, Box } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 
 const aiTools = [
   {
-    id: 'qwen-code',
-    name: 'Qwen Code',
+    id: "qwen-code",
+    name: "Qwen Code",
     description: "Alibaba's AI coding assistant",
-    install: 'npm install -g @qwen-code/qwen-code',
-    source: 'https://www.npmjs.com/package/@qwen-code/qwen-code',
-    color: 'text-orange-500',
-    bgColor: 'bg-orange-500/10',
-    npm: '@qwen-code/qwen-code',
+    install: "core install ai --qwen-code",
+    source: "https://github.com/QwenLM/qwen-code",
+    color: "text-orange-500",
+    bgColor: "bg-orange-500/10",
+    npm: "@qwen-code/qwen-code",
   },
   {
-    id: 'gemini-cli',
-    name: 'Gemini CLI',
+    id: "gemini-cli",
+    name: "Gemini CLI",
     description: "Google's AI assistant with Gemini",
-    install: 'npm install -g @google/gemini-cli',
-    source: 'https://www.npmjs.com/package/@google/gemini-cli',
-    color: 'text-blue-500',
-    bgColor: 'bg-blue-500/10',
-    npm: '@google/gemini-cli',
+    install: "core install ai --gemini-cli",
+    source: "https://github.com/google-gemini/gemini-cli",
+    color: "text-blue-500",
+    bgColor: "bg-blue-500/10",
+    npm: "@google/gemini-cli",
   },
   {
-    id: 'mistral-vibe',
-    name: 'Mistral Vibe',
-    description: 'Conversational AI for coding assistance',
-    install: 'pip install mistral-vibe',
-    source: 'https://github.com/MistralAI/mistral-vibe',
-    color: 'text-purple-500',
-    bgColor: 'bg-purple-500/10',
-    pip: 'mistral-vibe',
+    id: "mistral-vibe",
+    name: "Mistral Vibe",
+    description: "Conversational AI for coding assistance",
+    install: "core install ai --mistral-vibe",
+    source: "https://github.com/mistralai/mistral-vibe",
+    color: "text-purple-500",
+    bgColor: "bg-purple-500/10",
+    pip: "mistral-vibe",
   },
   {
-    id: 'open-claude',
-    name: 'OpenClaude',
-    description: 'Open source Claude alternative',
-    install: 'npm install -g @gitlawb/openclaude',
-    source: 'https://www.npmjs.com/package/@gitlawb/openclaude',
-    color: 'text-amber-500',
-    bgColor: 'bg-amber-500/10',
-    npm: '@gitlawb/openclaude',
+    id: "openclaude",
+    name: "OpenClaude",
+    description: "Open source Claude alternative",
+    install: "core install ai --openclaude",
+    source: "https://github.com/Gitlawb/openclaude",
+    color: "text-amber-500",
+    bgColor: "bg-amber-500/10",
+    npm: "@gitlawb/openclaude",
   },
   {
-    id: 'claude-code',
-    name: 'Claude Code',
+    id: "claude-code",
+    name: "Claude Code",
     description: "Anthropic's CLI tool with Claude AI",
-    install: 'npm install -g @anthropic-ai/claude-code',
-    source: 'https://www.npmjs.com/package/@anthropic-ai/claude-code',
-    color: 'text-orange-600',
-    bgColor: 'bg-orange-600/10',
-    npm: '@anthropic-ai/claude-code',
+    install: "core install ai --claude-code",
+    source: "https://github.com/anthropics/claude-code",
+    color: "text-orange-600",
+    bgColor: "bg-orange-600/10",
+    npm: "@anthropic-ai/claude-code",
   },
   {
-    id: 'open-claw',
-    name: 'OpenClaw',
-    description: 'Multi-platform CLI with AI capabilities',
-    install: 'npm install -g openclaw',
-    source: 'https://www.npmjs.com/package/openclaw',
-    color: 'text-cyan-500',
-    bgColor: 'bg-cyan-500/10',
-    npm: 'openclaw',
+    id: "openclaw",
+    name: "OpenClaw",
+    description: "OpenClaw — Personal AI Assistant",
+    install: "core install ai --openclaw",
+    source: "https://github.com/openclaw/openclaw",
+    color: "text-cyan-500",
+    bgColor: "bg-cyan-500/10",
+    npm: "openclaw",
   },
   {
-    id: 'ollama',
-    name: 'Ollama',
-    description: 'Run open-source LLMs locally on Termux',
-    install: 'pkg install ollama',
-    source: 'https://ollama.com',
-    color: 'text-green-500',
-    bgColor: 'bg-green-500/10',
-    pkg: 'ollama',
+    id: "ollama",
+    name: "Ollama",
+    description: "Run open-source LLMs locally on Termux",
+    install: "core install ai --ollama",
+    source: "https://ollama.com",
+    color: "text-green-500",
+    bgColor: "bg-green-500/10",
+    pkg: "ollama",
     models: [
-      { name: 'llama3', size: '8B parameters', description: 'General purpose model' },
-      { name: 'llama3.2', size: '3B parameters', description: 'Lightweight general purpose' },
-      { name: 'mistral', size: '7B parameters', description: 'Efficient and capable' },
-      { name: 'codellama', size: '7B parameters', description: 'Code generation and completion' },
-      { name: 'phi', size: '2.7B parameters', description: 'Small but powerful' },
-      { name: 'qwen2.5', size: '7B parameters', description: 'Multilingual support' },
-      { name: 'nomic-embed-text', size: '137M parameters', description: 'Text embedding model' },
+      {
+        name: "llama3",
+        size: "8B parameters",
+        description: "General purpose model",
+      },
+      {
+        name: "llama3.2",
+        size: "3B parameters",
+        description: "Lightweight general purpose",
+      },
+      {
+        name: "mistral",
+        size: "7B parameters",
+        description: "Efficient and capable",
+      },
+      {
+        name: "codellama",
+        size: "7B parameters",
+        description: "Code generation and completion",
+      },
+      {
+        name: "phi",
+        size: "2.7B parameters",
+        description: "Small but powerful",
+      },
+      {
+        name: "qwen2.5",
+        size: "7B parameters",
+        description: "Multilingual support",
+      },
+      {
+        name: "nomic-embed-text",
+        size: "137M parameters",
+        description: "Text embedding model",
+      },
     ],
   },
   {
-    id: 'codex',
-    name: 'Codex',
-    description: 'AI code generation tool',
-    install: 'pkg install codex',
-    source: 'https://github.com/openai/codex',
-    color: 'text-red-500',
-    bgColor: 'bg-red-500/10',
-    pkg: 'codex',
+    id: "codex",
+    name: "Codex",
+    description: "AI code generation tool",
+    install: "core install ai --codex",
+    source: "https://github.com/openai/codex",
+    color: "text-red-500",
+    bgColor: "bg-red-500/10",
+    pkg: "codex",
   },
   {
-    id: 'open-code',
-    name: 'OpenCode',
-    description: 'Coding agent for code generation and review',
-    install: 'curl -fsSL https://raw.githubusercontent.com/anomalyco/opencode/main/install.sh | bash',
-    source: 'https://github.com/anomalyco/opencode',
-    color: 'text-violet-500',
-    bgColor: 'bg-violet-500/10',
+    id: "opencode",
+    name: "OpenCode",
+    description: "Coding agent for code generation and review",
+    install: "core install ai --opencode",
+    source: "https://github.com/anomalyco/opencode",
+    color: "text-amber-500",
+    bgColor: "bg-amber-500/10",
   },
   {
-    id: 'engram',
-    name: 'Engram',
-    description: 'Persistent memory system for coding agents - remembers your codebase across sessions',
-    install: 'pkg install golang git sqlite && git clone https://github.com/Gentleman-Programming/engram ~/.cache/core-termux/engram && go build -C ~/.cache/core-termux/engram/cmd/engram -o $PREFIX/bin/engram',
-    source: 'https://github.com/Gentleman-Programming/engram',
-    color: 'text-emerald-500',
-    bgColor: 'bg-emerald-500/10',
+    id: "engram",
+    name: "Engram",
+    description:
+      "Persistent memory system for coding agents - remembers your codebase across sessions",
+    install: "core install ai --engram",
+    source: "https://github.com/Gentleman-Programming/engram",
+    color: "text-violet-500",
+    bgColor: "bg-violet-500/10",
     builtin: true,
   },
-]
+  {
+    id: "codegraph",
+    name: "CodeGraph",
+    description:
+      "CodeGraph analyzes your codebase structure and dependencies to improve navigation, context generation, and AI-assisted development",
+    install: "core install ai --codegraph",
+    source: "https://github.com/colbymchenry/codegraph",
+    color: "text-emerald-500",
+    bgColor: "bg-emerald-500/10",
+    builtin: true,
+  },
+];
 
-function ToolTerminal({ command, copied, onCopy }: { command: string; copied: boolean; onCopy: () => void }) {
+function ToolTerminal({
+  command,
+  copied,
+  onCopy,
+}: {
+  command: string;
+  copied: boolean;
+  onCopy: () => void;
+}) {
   return (
-    <div className="relative rounded-lg bg-neutral-900 dark:bg-neutral-950 border border-border/50 max-w-full overflow-hidden">
-      <div className="p-3 pr-12 overflow-x-auto">
-        <pre className="font-mono text-xs sm:text-sm text-green-400 whitespace-nowrap">
+    <div className="border-border/50 relative max-w-full overflow-hidden rounded-lg border bg-neutral-900 dark:bg-neutral-950">
+      <div className="overflow-x-auto p-3 pr-12">
+        <pre className="font-mono text-xs whitespace-nowrap text-green-400 sm:text-sm">
           <code>{command}</code>
         </pre>
       </div>
       <button
         onClick={onCopy}
-        className={`absolute top-2 right-2 p-1.5 rounded-md transition-colors ${copied ? 'bg-green-400/20 text-green-400' : 'bg-neutral-800 hover:bg-neutral-700 text-neutral-400'}`}
+        className={`absolute top-2 right-2 rounded-md p-1.5 transition-colors ${copied ? "bg-green-400/20 text-green-400" : "bg-neutral-800 text-neutral-400 hover:bg-neutral-700"}`}
         title="Copy"
       >
-        {copied ? (
-          <Check className="w-4 h-4" />
-        ) : (
-          <Copy className="w-4 h-4" />
-        )}
+        {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
       </button>
     </div>
-  )
+  );
 }
 
 export default function AIToolsPage() {
-  const [copiedId, setCopiedId] = useState<string | null>(null)
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const copyInstall = (id: string, cmd: string) => {
-    navigator.clipboard.writeText(cmd)
-    setCopiedId(id)
-    setTimeout(() => setCopiedId(null), 2000)
-  }
+    navigator.clipboard.writeText(cmd);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
 
   return (
     <div className="min-h-screen pt-20 pb-16">
-      <section className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 border-b border-border">
+      <section className="border-border border-b px-4 py-12 sm:px-6 md:py-20 lg:px-8">
         <div className="container mx-auto max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
             <Badge variant="outline" className="mb-4">
-              <Sparkles className="w-3 h-3 mr-1.5" />
+              <Sparkles className="mr-1.5 h-3 w-3" />
               AI Development
             </Badge>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">AI Development Tools</h1>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mb-8">
-              AI coding assistants and tools adapted for Termux. Boost your productivity with AI-powered code generation, debugging, and more.
+            <h1 className="mb-6 text-4xl font-bold sm:text-5xl md:text-6xl">
+              AI Development Tools
+            </h1>
+            <p className="text-muted-foreground mb-8 max-w-2xl text-lg sm:text-xl">
+              AI coding assistants and tools adapted for Termux. Boost your
+              productivity with AI-powered code generation, debugging, and more.
             </p>
             <div className="flex flex-wrap gap-4">
-              <div className="relative rounded-xl bg-neutral-900 dark:bg-neutral-950 border border-border overflow-hidden max-w-full">
-                <div className="p-4 overflow-x-auto">
-                  <pre className="font-mono text-sm text-green-400 whitespace-nowrap">
+              <div className="border-border relative max-w-full overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
+                <div className="overflow-x-auto p-4">
+                  <pre className="font-mono text-sm whitespace-nowrap text-green-400">
                     <code>core install ai</code>
                   </pre>
                 </div>
               </div>
               <Button variant="outline" asChild>
-                <Link href="/core-termux">
-                  View CORE-TERMUX Docs &larr;
-                </Link>
+                <Link href="/core-termux">View CORE-TERMUX Docs &larr;</Link>
               </Button>
             </div>
           </motion.div>
         </div>
       </section>
 
-      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-muted/30">
+      <section className="bg-muted/30 px-4 py-16 sm:px-6 md:py-24 lg:px-8">
         <div className="container mx-auto max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="mb-12 text-center"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Available AI Tools</h2>
-            <p className="text-base sm:text-lg text-muted-foreground">
-              10 AI coding assistants and tools
+            <h2 className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl">
+              Available AI Tools
+            </h2>
+            <p className="text-muted-foreground text-base sm:text-lg">
+              11 AI coding assistants and tools
             </p>
           </motion.div>
 
@@ -206,24 +253,28 @@ export default function AIToolsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="rounded-xl border border-border bg-background overflow-hidden"
+                className="border-border bg-background overflow-hidden rounded-xl border"
               >
                 <div className="p-5 sm:p-6">
-                  <div className="flex flex-col sm:flex-row sm:items-start gap-4">
-                    <div className={`shrink-0 w-12 h-12 ${tool.bgColor} rounded-lg flex items-center justify-center`}>
-                      <Box className={`w-6 h-6 ${tool.color}`} />
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+                    <div
+                      className={`h-12 w-12 shrink-0 ${tool.bgColor} flex items-center justify-center rounded-lg`}
+                    >
+                      <Box className={`h-6 w-6 ${tool.color}`} />
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-2">
-                        <h3 className="text-lg sm:text-xl font-semibold">{tool.name}</h3>
+                    <div className="min-w-0 flex-1">
+                      <div className="mb-2 flex items-center gap-2">
+                        <h3 className="text-lg font-semibold sm:text-xl">
+                          {tool.name}
+                        </h3>
                       </div>
-                      <p className="text-sm sm:text-base text-muted-foreground mb-4">
+                      <p className="text-muted-foreground mb-4 text-sm sm:text-base">
                         {tool.description}
                       </p>
 
                       <div className="space-y-3">
                         <div>
-                          <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">
+                          <p className="text-muted-foreground mb-2 text-xs font-medium tracking-wide uppercase">
                             Installation
                           </p>
                           <ToolTerminal
@@ -235,37 +286,39 @@ export default function AIToolsPage() {
 
                         {tool.models && (
                           <div>
-                            <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">
+                            <p className="text-muted-foreground mb-2 text-xs font-medium tracking-wide uppercase">
                               Available Models
                             </p>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
                               {tool.models.map((model) => (
                                 <div
                                   key={model.name}
-                                  className="p-3 rounded-lg bg-muted/50 border border-border"
+                                  className="bg-muted/50 border-border rounded-lg border p-3"
                                 >
-                                  <div className="flex items-center justify-between mb-1">
-                                    <code className="text-sm font-semibold text-foreground">
+                                  <div className="mb-1 flex items-center justify-between">
+                                    <code className="text-foreground text-sm font-semibold">
                                       {model.name}
                                     </code>
-                                    <span className="text-xs text-muted-foreground">
+                                    <span className="text-muted-foreground text-xs">
                                       {model.size}
                                     </span>
                                   </div>
-                                  <p className="text-xs text-muted-foreground">
+                                  <p className="text-muted-foreground text-xs">
                                     {model.description}
                                   </p>
                                 </div>
                               ))}
                             </div>
                             <div className="mt-3">
-                              <p className="text-xs font-medium text-muted-foreground mb-1">
+                              <p className="text-muted-foreground mb-1 text-xs font-medium">
                                 Usage:
                               </p>
-                              <div className="relative rounded-lg bg-neutral-900 border border-border/50 overflow-hidden max-w-full">
-                                <div className="p-3 overflow-x-auto">
-                                  <pre className="font-mono text-xs text-green-400 whitespace-nowrap">
-                                    <code>ollama run {tool.models[0].name}</code>
+                              <div className="border-border/50 relative max-w-full overflow-hidden rounded-lg border bg-neutral-900">
+                                <div className="overflow-x-auto p-3">
+                                  <pre className="font-mono text-xs whitespace-nowrap text-green-400">
+                                    <code>
+                                      ollama run {tool.models[0].name}
+                                    </code>
                                   </pre>
                                 </div>
                               </div>
@@ -278,10 +331,10 @@ export default function AIToolsPage() {
                             href={tool.source}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
+                            className="text-primary inline-flex items-center gap-1.5 text-xs font-medium hover:underline"
                           >
                             Source
-                            <ExternalLink className="w-3 h-3" />
+                            <ExternalLink className="h-3 w-3" />
                           </a>
                         </div>
                       </div>
@@ -296,25 +349,25 @@ export default function AIToolsPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-12 p-6 rounded-xl border border-border bg-muted/30 text-center"
+            className="border-border bg-muted/30 mt-12 rounded-xl border p-6 text-center"
           >
-            <h3 className="text-lg font-semibold mb-2">
+            <h3 className="mb-2 text-lg font-semibold">
               Ollama - Available Models & Usage
             </h3>
-            <p className="text-sm text-muted-foreground mb-4">
+            <p className="text-muted-foreground mb-4 text-sm">
               Run open-source LLMs locally on your Termux environment
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <div className="relative rounded-lg bg-neutral-900 border border-border/50 overflow-hidden max-w-full">
-                <div className="p-3 overflow-x-auto">
-                  <pre className="font-mono text-xs text-green-400 whitespace-nowrap">
+            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <div className="border-border/50 relative max-w-full overflow-hidden rounded-lg border bg-neutral-900">
+                <div className="overflow-x-auto p-3">
+                  <pre className="font-mono text-xs whitespace-nowrap text-green-400">
                     <code>ollama pull llama3</code>
                   </pre>
                 </div>
               </div>
-              <div className="relative rounded-lg bg-neutral-900 border border-border/50 overflow-hidden max-w-full">
-                <div className="p-3 overflow-x-auto">
-                  <pre className="font-mono text-xs text-green-400 whitespace-nowrap">
+              <div className="border-border/50 relative max-w-full overflow-hidden rounded-lg border bg-neutral-900">
+                <div className="overflow-x-auto p-3">
+                  <pre className="font-mono text-xs whitespace-nowrap text-green-400">
                     <code>ollama run llama3</code>
                   </pre>
                 </div>
@@ -324,5 +377,5 @@ export default function AIToolsPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

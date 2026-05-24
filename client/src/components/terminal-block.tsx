@@ -1,41 +1,45 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Copy, Check } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { toast } from 'sonner'
+import { useState } from "react";
+import { Copy, Check } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 interface TerminalBlockProps {
-  command: string
-  language?: string
-  output?: string[]
-  showOutput?: boolean
+  command: string;
+  language?: string;
+  output?: string[];
+  showOutput?: boolean;
 }
 
-export function TerminalBlock({ command, output, showOutput = true }: TerminalBlockProps) {
-  const [copied, setCopied] = useState(false)
+export function TerminalBlock({
+  command,
+  output,
+  showOutput = true,
+}: TerminalBlockProps) {
+  const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(command)
-    setCopied(true)
-    toast.success('Command copied!')
-    setTimeout(() => setCopied(false), 2000)
-  }
+    navigator.clipboard.writeText(command);
+    setCopied(true);
+    toast.success("Command copied!");
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
-    <div className="relative group rounded-xl bg-neutral-900 dark:bg-neutral-950 border border-border overflow-hidden my-4">
-      <div className="flex items-center gap-2 px-4 py-2 border-b border-border/50">
+    <div className="group border-border relative my-4 overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
+      <div className="border-border/50 flex items-center gap-2 border-b px-4 py-2">
         <div className="flex gap-1.5">
-          <div className="w-3 h-3 rounded-full bg-red-500" />
-          <div className="w-3 h-3 rounded-full bg-yellow-500" />
-          <div className="w-3 h-3 rounded-full bg-green-500" />
+          <div className="h-3 w-3 rounded-full bg-red-500" />
+          <div className="h-3 w-3 rounded-full bg-yellow-500" />
+          <div className="h-3 w-3 rounded-full bg-green-500" />
         </div>
-        <span className="text-xs text-muted-foreground ml-2">terminal</span>
+        <span className="text-muted-foreground ml-2 text-xs">terminal</span>
         <Button
           variant="ghost"
           size="sm"
           onClick={handleCopy}
-          className="ml-auto h-7 px-2 opacity-0 group-hover:opacity-100 transition-opacity absolute right-2 top-1/2 -translate-y-1/2"
+          className="absolute top-1/2 right-2 ml-auto h-7 -translate-y-1/2 px-2 opacity-0 transition-opacity group-hover:opacity-100"
         >
           {copied ? (
             <Check className="h-4 w-4 text-green-400" />
@@ -44,14 +48,17 @@ export function TerminalBlock({ command, output, showOutput = true }: TerminalBl
           )}
         </Button>
       </div>
-      <div className="p-4 overflow-x-auto max-w-full">
-        <pre className="font-mono text-sm text-white whitespace-nowrap">
+      <div className="max-w-full overflow-x-auto p-4">
+        <pre className="font-mono text-sm whitespace-nowrap text-white">
           <code>{command}</code>
         </pre>
         {showOutput && output && output.length > 0 && (
-          <div className="mt-3 pt-3 border-t border-border/50">
+          <div className="border-border/50 mt-3 border-t pt-3">
             {output.map((line, i) => (
-              <p key={i} className={`font-mono text-sm ${line.startsWith('$') ? 'text-muted-foreground' : 'text-green-400'}`}>
+              <p
+                key={i}
+                className={`font-mono text-sm ${line.startsWith("$") ? "text-muted-foreground" : "text-green-400"}`}
+              >
                 {line}
               </p>
             ))}
@@ -59,43 +66,54 @@ export function TerminalBlock({ command, output, showOutput = true }: TerminalBl
         )}
       </div>
     </div>
-  )
+  );
 }
 
 interface CommandBlockProps {
-  title?: string
-  description?: string
+  title?: string;
+  description?: string;
   commands: Array<{
-    command: string
-    description?: string
-    output?: string[]
-  }>
+    command: string;
+    description?: string;
+    output?: string[];
+  }>;
 }
 
-export function CommandBlock({ title, description, commands }: CommandBlockProps) {
-  const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
+export function CommandBlock({
+  title,
+  description,
+  commands,
+}: CommandBlockProps) {
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
   const handleCopy = (cmd: string, index: number) => {
-    navigator.clipboard.writeText(cmd)
-    setCopiedIndex(index)
-    toast.success('Command copied!')
-    setTimeout(() => setCopiedIndex(null), 2000)
-  }
+    navigator.clipboard.writeText(cmd);
+    setCopiedIndex(index);
+    toast.success("Command copied!");
+    setTimeout(() => setCopiedIndex(null), 2000);
+  };
 
   return (
     <div className="space-y-4">
       {title && <h3 className="text-lg font-semibold">{title}</h3>}
-      {description && <p className="text-sm text-muted-foreground">{description}</p>}
+      {description && (
+        <p className="text-muted-foreground text-sm">{description}</p>
+      )}
       <div className="space-y-3">
         {commands.map((item, index) => (
-          <div key={index} className="relative group rounded-xl bg-neutral-900 dark:bg-neutral-950 border border-border overflow-hidden">
-            <div className="flex items-center justify-between px-4 py-2 border-b border-border/50 bg-neutral-800/50">
-              <span className="text-xs text-muted-foreground">{item.description || 'Command'}</span>
+          <div
+            key={index}
+            className="group border-border relative overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950"
+          >
+            <div className="border-border/50 flex items-center justify-between border-b bg-neutral-800/50 px-4 py-2">
+              <span className="text-muted-foreground text-xs">
+                {item.description || "Command"}
+              </span>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => handleCopy(item.command, index)}
-                className="h-6 w-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                className="h-6 w-6 p-0 opacity-0 transition-opacity group-hover:opacity-100"
               >
                 {copiedIndex === index ? (
                   <Check className="h-3 w-3 text-green-400" />
@@ -104,14 +122,19 @@ export function CommandBlock({ title, description, commands }: CommandBlockProps
                 )}
               </Button>
             </div>
-            <div className="p-4 overflow-x-auto">
-              <pre className="font-mono text-sm text-green-400 whitespace-nowrap">
+            <div className="overflow-x-auto p-4">
+              <pre className="font-mono text-sm whitespace-nowrap text-green-400">
                 <code>{item.command}</code>
               </pre>
               {item.output && item.output.length > 0 && (
-                <div className="mt-3 pt-3 border-t border-border/50">
+                <div className="border-border/50 mt-3 border-t pt-3">
                   {item.output.map((line, i) => (
-                    <p key={i} className="font-mono text-xs text-muted-foreground">{line}</p>
+                    <p
+                      key={i}
+                      className="text-muted-foreground font-mono text-xs"
+                    >
+                      {line}
+                    </p>
                   ))}
                 </div>
               )}
@@ -120,5 +143,6 @@ export function CommandBlock({ title, description, commands }: CommandBlockProps
         ))}
       </div>
     </div>
-  )
+  );
 }
+

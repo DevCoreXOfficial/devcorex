@@ -72,7 +72,7 @@ const modules: Array<{
       { name: "Rust", pkg: "rust", desc: "Rust compiler and Cargo" },
       { name: "C/C++", pkg: "clang", desc: "LLVM C/C++ compiler" },
     ],
-    installCmd: "pkg install nodejs-lts python perl php rust clang",
+    installCmd: "core install language",
   },
   {
     id: "db",

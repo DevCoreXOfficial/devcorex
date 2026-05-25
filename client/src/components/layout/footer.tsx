@@ -113,7 +113,7 @@ export function Footer() {
             Made with ❤ by DevCoreX {currentYear}
           </p>
           <p className="text-muted-foreground flex items-center gap-2 text-sm sm:text-base">
-            Built with <Terminal className="h-4 w-4" /> using DevCoreX tools
+            Built with <Terminal className="h-4 w-4" /> using DevCoreX Tools
           </p>
         </div>
       </div>

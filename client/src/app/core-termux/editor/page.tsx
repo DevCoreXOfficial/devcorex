@@ -433,7 +433,7 @@ export default function EditorPage() {
                 <h3 className="mb-4 text-xl font-semibold">
                   {category.category}
                 </h3>
-                <div className="border-border overflow-hidden rounded-xl border">
+                <div className="border-border overflow-x-auto rounded-xl border">
                   <table className="w-full text-sm">
                     <thead className="bg-muted/50">
                       <tr>
@@ -480,7 +480,7 @@ export default function EditorPage() {
             </h2>
           </motion.div>
 
-          <div className="border-border overflow-hidden rounded-xl border">
+          <div className="border-border overflow-x-auto rounded-xl border">
             <table className="w-full text-sm">
               <thead className="bg-muted/50">
                 <tr>

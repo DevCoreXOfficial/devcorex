@@ -150,7 +150,7 @@ const modules: Array<{
       { name: "Engram", desc: "Persistent memory system for AI coding agents" },
       {
         name: "CodeGraph",
-        special: "proot-distro",
+        npm: "@colbymchenry/codegraph",
         desc: "Analyzes your codebase structure and dependencies to improve navigation",
       },
     ],

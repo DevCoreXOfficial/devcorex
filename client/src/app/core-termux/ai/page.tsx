@@ -149,7 +149,7 @@ const aiTools = [
     id: "codegraph",
     name: "CodeGraph",
     description:
-      "CodeGraph analyzes your codebase structure and dependencies to improve navigation, context generation, and AI-assisted development",
+      "Analyzes your codebase structure and dependencies to improve navigation",
     install: "core install ai --codegraph",
     source: "https://github.com/colbymchenry/codegraph",
     color: "text-emerald-500",

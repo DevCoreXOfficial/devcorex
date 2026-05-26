@@ -153,6 +153,11 @@ const modules: Array<{
         npm: "@colbymchenry/codegraph",
         desc: "Analyzes your codebase structure and dependencies to improve navigation",
       },
+      {
+        name: "Pi Coding Agent",
+        npm: "@earendil-works/pi-coding-agent",
+        desc: "Pi is a minimal terminal coding harness. Adapt Pi to your workflows",
+      },
     ],
     installCmd: "core install ai",
   },

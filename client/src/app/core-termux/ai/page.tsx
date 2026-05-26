@@ -156,6 +156,17 @@ const aiTools = [
     bgColor: "bg-emerald-500/10",
     builtin: true,
   },
+  {
+    id: "pi",
+    name: "Pi Coding Agent",
+    description:
+      "Pi is a minimal terminal coding harness. Adapt Pi to your workflows, not the other way around",
+    install: "core install ai --pi",
+    source: "https://github.com/earendil-works/pi",
+    color: "text-green-600",
+    bgColor: "bg-green-600/10",
+    builtin: true,
+  },
 ];
 
 function ToolTerminal({

@@ -31,7 +31,7 @@ const aiTools = [
   {
     id: "mistral-vibe",
     name: "Mistral Vibe",
-    description: "Conversational AI for coding assistance",
+    description: "Mistral Vibe is a command-line coding assistant powered by Mistral's models",
     install: "core install ai --mistral-vibe",
     source: "https://github.com/mistralai/mistral-vibe",
     color: "text-purple-500",
@@ -41,7 +41,7 @@ const aiTools = [
   {
     id: "openclaude",
     name: "OpenClaude",
-    description: "Open source Claude alternative",
+    description: "Open source Claude Code alternative",
     install: "core install ai --openclaude",
     source: "https://github.com/Gitlawb/openclaude",
     color: "text-amber-500",
@@ -118,7 +118,7 @@ const aiTools = [
   {
     id: "codex",
     name: "Codex",
-    description: "AI code generation tool",
+    description: "Codex CLI is a coding agent from OpenAI that runs locally on your computer",
     install: "core install ai --codex",
     source: "https://github.com/openai/codex",
     color: "text-red-500",
@@ -128,7 +128,7 @@ const aiTools = [
   {
     id: "opencode",
     name: "OpenCode",
-    description: "Coding agent for code generation and review",
+    description: "OpenCode is an open-source agent that helps you write code in your terminal",
     install: "core install ai --opencode",
     source: "https://github.com/anomalyco/opencode",
     color: "text-amber-500",
@@ -165,6 +165,17 @@ const aiTools = [
     source: "https://github.com/earendil-works/pi",
     color: "text-green-600",
     bgColor: "bg-green-600/10",
+    builtin: true,
+  },
+  {
+    id: "antigravity-cli",
+    name: "Antigravity CLI",
+    description:
+      "The lightweight, fast, terminal-first surface to work with Antigravity agents",
+    install: "core install ai --antigravity-cli",
+    source: "https://antigravity.google",
+    color: "text-blue-600",
+    bgColor: "bg-blue-600/10",
     builtin: true,
   },
 ];

@@ -153,7 +153,11 @@ const modules: Array<{
         special: "opencode",
         desc: "The open-source AI coding agent",
       },
-      { name: "Engram", desc: "Persistent memory system for AI coding agents" },
+      {
+        name: "Engram",
+        special: "engram",
+        desc: "Persistent memory system for AI coding agents",
+      },
       {
         name: "CodeGraph",
         npm: "@colbymchenry/codegraph",

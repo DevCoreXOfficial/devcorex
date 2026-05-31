@@ -78,43 +78,6 @@ const aiTools = [
     color: "text-green-500",
     bgColor: "bg-green-500/10",
     pkg: "ollama",
-    models: [
-      {
-        name: "llama3",
-        size: "8B parameters",
-        description: "General purpose model",
-      },
-      {
-        name: "llama3.2",
-        size: "3B parameters",
-        description: "Lightweight general purpose",
-      },
-      {
-        name: "mistral",
-        size: "7B parameters",
-        description: "Efficient and capable",
-      },
-      {
-        name: "codellama",
-        size: "7B parameters",
-        description: "Code generation and completion",
-      },
-      {
-        name: "phi",
-        size: "2.7B parameters",
-        description: "Small but powerful",
-      },
-      {
-        name: "qwen2.5",
-        size: "7B parameters",
-        description: "Multilingual support",
-      },
-      {
-        name: "nomic-embed-text",
-        size: "137M parameters",
-        description: "Text embedding model",
-      },
-    ],
   },
   {
     id: "codex",
@@ -186,7 +149,7 @@ const aiTools = [
     name: "MiniMax CLI",
     description:
       "Generate text, images, video, speech, and music — from any agent or terminal",
-    install: "core install ai --minimax",
+    install: "core install ai --minimax-cli",
     source: "https://github.com/MiniMax-AI/cli",
     color: "text-orange-700",
     bgColor: "bg-orange-700/10",

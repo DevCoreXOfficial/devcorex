@@ -178,6 +178,11 @@ const modules: Array<{
         npm: "mmx-cli",
         desc: "The official CLI for the MiniMax AI Platform",
       },
+      {
+        name: "Gentle AI",
+        special: "gentle-ai",
+        desc: "Ecosystem, Frameworks, Workflows for AI coding agents",
+      },
     ],
     installCmd: "core install ai",
   },
@@ -666,27 +671,37 @@ export default function CoreTermuxPage() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
+                cmd: "core --version",
+                desc: "Show current version",
+                icon: Terminal,
+              },
+              {
                 cmd: "core setup",
                 desc: "Interactive installation wizard",
                 icon: Zap,
               },
               {
-                cmd: "core install <module>",
+                cmd: "core install <module> --tool",
                 desc: "Install specific modules",
                 icon: Package,
               },
               {
-                cmd: "core update <module>",
+                cmd: "core show <module> --tool",
+                desc: "Show tool documentation",
+                icon: Workflow,
+              },
+              {
+                cmd: "core update <module> --tool",
                 desc: "Update modules or framework",
                 icon: ArrowRight,
               },
               {
-                cmd: "core uninstall <module>",
+                cmd: "core uninstall <module> --tool",
                 desc: "Remove installed modules",
                 icon: Box,
               },
               {
-                cmd: "core list <module>",
+                cmd: "core list <module> --tool",
                 desc: "List available tools in modules",
                 icon: Layers,
               },

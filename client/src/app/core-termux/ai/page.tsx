@@ -103,17 +103,20 @@ const aiTools: AITool[] = [
       {
         name: "llama3",
         size: "4.7GB",
-        description: "Meta's latest 8B parameter model, optimized for general dialogue and coding tasks.",
+        description:
+          "Meta's latest 8B parameter model, optimized for general dialogue and coding tasks.",
       },
       {
         name: "qwen2.5-coder",
         size: "4.7GB",
-        description: "State-of-the-art coding model from Alibaba, highly capable in programming tasks.",
+        description:
+          "State-of-the-art coding model from Alibaba, highly capable in programming tasks.",
       },
       {
         name: "codegemma",
         size: "4.8GB",
-        description: "Google's lightweight, powerful model fine-tuned for code generation and instruction following.",
+        description:
+          "Google's lightweight, powerful model fine-tuned for code generation and instruction following.",
       },
     ],
   },
@@ -191,6 +194,17 @@ const aiTools: AITool[] = [
     source: "https://github.com/MiniMax-AI/cli",
     color: "text-orange-700",
     bgColor: "bg-orange-700/10",
+    builtin: true,
+  },
+  {
+    id: "gentle-ai",
+    name: "Gentle AI",
+    description:
+      "Gentle-AI — Ecosystem, Frameworks, Workflows for AI coding agents",
+    install: "core install ai --gentle-ai",
+    source: "https://github.com/Gentleman-Programming/gentle-ai",
+    color: "text-pink-500",
+    bgColor: "bg-pink-500/10",
     builtin: true,
   },
 ];

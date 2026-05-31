@@ -1,3 +1,4 @@
 .agents/
-skills-lock.json
 .codegraph/
+.antigravitycli/
+skills-lock.json

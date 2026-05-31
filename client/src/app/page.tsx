@@ -241,7 +241,7 @@ export default function Home() {
             {[
               {
                 title: "Languages",
-                desc: "Node.js, Python, Rust, PHP, Perl, C/C++",
+                desc: "Node.js, Python, Rust, PHP, Perl, C/C++, Go",
                 href: "/core-termux/language",
                 icon: Code2,
                 color: "text-blue-500",

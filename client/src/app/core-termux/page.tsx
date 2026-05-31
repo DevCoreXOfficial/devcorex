@@ -169,6 +169,11 @@ const modules: Array<{
         special: "antigravity-cli",
         desc: "Experience liftoff with the next-gen agent platform",
       },
+      {
+        name: "MiniMax CLI",
+        npm: "mmx-cli",
+        desc: "The official CLI for the MiniMax AI Platform",
+      },
     ],
     installCmd: "core install ai",
   },

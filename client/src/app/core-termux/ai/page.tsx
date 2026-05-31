@@ -31,7 +31,8 @@ const aiTools = [
   {
     id: "mistral-vibe",
     name: "Mistral Vibe",
-    description: "Mistral Vibe is a command-line coding assistant powered by Mistral's models",
+    description:
+      "Mistral Vibe is a command-line coding assistant powered by Mistral's models",
     install: "core install ai --mistral-vibe",
     source: "https://github.com/mistralai/mistral-vibe",
     color: "text-purple-500",
@@ -118,7 +119,8 @@ const aiTools = [
   {
     id: "codex",
     name: "Codex",
-    description: "Codex CLI is a coding agent from OpenAI that runs locally on your computer",
+    description:
+      "Codex CLI is a coding agent from OpenAI that runs locally on your computer",
     install: "core install ai --codex",
     source: "https://github.com/openai/codex",
     color: "text-red-500",
@@ -128,7 +130,8 @@ const aiTools = [
   {
     id: "opencode",
     name: "OpenCode",
-    description: "OpenCode is an open-source agent that helps you write code in your terminal",
+    description:
+      "OpenCode is an open-source agent that helps you write code in your terminal",
     install: "core install ai --opencode",
     source: "https://github.com/anomalyco/opencode",
     color: "text-amber-500",
@@ -176,6 +179,17 @@ const aiTools = [
     source: "https://antigravity.google",
     color: "text-blue-600",
     bgColor: "bg-blue-600/10",
+    builtin: true,
+  },
+  {
+    id: "minimax",
+    name: "MiniMax CLI",
+    description:
+      "Generate text, images, video, speech, and music — from any agent or terminal",
+    install: "core install ai --minimax",
+    source: "https://github.com/MiniMax-AI/cli",
+    color: "text-orange-700",
+    bgColor: "bg-orange-700/10",
     builtin: true,
   },
 ];

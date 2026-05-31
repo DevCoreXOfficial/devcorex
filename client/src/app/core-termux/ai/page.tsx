@@ -7,7 +7,28 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 
-const aiTools = [
+interface AIModel {
+  name: string;
+  size: string;
+  description: string;
+}
+
+interface AITool {
+  id: string;
+  name: string;
+  description: string;
+  install: string;
+  source: string;
+  color: string;
+  bgColor: string;
+  npm?: string;
+  pip?: string;
+  pkg?: string;
+  builtin?: boolean;
+  models?: AIModel[];
+}
+
+const aiTools: AITool[] = [
   {
     id: "qwen-code",
     name: "Qwen Code",
@@ -78,6 +99,23 @@ const aiTools = [
     color: "text-green-500",
     bgColor: "bg-green-500/10",
     pkg: "ollama",
+    models: [
+      {
+        name: "llama3",
+        size: "4.7GB",
+        description: "Meta's latest 8B parameter model, optimized for general dialogue and coding tasks.",
+      },
+      {
+        name: "qwen2.5-coder",
+        size: "4.7GB",
+        description: "State-of-the-art coding model from Alibaba, highly capable in programming tasks.",
+      },
+      {
+        name: "codegemma",
+        size: "4.8GB",
+        description: "Google's lightweight, powerful model fine-tuned for code generation and instruction following.",
+      },
+    ],
   },
   {
     id: "codex",

@@ -701,6 +701,11 @@ export default function CoreTermuxPage() {
                 icon: Box,
               },
               {
+                cmd: "core open <module>",
+                desc: "Open documentation in browser",
+                icon: Palette,
+              },
+              {
                 cmd: "core list <module> --tool",
                 desc: "List available tools in modules",
                 icon: Layers,

@@ -47,6 +47,13 @@ const uiComponents = [
       "Customizable",
     ],
   },
+  {
+    id: "banner",
+    name: "Banner",
+    description: "Core-Termux & DevCoreX banner",
+    install: "core install ui --banner",
+    features: ["Welcome message", "Show version info", "Main command"],
+  },
 ];
 
 function ToolTerminal({
@@ -212,4 +219,3 @@ core install ui --extra-keys  # Install only extra keys`}</code>
     </div>
   );
 }
-

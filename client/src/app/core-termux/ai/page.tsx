@@ -148,8 +148,8 @@ const aiTools: AITool[] = [
       "Persistent memory system for coding agents - remembers your codebase across sessions",
     install: "core install ai --engram",
     source: "https://github.com/Gentleman-Programming/engram",
-    color: "text-violet-500",
-    bgColor: "bg-violet-500/10",
+    color: "text-pink-500",
+    bgColor: "bg-pink-500/10",
     builtin: true,
   },
   {
@@ -205,6 +205,17 @@ const aiTools: AITool[] = [
     source: "https://github.com/Gentleman-Programming/gentle-ai",
     color: "text-pink-500",
     bgColor: "bg-pink-500/10",
+    builtin: true,
+  },
+  {
+    id: "gga",
+    name: "GGA - Gentleman Guardian Angel",
+    description:
+      "Provider-agnostic code review using AI. Use Claude, Gemini, Codex, Ollama to enforce your coding standards",
+    install: "core install ai --gga",
+    source: "https://github.com/Gentleman-Programming/gentleman-guardian-angel",
+    color: "text-violet-500",
+    bgColor: "bg-violet-500/10",
     builtin: true,
   },
 ];

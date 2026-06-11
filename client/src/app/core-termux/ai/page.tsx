@@ -218,6 +218,17 @@ const aiTools: AITool[] = [
     bgColor: "bg-violet-500/10",
     builtin: true,
   },
+  {
+    id: "hermes-agent",
+    name: "Hermes Agent",
+    description:
+      "The self-improving AI agent built by Nous Research",
+    install: "core install ai --hermes-agent",
+    source: "https://github.com/nousresearch/hermes-agent",
+    color: "text-yellow-500",
+    bgColor: "bg-yellow-500/10",
+    builtin: true,
+  }
 ];
 
 function ToolTerminal({

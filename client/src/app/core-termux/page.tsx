@@ -188,6 +188,11 @@ const modules: Array<{
         special: "gga",
         desc: "Provider-agnostic code review using AI",
       },
+      {
+        name: "Hermes Agent",
+        special: "hermes",
+        desc: "The agent that grows with you",
+      },
     ],
     installCmd: "core install ai",
   },

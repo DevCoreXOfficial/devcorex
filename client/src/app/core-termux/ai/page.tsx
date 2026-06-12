@@ -228,6 +228,17 @@ const aiTools: AITool[] = [
     color: "text-yellow-500",
     bgColor: "bg-yellow-500/10",
     builtin: true,
+  },
+  {
+    id: "mimocode",
+    name: "MiMo Code",
+    description:
+      "Xiaomi's AI coding agent — fast, local, and open-source",
+    install: "core install ai --mimocode",
+    source: "https://github.com/XiaomiMiMo/MiMo-Code",
+    color: "text-orange-500",
+    bgColor: "bg-orange-500/10",
+    builtin: true,
   }
 ];
 
@@ -314,7 +325,7 @@ export default function AIToolsPage() {
               Available AI Tools
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg">
-              11 AI coding assistants and tools
+              12 AI coding assistants and tools
             </p>
           </motion.div>
 

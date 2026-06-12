@@ -193,6 +193,11 @@ const modules: Array<{
         special: "hermes",
         desc: "The agent that grows with you",
       },
+      {
+        name: "MiMo Code",
+        special: "mimocode",
+        desc: "Xiaomi's AI coding agent — fast, local, and open-source",
+      },
     ],
     installCmd: "core install ai",
   },

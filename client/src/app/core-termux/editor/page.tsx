@@ -151,6 +151,22 @@ const keybindings = [
     ],
   },
   {
+    category: "Code Folding",
+    items: [
+      { key: "<leader>z", mode: "Normal", desc: "Toggle fold under cursor" },
+      {
+        key: "<leader>zR",
+        mode: "Normal",
+        desc: "Open all folds",
+      },
+      {
+        key: "<leader>zM",
+        mode: "Normal",
+        desc: "Close all folds",
+      },
+    ],
+  },
+  {
     category: "Autocompletion (Insert Mode)",
     items: [
       {
@@ -216,6 +232,21 @@ const plugins = [
   },
   { name: "nvim-notify", desc: "Beautiful notifications", category: "UI" },
   { name: "which-key.nvim", desc: "Keybinding helper", category: "UI" },
+  { name: "nvim-ufo", desc: "Code folding with treesitter", category: "UI" },
+  { name: "nvim-scrollbar", desc: "Scrollbar with diagnostics/git indicators", category: "UI" },
+  { name: "nvim-web-devicons", desc: "File type icons", category: "UI" },
+  { name: "nvim-ts-autotag", desc: "Auto close HTML/JSX tags", category: "Syntax" },
+  {
+    name: "symbols-outline.nvim",
+    desc: "Symbols outline sidebar",
+    category: "Navigation",
+  },
+  {
+    name: "friendly-snippets",
+    desc: "Predefined snippets collection",
+    category: "Completion",
+  },
+  { name: "mason-lspconfig.nvim", desc: "Mason-lspconfig bridge", category: "LSP" },
 ];
 
 const languages = [
@@ -249,7 +280,61 @@ const languages = [
     formatter: "shfmt",
     features: "Shell formatting",
   },
-  { name: "SQL", lsp: "-", formatter: "pg_format", features: "SQL formatting" },
+  {
+    name: "Python",
+    lsp: "pyright",
+    formatter: "black",
+    features: "Autocompletion, diagnostics",
+  },
+  {
+    name: "Go",
+    lsp: "gopls",
+    formatter: "gofmt/goimports",
+    features: "Autocompletion, diagnostics",
+  },
+  {
+    name: "Rust",
+    lsp: "rust_analyzer",
+    formatter: "rustfmt",
+    features: "Autocompletion, diagnostics",
+  },
+  {
+    name: "C/C++",
+    lsp: "clangd",
+    formatter: "clang-format",
+    features: "Autocompletion, diagnostics",
+  },
+  {
+    name: "PHP",
+    lsp: "intelephense",
+    formatter: "-",
+    features: "Autocompletion, diagnostics",
+  },
+  {
+    name: "Kotlin",
+    lsp: "kotlin_language_server",
+    formatter: "ktfmt",
+    features: "Autocompletion, diagnostics",
+  },
+  { name: "C#", lsp: "omnisharp", formatter: "-", features: "Autocompletion, diagnostics" },
+  {
+    name: "YAML",
+    lsp: "yamlls",
+    formatter: "Prettier",
+    features: "Formatting",
+  },
+  {
+    name: "Dockerfile",
+    lsp: "dockerls",
+    formatter: "-",
+    features: "Diagnostics",
+  },
+  {
+    name: "SQL",
+    lsp: "sqls",
+    formatter: "pg_format",
+    features: "SQL formatting",
+  },
   { name: "JSON", lsp: "-", formatter: "Prettier", features: "Formatting" },
   { name: "Markdown", lsp: "-", formatter: "Prettier", features: "Formatting" },
 ];
@@ -299,7 +384,7 @@ export default function EditorPage() {
                   variant="ghost"
                   size="sm"
                   onClick={copyInstall}
-                  className="h-7"
+                  className="h-7 text-neutral-300 hover:text-white"
                 >
                   {copied ? (
                     <Check className="h-4 w-4 text-green-400" />
@@ -359,17 +444,17 @@ export default function EditorPage() {
               {
                 icon: Sparkles,
                 title: "AI Integration",
-                desc: "GitHub Copilot & CodeCompanion with multiple providers",
+                desc: "Copilot + CodeCompanion w/ Mistral, OpenAI & Anthropic",
               },
               {
                 icon: Code2,
                 title: "LSP Support",
-                desc: "TypeScript, HTML, CSS, Lua, Bash, and more",
+                desc: "20+ languages with lazy on-demand installation",
               },
               {
                 icon: Box,
                 title: "Code Formatting",
-                desc: "Prettier, stylua, shfmt, pg_format",
+                desc: "Prettier, stylua, shfmt, pg_format, black, gofmt, rustfmt",
               },
               {
                 icon: Terminal,
@@ -379,12 +464,27 @@ export default function EditorPage() {
               {
                 icon: BookOpen,
                 title: "Treesitter",
-                desc: "Advanced syntax highlighting",
+                desc: "Advanced syntax highlighting + incremental selection",
               },
               {
                 icon: Sparkles,
                 title: "Beautiful UI",
-                desc: "Eldritch theme, lualine, bufferline",
+                desc: "Eldritch theme, lualine, bufferline, scrollbar",
+              },
+              {
+                icon: Sparkles,
+                title: "Auto-closing Tags",
+                desc: "Auto close and rename HTML/JSX/TSX tags",
+              },
+              {
+                icon: Box,
+                title: "Code Folding",
+                desc: "nvim-ufo with treesitter & indent providers",
+              },
+              {
+                icon: Sparkles,
+                title: "Custom Snippets",
+                desc: "HTML/JSX/TSX snippets via LuaSnip + friendly-snippets",
               },
             ].map((feature, index) => (
               <motion.div
@@ -559,21 +659,33 @@ export default function EditorPage() {
               <pre className="font-mono text-xs text-green-400 sm:text-sm">
                 <code>{`nvim/
 ├── init.lua                    # Main entry, lazy.nvim bootstrap
+├── lazy-lock.json             # Plugin lockfile
 ├── lua/
 │   ├── chadrc.lua             # Theme & base46 settings
 │   ├── mappings.lua           # Custom keybindings
-│   ├── options.lua            # Neovim options
+│   ├── options.lua            # Neovim options + Termux TMPDIR fix
 │   ├── configs/
 │   │   ├── cmp.lua            # Autocompletion config
 │   │   ├── conform.lua        # Code formatter config
-│   │   ├── lspconfig.lua      # Language server config
-│   │   └── lazy.lua           # lazy.nvim settings
+│   │   ├── lazy.lua           # lazy.nvim settings
+│   │   ├── lspconfig.lua      # Lazy LSP installer (on-demand)
+│   │   ├── snippets.lua       # HTML/JSX/TSX custom snippets
+│   │   ├── ui.lua             # UI central config
+│   │   ├── formatters/
+│   │   │   └── custom.lua     # Custom formatter definitions
+│   │   └── servers/
+│   │       ├── cssls.lua      # CSS language server
+│   │       ├── eslint.lua     # ESLint LSP
+│   │       ├── html.lua       # HTML language server
+│   │       ├── tailwindcss.lua # Tailwind CSS language server
+│   │       └── ts_ls.lua      # TypeScript language server
 │   └── plugins/
-│       ├── ai/                # AI plugins
-│       ├── completion/        # Completion plugins
-│       ├── formatting/        # Formatting plugins
-│       ├── lsp/               # LSP plugins
-│       └── ui/                # UI plugins`}</code>
+│       ├── init.lua           # Plugin imports
+│       ├── ai/                # AI plugins (Copilot, CodeCompanion)
+│       ├── completion/        # Completion plugins (nvim-cmp, LuaSnip)
+│       ├── formatting/        # Formatting plugins (conform.nvim)
+│       ├── lsp/               # LSP plugins (lspconfig, mason, trouble, ufo, autotag)
+│       └── ui/                # UI plugins (lualine, bufferline, notify, scrollbar)`}</code>
               </pre>
             </div>
           </motion.div>

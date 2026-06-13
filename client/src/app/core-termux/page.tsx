@@ -20,9 +20,11 @@ import {
   ArrowRight,
   Copy,
   Check,
+  RotateCcw,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { ToolTerminal } from "@/components/terminal-block";
 
 const installCommand =
   "curl -fsSL https://raw.githubusercontent.com/DevCoreXOfficial/core-termux/main/install.sh | bash";
@@ -384,40 +386,10 @@ const modules: Array<{
   },
 ];
 
-function ModuleTerminal({
-  command,
-  onCopy,
-}: {
-  command: string;
-  onCopy: () => void;
-}) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = () => {
-    onCopy();
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  return (
-    <div className="relative max-w-full overflow-hidden rounded-lg bg-neutral-900 p-3 text-green-400">
-      <button
-        onClick={handleCopy}
-        className={`absolute top-2 right-2 rounded-md p-1.5 transition-colors ${copied ? "bg-green-400/20 text-green-400" : "text-neutral-400 hover:bg-neutral-800"}`}
-        title="Copy"
-      >
-        {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-      </button>
-      <pre className="overflow-x-auto font-mono text-xs whitespace-nowrap">
-        <code className="pr-5">{command}</code>
-      </pre>
-    </div>
-  );
-}
-
 export default function CoreTermuxPage() {
   const [expandedModule, setExpandedModule] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [moduleCopied, setModuleCopied] = useState(false);
 
   const copyInstall = () => {
     navigator.clipboard.writeText(installCommand);
@@ -427,6 +399,12 @@ export default function CoreTermuxPage() {
 
   const copyCommand = (cmd: string) => {
     navigator.clipboard.writeText(cmd);
+  };
+
+  const copyModule = (cmd: string) => {
+    navigator.clipboard.writeText(cmd);
+    setModuleCopied(true);
+    setTimeout(() => setModuleCopied(false), 2000);
   };
 
   const toggleModule = (id: string) => {
@@ -469,7 +447,7 @@ export default function CoreTermuxPage() {
                   variant="ghost"
                   size="sm"
                   onClick={copyInstall}
-                  className="h-7"
+                  className="h-7 text-neutral-300 hover:text-white"
                 >
                   {copied ? (
                     <Check className="h-4 w-4 text-green-400" />
@@ -644,9 +622,10 @@ export default function CoreTermuxPage() {
                           <p className="mb-2 text-sm font-medium">
                             Installation:
                           </p>
-                          <ModuleTerminal
+                          <ToolTerminal
                             command={mod.installCmd}
-                            onCopy={() => copyCommand(mod.installCmd)}
+                            copied={moduleCopied}
+                            onCopy={() => copyModule(mod.installCmd)}
                           />
                         </div>
                         {mod.pgCommand && (
@@ -715,6 +694,11 @@ export default function CoreTermuxPage() {
                 cmd: "core uninstall <module> --tool",
                 desc: "Remove installed modules",
                 icon: Box,
+              },
+              {
+                cmd: "core reinstall <module> --tool",
+                desc: "Reinstall specific tools or modules",
+                icon: RotateCcw,
               },
               {
                 cmd: "core open <module>",

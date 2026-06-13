@@ -11,6 +11,7 @@ import {
   BookOpen,
   Users,
   Zap,
+  Cpu,
 } from "lucide-react";
 import {
   FaYoutube,
@@ -43,6 +44,7 @@ import { useState } from "react";
 const navItems = [
   { key: "home", href: "/", icon: Home },
   { key: "termux", href: "/termux", icon: Terminal },
+  { key: "api", href: "/termux/api", icon: Cpu },
   { key: "coreTermux", href: "/core-termux", icon: Zap },
   { key: "courses", href: "/courses", icon: BookOpen },
   { key: "community", href: "/#community", icon: Users },

@@ -97,6 +97,17 @@ export default function TermuxPage() {
                   Alternative Download (F-Droid)
                 </Link>
               </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                asChild
+                className="px-6 py-5 text-base"
+              >
+                <Link href="/termux/api">
+                  <Terminal className="mr-2 h-5 w-5" />
+                  Termux:API
+                </Link>
+              </Button>
             </div>
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

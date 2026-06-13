@@ -381,7 +381,7 @@ function HomeTerminal({ command }: { command: string }) {
             terminal
           </span>
         </div>
-        <Button variant="ghost" size="sm" onClick={copyCommand} className="h-7">
+        <Button variant="ghost" size="sm" onClick={copyCommand} className="h-7 text-neutral-300 hover:text-white">
           {copied ? (
             <Check className="h-4 w-4 text-green-400" />
           ) : (

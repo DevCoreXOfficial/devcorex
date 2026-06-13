@@ -3,9 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Workflow, Copy, Check } from "lucide-react";
+import { Workflow } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { ToolTerminal, CodeBlock } from "@/components/terminal-block";
 
 const features = [
   "Workflow automation platform",
@@ -22,40 +23,20 @@ const commands = [
   { cmd: "n8n webhook", desc: "Start n8n in webhook mode" },
 ];
 
-function ToolTerminal({
-  command,
-  copied,
-  onCopy,
-}: {
-  command: string;
-  copied: boolean;
-  onCopy: () => void;
-}) {
-  return (
-    <div className="border-border/50 relative max-w-full overflow-hidden rounded-lg border bg-neutral-900 dark:bg-neutral-950">
-      <div className="overflow-x-auto p-3 pr-12">
-        <pre className="font-mono text-xs whitespace-nowrap text-green-400 sm:text-sm">
-          <code>{command}</code>
-        </pre>
-      </div>
-      <button
-        onClick={onCopy}
-        className={`absolute top-2 right-2 rounded-md p-1.5 transition-colors ${copied ? "bg-green-400/20 text-green-400" : "bg-neutral-800 text-neutral-400 hover:bg-neutral-700"}`}
-        title="Copy"
-      >
-        {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-      </button>
-    </div>
-  );
-}
-
 export default function AutomationPage() {
   const [copied, setCopied] = useState(false);
+  const [codeCopied, setCodeCopied] = useState(false);
 
   const copyInstall = (cmd: string) => {
     navigator.clipboard.writeText(cmd);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const copyCode = (cmd: string) => {
+    navigator.clipboard.writeText(cmd);
+    setCodeCopied(true);
+    setTimeout(() => setCodeCopied(false), 2000);
   };
 
   return (
@@ -168,15 +149,18 @@ export default function AutomationPage() {
             <p className="text-muted-foreground mb-4 text-sm">
               After installation, start n8n and access the web interface:
             </p>
-            <div className="border-border/50 rounded-lg border bg-neutral-900 p-3">
-              <pre className="font-mono text-xs text-green-400">
-                <code>{`# Start n8n
-n8n start
-
-# Access at
-http://localhost:5678`}</code>
-              </pre>
-            </div>
+            <CodeBlock
+              lines={[
+                "# Start n8n",
+                "n8n start",
+                "",
+                "# Access at",
+                "http://localhost:5678",
+              ]}
+              copyCommand="n8n start"
+              copied={codeCopied}
+              onCopy={() => copyCode("n8n start")}
+            />
           </motion.div>
         </div>
       </section>

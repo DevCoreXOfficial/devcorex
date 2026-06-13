@@ -3,9 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Layers, Copy, Check } from "lucide-react";
+import { Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { ToolTerminal } from "@/components/terminal-block";
 
 const shellPlugins = [
   {
@@ -67,33 +68,6 @@ const features = [
   "Persistent session (restores last directory)",
   "Custom font support",
 ];
-
-function ToolTerminal({
-  command,
-  copied,
-  onCopy,
-}: {
-  command: string;
-  copied: boolean;
-  onCopy: () => void;
-}) {
-  return (
-    <div className="border-border/50 relative max-w-full overflow-hidden rounded-lg border bg-neutral-900 dark:bg-neutral-950">
-      <div className="overflow-x-auto p-3 pr-12">
-        <pre className="font-mono text-xs whitespace-nowrap text-green-400 sm:text-sm">
-          <code>{command}</code>
-        </pre>
-      </div>
-      <button
-        onClick={onCopy}
-        className={`absolute top-2 right-2 rounded-md p-1.5 transition-colors ${copied ? "bg-green-400/20 text-green-400" : "bg-neutral-800 text-neutral-400 hover:bg-neutral-700"}`}
-        title="Copy"
-      >
-        {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-      </button>
-    </div>
-  );
-}
 
 export default function ShellPage() {
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -218,15 +192,17 @@ export default function ShellPage() {
               opening a new session.
             </p>
             <div className="border-border/50 max-w-full overflow-hidden rounded-lg border bg-neutral-900 p-3">
-              <pre className="font-mono text-xs whitespace-nowrap text-green-400">
-                <code>{`# Session 1
+              <div className="overflow-x-auto">
+                <pre className="font-mono text-xs text-green-400">
+                  <code>{`# Session 1
 $ cd projects/my-app
 $ exit
 
 # Session 2
 $ pwd
 /data/data/com.termux/files/home/projects/my-app  ← Same directory`}</code>
-              </pre>
+                </pre>
+              </div>
             </div>
           </motion.div>
         </div>

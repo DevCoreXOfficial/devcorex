@@ -3,9 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Wrench, Copy, Check } from "lucide-react";
+import { Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { ToolTerminal } from "@/components/terminal-block";
 
 const devTools = [
   {
@@ -123,33 +124,6 @@ const devTools = [
     install: "core install tools --bc",
   },
 ];
-
-function ToolTerminal({
-  command,
-  copied,
-  onCopy,
-}: {
-  command: string;
-  copied: boolean;
-  onCopy: () => void;
-}) {
-  return (
-    <div className="border-border/50 relative max-w-full overflow-hidden rounded-lg border bg-neutral-900 dark:bg-neutral-950">
-      <div className="overflow-x-auto p-3 pr-12">
-        <pre className="font-mono text-xs whitespace-nowrap text-green-400 sm:text-sm">
-          <code>{command}</code>
-        </pre>
-      </div>
-      <button
-        onClick={onCopy}
-        className={`absolute top-2 right-2 rounded-md p-1.5 transition-colors ${copied ? "bg-green-400/20 text-green-400" : "bg-neutral-800 text-neutral-400 hover:bg-neutral-700"}`}
-        title="Copy"
-      >
-        {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-      </button>
-    </div>
-  );
-}
 
 export default function ToolsPage() {
   const [copiedId, setCopiedId] = useState<string | null>(null);

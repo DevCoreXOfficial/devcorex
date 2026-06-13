@@ -3,9 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Package, Copy, Check } from "lucide-react";
+import { Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { ToolTerminal, CodeBlock } from "@/components/terminal-block";
 
 const nodeModules = [
   {
@@ -80,33 +81,6 @@ const features = [
   "Pre-configured for Termux",
   "TypeScript, Prettier, Vercel CLI included",
 ];
-
-function ToolTerminal({
-  command,
-  copied,
-  onCopy,
-}: {
-  command: string;
-  copied: boolean;
-  onCopy: () => void;
-}) {
-  return (
-    <div className="border-border/50 relative max-w-full overflow-hidden rounded-lg border bg-neutral-900 dark:bg-neutral-950">
-      <div className="overflow-x-auto p-3 pr-12">
-        <pre className="font-mono text-xs whitespace-nowrap text-green-400 sm:text-sm">
-          <code>{command}</code>
-        </pre>
-      </div>
-      <button
-        onClick={onCopy}
-        className={`absolute top-2 right-2 rounded-md p-1.5 transition-colors ${copied ? "bg-green-400/20 text-green-400" : "bg-neutral-800 text-neutral-400 hover:bg-neutral-700"}`}
-        title="Copy"
-      >
-        {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-      </button>
-    </div>
-  );
-}
 
 export default function NodePage() {
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -239,12 +213,15 @@ export default function NodePage() {
               The localtunnel package includes an automatic fix for Android that
               replaces <code>openurl</code> with <code>termux-open-url</code>.
             </p>
-            <div className="border-border/50 max-w-full overflow-hidden rounded-lg border bg-neutral-900 p-3">
-              <pre className="font-mono text-xs whitespace-nowrap text-green-400">
-                <code>{`# No extra setup needed - fix is applied automatically
-lt --port 3000`}</code>
-              </pre>
-            </div>
+            <CodeBlock
+              lines={[
+                "# No extra setup needed - fix is applied automatically",
+                "lt --port 3000",
+              ]}
+              copyCommand="lt --port 3000"
+              copied={copiedId === "lt-port"}
+              onCopy={() => copyInstall("lt-port", "lt --port 3000")}
+            />
           </motion.div>
         </div>
       </section>

@@ -431,8 +431,7 @@ export default function CoreTermuxPage() {
               CORE-TERMUX
             </h1>
             <p className="text-muted-foreground mb-8 max-w-2xl text-lg sm:text-xl">
-              The ultimate framework for setting up and managing development
-              environments on Termux (Android). Automate installations, updates,
+              Modular Dev Environment for Termux (Android). Automate installations, updates,
               and configurations with simple commands.
             </p>
 

@@ -2,7 +2,15 @@
 
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
-import { Terminal, Home, BookOpen, Sparkles, Code2, Zap } from "lucide-react";
+import {
+  Terminal,
+  Home,
+  BookOpen,
+  Sparkles,
+  Code2,
+  Zap,
+  Cpu,
+} from "lucide-react";
 import Image from "next/image";
 import {
   FaYoutube,
@@ -17,6 +25,7 @@ import {
 const quickLinks = [
   { key: "home", href: "/", icon: Home },
   { key: "termux", href: "/termux", icon: Terminal },
+  { key: "Termux:API", href: "/termux/api", icon: Cpu },
   { key: "coreTermux", href: "/core-termux", icon: Zap },
   { key: "courses", href: "/courses", icon: BookOpen },
   { key: "ai", href: "/core-termux/ai", icon: Sparkles },

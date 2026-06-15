@@ -196,9 +196,14 @@ const modules: Array<{
         desc: "The agent that grows with you",
       },
       {
-        name: "MiMo Code",
+        name: "MiMoCode",
         special: "mimocode",
         desc: "Xiaomi's AI coding agent — fast, local, and open-source",
+      },
+      {
+        name: "Kimi Code",
+        npm: "@moonshot-ai/kimi-code",
+        desc: "Kimi Code CLI — The Starting Point for Next-Gen Agents",
       },
     ],
     installCmd: "core install ai",

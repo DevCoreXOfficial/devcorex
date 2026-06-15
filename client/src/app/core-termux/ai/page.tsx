@@ -232,7 +232,7 @@ const aiTools: AITool[] = [
   },
   {
     id: "mimocode",
-    name: "MiMo Code",
+    name: "MiMoCode",
     description:
       "Xiaomi's AI coding agent — fast, local, and open-source",
     install: "core install ai --mimocode",
@@ -240,7 +240,19 @@ const aiTools: AITool[] = [
     color: "text-orange-500",
     bgColor: "bg-orange-500/10",
     builtin: true,
+  },
+  {
+    id: "kimi-code",
+    name: "Kimi Code",
+    description:
+      "Kimi Code CLI is an AI coding agent that runs in your terminal — it can read and edit code",
+    install: "core install ai --kimi-code",
+    source: "https://github.com/MoonshotAI/kimi-code",
+    color: "text-sky-500",
+    bgColor: "bg-sky-500/10",
+    builtin: true,
   }
+
 ];
 
 export default function AIToolsPage() {

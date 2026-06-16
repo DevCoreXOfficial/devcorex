@@ -206,9 +206,10 @@ export default function TermuxApiPage() {
                 </div>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   {category.commands.map((cmd) => (
-                    <div
+                    <motion.div
                       key={cmd.cmd}
-                      className="border-border bg-background rounded-xl border p-4"
+                      whileHover={{ y: -4 }}
+                      className="border-border bg-background hover:border-foreground/20 rounded-xl border p-4 transition-colors"
                     >
                       <p className="text-muted-foreground mb-3 text-sm">
                         {cmd.desc}
@@ -218,7 +219,7 @@ export default function TermuxApiPage() {
                         copied={copiedId === cmd.cmd}
                         onCopy={() => copyInstall(cmd.cmd, cmd.cmd)}
                       />
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </motion.div>

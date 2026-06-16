@@ -27,6 +27,7 @@ const quickLinks = [
   { key: "termux", href: "/termux", icon: Terminal },
   { key: "Termux:API", href: "/termux/api", icon: Cpu },
   { key: "coreTermux", href: "/core-termux", icon: Zap },
+  { key: "software", href: "/software", icon: Code2 },
   { key: "courses", href: "/courses", icon: BookOpen },
   { key: "ai", href: "/core-termux/ai", icon: Sparkles },
   { key: "editor", href: "/core-termux/editor", icon: Code2 },
@@ -107,7 +108,11 @@ export function Footer() {
                     className="text-muted-foreground hover:text-foreground flex items-center gap-2 text-sm capitalize transition-colors sm:text-base"
                   >
                     <link.icon className="h-4 w-4" />
-                    {link.key === "coreTermux" ? "Core-Termux" : link.key}
+                    {link.key === "coreTermux"
+                      ? "Core-Termux"
+                      : link.key === "software"
+                        ? "Custom Software"
+                        : link.key}
                   </Link>
                 </li>
               ))}

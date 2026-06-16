@@ -323,7 +323,8 @@ export default function AIToolsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="border-border bg-background overflow-hidden rounded-xl border"
+                whileHover={{ y: -4 }}
+                className="border-border bg-background hover:border-foreground/20 overflow-hidden rounded-xl border transition-colors"
               >
                 <div className="p-5 sm:p-6">
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-start">

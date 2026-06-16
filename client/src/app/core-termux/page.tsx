@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { FaGithub } from "react-icons/fa6";
 import { ToolTerminal } from "@/components/terminal-block";
 
 const installCommand =
@@ -406,6 +407,15 @@ export default function CoreTermuxPage() {
     navigator.clipboard.writeText(cmd);
   };
 
+  const [stars, setStars] = useState<number | null>(null);
+
+  useEffect(() => {
+    fetch("https://api.github.com/repos/DevCoreXOfficial/core-termux")
+      .then((res) => res.json())
+      .then((data) => setStars(data.stargazers_count))
+      .catch(() => {});
+  }, []);
+
   const copyModule = (cmd: string) => {
     navigator.clipboard.writeText(cmd);
     setModuleCopied(true);
@@ -483,8 +493,17 @@ export default function CoreTermuxPage() {
                 <Link
                   href="https://github.com/DevCoreXOfficial/core-termux"
                   target="_blank"
+                  className="gap-2"
                 >
                   GitHub Repository
+                  {stars !== null && (
+                    <span className="flex items-center gap-1 text-xs font-normal">
+                      <FaGithub className="h-3.5 w-3.5" />
+                      {stars >= 1000
+                        ? `${(stars / 1000).toFixed(1)}k`
+                        : stars}
+                    </span>
+                  )}
                 </Link>
               </Button>
             </div>
@@ -730,7 +749,8 @@ export default function CoreTermuxPage() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="border-border bg-muted/30 rounded-xl border p-4"
+                whileHover={{ y: -4 }}
+                className="border-border bg-muted/30 hover:border-foreground/20 rounded-xl border p-4 transition-colors"
               >
                 <div className="mb-2 flex items-center gap-2">
                   <item.icon className="text-primary h-4 w-4" />

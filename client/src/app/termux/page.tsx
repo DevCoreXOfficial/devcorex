@@ -39,12 +39,12 @@ const benefits = [
 ];
 
 const whyCoreTermux = [
-  "Automated installation of development environments",
-  "Pre-configured tools and optimizations",
-  "Easy updates and maintenance",
-  "Community support and documentation",
-  "Custom themes and UI enhancements",
-  "Persistent configuration across sessions",
+  "One-command setup — curl | bash installs everything automatically",
+  "9 modular packages: Language, AI, DB, Editor, Tools, Node, Shell, UI, Automation",
+  "core CLI framework — install, update, uninstall, list, pg manager, and more",
+  "18+ AI coding tools pre-configured (Claude Code, OpenCode, Ollama, Codex CLI, etc.)",
+  "Neovim + NvChad with 16+ language LSPs and GitHub Copilot",
+  "ZSH + powerlevel10k with 9 plugins and persistent session memory",
 ];
 
 export default function TermuxPage() {
@@ -107,7 +107,8 @@ export default function TermuxPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="border-border flex items-start gap-3 rounded-xl border p-4"
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  className="border-border hover:border-foreground/20 flex cursor-default items-start gap-3 rounded-xl border p-4 transition-colors"
                 >
                   <div className="bg-primary/10 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg">
                     <benefit.icon className="text-primary h-5 w-5" />
@@ -147,6 +148,7 @@ export default function TermuxPage() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              whileHover={{ y: -4 }}
               className="border-border bg-background rounded-xl border p-6"
             >
               <h3 className="mb-4 flex items-center gap-2 text-xl font-semibold">
@@ -158,25 +160,37 @@ export default function TermuxPage() {
                   <span className="bg-muted mt-1 flex h-4 w-4 items-center justify-center rounded-full text-xs">
                     ✕
                   </span>
-                  Manual setup required for each tool
+                  Manual pkg installs for every single tool
                 </li>
                 <li className="text-muted-foreground flex items-start gap-2">
                   <span className="bg-muted mt-1 flex h-4 w-4 items-center justify-center rounded-full text-xs">
                     ✕
                   </span>
-                  Basic terminal configuration
+                  No module system or CLI framework
                 </li>
                 <li className="text-muted-foreground flex items-start gap-2">
                   <span className="bg-muted mt-1 flex h-4 w-4 items-center justify-center rounded-full text-xs">
                     ✕
                   </span>
-                  No automated updates
+                  Manual AI tool setup and configuration
                 </li>
                 <li className="text-muted-foreground flex items-start gap-2">
                   <span className="bg-muted mt-1 flex h-4 w-4 items-center justify-center rounded-full text-xs">
                     ✕
                   </span>
-                  Default theme and fonts
+                  Default editor with no LSP support
+                </li>
+                <li className="text-muted-foreground flex items-start gap-2">
+                  <span className="bg-muted mt-1 flex h-4 w-4 items-center justify-center rounded-full text-xs">
+                    ✕
+                  </span>
+                  Generic shell with no plugins or themes
+                </li>
+                <li className="text-muted-foreground flex items-start gap-2">
+                  <span className="bg-muted mt-1 flex h-4 w-4 items-center justify-center rounded-full text-xs">
+                    ✕
+                  </span>
+                  No centralized update mechanism
                 </li>
               </ul>
             </motion.div>
@@ -185,6 +199,7 @@ export default function TermuxPage() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              whileHover={{ y: -4 }}
               className="border-primary/50 bg-primary/5 rounded-xl border p-6"
             >
               <h3 className="mb-4 flex items-center gap-2 text-xl font-semibold">

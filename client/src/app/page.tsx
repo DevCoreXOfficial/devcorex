@@ -1,73 +1,43 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaBrain, FaCode } from "react-icons/fa6";
 import {
   Terminal,
   BookOpen,
   Code2,
-  Sparkles,
   Rocket,
-  Database,
-  Wrench,
-  Layers,
   Copy,
   Check,
+  ArrowRight,
+  Send,
+  Phone,
+  FileCode,
+  Globe,
+  Palette,
+  Code,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 
-const modules = [
-  {
-    icon: Code2,
-    key: "language",
-    href: "/core-termux/language",
-    color: "text-blue-500",
-    bgColor: "bg-blue-500/10",
-  },
-  {
-    icon: Database,
-    key: "db",
-    href: "/core-termux/db",
-    color: "text-green-500",
-    bgColor: "bg-green-500/10",
-  },
-  {
-    icon: Sparkles,
-    key: "ai",
-    href: "/core-termux/ai",
-    color: "text-purple-500",
-    bgColor: "bg-purple-500/10",
-  },
-  {
-    icon: Wrench,
-    key: "tools",
-    href: "/core-termux/tools",
-    color: "text-orange-500",
-    bgColor: "bg-orange-500/10",
-  },
-  {
-    icon: Terminal,
-    key: "editor",
-    href: "/core-termux/editor",
-    color: "text-pink-500",
-    bgColor: "bg-pink-500/10",
-  },
-  {
-    icon: Layers,
-    key: "shell",
-    href: "/core-termux/shell",
-    color: "text-cyan-500",
-    bgColor: "bg-cyan-500/10",
-  },
-];
-
 const installCommand =
   "curl -fsSL https://raw.githubusercontent.com/DevCoreXOfficial/core-termux/main/install.sh | bash";
 
+const words = ["Websites", "Mobile Apps", "Bash Scripts", "Web Apps", "APIs & Backend"];
+
 export default function Home() {
+  const [wordIndex, setWordIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % words.length);
+    }, 2800);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="min-h-screen">
       <section
@@ -118,9 +88,20 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-muted-foreground mb-4 text-lg sm:text-xl md:text-2xl"
+              className="text-muted-foreground mb-4 h-8 text-lg sm:text-xl md:text-2xl"
             >
-              Software Development Community
+              <span className="text-primary font-semibold">Build</span>{" "}
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={words[wordIndex]}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  {words[wordIndex]}
+                </motion.span>
+              </AnimatePresence>
             </motion.p>
 
             <motion.p
@@ -172,151 +153,280 @@ export default function Home() {
             <HomeTerminal command={installCommand} />
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className="mb-8 text-center sm:mb-10"
-          >
-            <h2 className="mb-3 text-2xl font-bold sm:mb-4 sm:text-3xl md:text-4xl">
-              Explore Core-Termux
-            </h2>
-            <p className="text-muted-foreground mx-auto max-w-2xl text-sm sm:text-base md:text-lg">
-              A modular framework for setting up and managing development
-              environments on Termux
-            </p>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9 }}
-            className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 md:gap-4 lg:grid-cols-6"
-          >
-            {modules.map((mod, index) => (
-              <motion.div
-                key={mod.key}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1 + index * 0.05 }}
-              >
-                <Link
-                  href={mod.href}
-                  className="border-border bg-muted/30 hover:bg-muted/50 hover:border-foreground/20 group flex flex-col items-center gap-2 rounded-xl border p-3 text-center transition-all sm:gap-3 sm:p-4 md:p-5"
-                >
-                  <div
-                    className={`rounded-lg p-2 sm:p-3 ${mod.bgColor} transition-transform group-hover:scale-110`}
-                  >
-                    <mod.icon
-                      className={`h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 ${mod.color}`}
-                    />
-                  </div>
-                  <span className="text-[10px] font-medium capitalize sm:text-xs md:text-sm">
-                    {mod.key}
-                  </span>
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
         </div>
       </section>
 
-      <section className="bg-muted/30 px-4 py-12 sm:px-6 sm:py-16 md:py-24 lg:px-8">
+      <section className="relative overflow-hidden border-t px-4 py-16 sm:px-6 md:py-24 lg:px-8">
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-primary/[0.03] to-transparent" />
         <div className="container mx-auto max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-8 text-center sm:mb-12"
           >
-            <h2 className="mb-3 text-2xl font-bold sm:mb-4 sm:text-3xl md:text-4xl">
-              Available Modules
+            <Badge variant="outline" className="mb-4">
+              <Code2 className="mr-1.5 h-3 w-3" />
+              Custom Software Development
+            </Badge>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
+              <div>
+                <h2 className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl">
+                  Need a Custom Solution?
+                </h2>
+                <p className="text-muted-foreground mb-6 text-base leading-relaxed sm:text-lg">
+                  From landing pages to mobile apps, I build custom software
+                  tailored to your needs. Websites, web apps, mobile apps,
+                  bash scripts, APIs &mdash; whatever you need, built from
+                  scratch with modern tools.
+                </p>
+                <ul className="space-y-2">
+                  {[
+                    "Websites & Web Applications",
+                    "Mobile Apps (Expo + React Native)",
+                    "Bash Scripts & Automation",
+                    "APIs & Backend Services",
+                  ].map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-center gap-2 text-sm"
+                    >
+                      <Check className="h-4 w-4 flex-shrink-0 text-green-400" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="flex flex-col justify-center gap-4">
+                <Button
+                  size="lg"
+                  asChild
+                  className="w-full px-6 py-5 text-base sm:w-auto"
+                >
+                  <Link href="/software">
+                    <Rocket className="mr-2 h-5 w-5" />
+                    Start Your Project
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <Button
+                    size="lg"
+                    variant="secondary"
+                    asChild
+                    className="flex-1 px-6 py-5 text-base"
+                  >
+                    <Link href="https://t.me/DarlinMunoz" target="_blank">
+                      <Send className="mr-2 h-5 w-5" />
+                      Telegram
+                    </Link>
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    asChild
+                    className="flex-1 px-6 py-5 text-base"
+                  >
+                    <Link
+                      href="https://wa.me/+593959167797"
+                      target="_blank"
+                    >
+                      <Phone className="mr-2 h-5 w-5" />
+                      WhatsApp
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="sm:px-6 lg:px-8 overflow-hidden px-4 py-16 md:py-24">
+        <div className="container mx-auto max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-12 text-center"
+          >
+            <Badge variant="outline" className="mb-4">
+              <BookOpen className="mr-1.5 h-3 w-3" />
+              Courses
+            </Badge>
+            <h2 className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl">
+              Learn to Code
             </h2>
-            <p className="text-muted-foreground mx-auto max-w-2xl text-sm sm:text-base md:text-lg">
-              Everything you need for development on Termux
+            <p className="text-muted-foreground mx-auto max-w-2xl text-base sm:text-lg">
+              Programming tutorials from beginner to advanced &mdash; all on
+              our YouTube channel
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 md:gap-6 lg:grid-cols-3">
+          <div className="mb-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
             {[
-              {
-                title: "Languages",
-                desc: "Node.js, Python, Rust, PHP, Perl, C/C++, Go",
-                href: "/core-termux/language",
-                icon: Code2,
-                color: "text-blue-500",
-                bgColor: "bg-blue-500/10",
-              },
-              {
-                title: "AI Tools",
-                desc: "OpenCode, Claude Code, Mistral Vibe, Ollama and more",
-                href: "/core-termux/ai",
-                icon: Sparkles,
-                color: "text-purple-500",
-                bgColor: "bg-purple-500/10",
-              },
-              {
-                title: "Databases",
-                desc: "PostgreSQL, MariaDB, SQLite, MongoDB",
-                href: "/core-termux/db",
-                icon: Database,
-                color: "text-green-500",
-                bgColor: "bg-green-500/10",
-              },
-              {
-                title: "Code Editor",
-                desc: "Neovim with NvChad configuration",
-                href: "/core-termux/editor",
-                icon: Terminal,
-                color: "text-pink-500",
-                bgColor: "bg-pink-500/10",
-              },
-              {
-                title: "Dev Tools",
-                desc: "GitHub CLI, Vercel, TypeScript, Prettier",
-                href: "/core-termux/tools",
-                icon: Wrench,
-                color: "text-orange-500",
-                bgColor: "bg-orange-500/10",
-              },
-              {
-                title: "Courses",
-                desc: "HTML, CSS, JavaScript tutorials",
-                href: "/courses",
-                icon: BookOpen,
-                color: "text-cyan-500",
-                bgColor: "bg-cyan-500/10",
-                highlight: true,
-              },
-            ].map((item, index) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Link
-                  href={item.href}
-                  className={`bg-background hover:bg-muted/50 hover:border-foreground/20 block rounded-xl border p-4 transition-all sm:p-5 md:p-6 ${item.highlight ? "border-primary/50" : "border-border"}`}
+              { title: "Termux", icon: Terminal, color: "text-neutral-600", bgColor: "bg-neutral-600/10", level: "Beginner" },
+              { title: "Neovim", icon: FileCode, color: "text-green-400", bgColor: "bg-green-400/10", level: "Intermediate" },
+              { title: "HTML", icon: Globe, color: "text-orange-500", bgColor: "bg-orange-500/10", level: "Beginner" },
+              { title: "CSS", icon: Palette, color: "text-blue-500", bgColor: "bg-blue-500/10", level: "Beginner" },
+              { title: "JavaScript", icon: Code, color: "text-yellow-500", bgColor: "bg-yellow-500/10", level: "Intermediate" },
+            ].map((course, i) => {
+              const Icon = course.icon;
+              return (
+                <motion.div
+                  key={course.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                  whileHover={{ y: -4 }}
                 >
-                  <div
-                    className={`h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 ${item.bgColor} mb-3 flex items-center justify-center rounded-lg sm:mb-4`}
+                  <Link
+                    href="/courses"
+                    className="border-border bg-background hover:border-foreground/20 group flex h-full flex-col items-center gap-3 rounded-xl border p-5 text-center transition-colors"
                   >
-                    <item.icon
-                      className={`h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 ${item.color}`}
-                    />
-                  </div>
-                  <h3 className="mb-1 text-base font-semibold sm:mb-2 sm:text-lg md:text-xl">
-                    {item.title}
-                  </h3>
-                  <p className="text-muted-foreground text-xs sm:text-sm md:text-base">
-                    {item.desc}
-                  </p>
-                </Link>
-              </motion.div>
-            ))}
+                    <div className={`${course.bgColor} rounded-lg p-2.5`}>
+                      <Icon className={`${course.color} h-5 w-5`} />
+                    </div>
+                    <div>
+                      <p className="mb-0.5 text-sm font-semibold">
+                        {course.title}
+                      </p>
+                      <span className="text-muted-foreground text-xs">
+                        {course.level}
+                      </span>
+                    </div>
+                  </Link>
+                </motion.div>
+              );
+            })}
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <Button asChild>
+              <Link href="/courses">
+                View All Courses
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="px-4 py-16 sm:px-6 md:py-24 lg:px-8">
+        <div className="container mx-auto max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-10 text-center"
+          >
+            <h2 className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl">
+              Featured Core-Termux Modules
+            </h2>
+            <p className="text-muted-foreground text-base sm:text-lg">
+              The most powerful tools in the ecosystem
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -6 }}
+              className="group relative overflow-hidden rounded-2xl border bg-gradient-to-br from-purple-500/5 to-transparent p-6 sm:p-8"
+            >
+              <div className="bg-purple-500/10 mb-4 inline-flex rounded-xl p-3">
+                <FaBrain className="h-6 w-6 text-purple-500" />
+              </div>
+              <h3 className="mb-2 text-xl font-bold">AI Tools</h3>
+              <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
+                18+ AI coding assistants pre-configured: Claude Code,
+                OpenCode, Ollama, Codex CLI, and more. Run open-source LLMs
+                locally on your Termux.
+              </p>
+              <ul className="mb-6 space-y-1.5">
+                {[
+                  "Claude Code, OpenCode, Codex CLI",
+                  "Ollama — run LLMs locally",
+                  "Smart completions with Copilot",
+                ].map((f) => (
+                  <li
+                    key={f}
+                    className="flex items-center gap-2 text-xs text-muted-foreground"
+                  >
+                    <Check className="h-3 w-3 flex-shrink-0 text-green-400" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <Button variant="outline" asChild className="w-full">
+                <Link href="/core-termux/ai">
+                  Explore AI Tools
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -6 }}
+              className="group relative overflow-hidden rounded-2xl border bg-gradient-to-br from-pink-500/5 to-transparent p-6 sm:p-8"
+            >
+              <div className="bg-pink-500/10 mb-4 inline-flex rounded-xl p-3">
+                <FaCode className="h-6 w-6 text-pink-500" />
+              </div>
+              <h3 className="mb-2 text-xl font-bold">Code Editor</h3>
+              <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
+                Fully configured Neovim with NvChad, optimized for Termux on
+                Android. LSP support for 16+ languages, GitHub Copilot, and a
+                beautiful UI.
+              </p>
+              <ul className="mb-6 space-y-1.5">
+                {[
+                  "16+ language LSPs (TS, Python, Go, Rust)",
+                  "GitHub Copilot + CodeCompanion AI",
+                  "NvChad with Eldritch theme",
+                ].map((f) => (
+                  <li
+                    key={f}
+                    className="flex items-center gap-2 text-xs text-muted-foreground"
+                  >
+                    <Check className="h-3 w-3 flex-shrink-0 text-green-400" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <Button variant="outline" asChild className="w-full">
+                <Link href="/core-termux/editor">
+                  Explore Code Editor
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-8 text-center"
+          >
+            <Button variant="ghost" asChild>
+              <Link href="/core-termux">
+                View All Modules
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </motion.div>
         </div>
       </section>
 

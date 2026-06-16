@@ -273,7 +273,8 @@ function CourseCard({ course, index }: CourseCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.05 }}
-      className={`border-border rounded-xl border p-5 sm:p-6 ${course.bgColor}`}
+      whileHover={{ y: -4 }}
+      className={`border-border hover:border-foreground/20 rounded-xl border p-5 sm:p-6 transition-colors ${course.bgColor}`}
     >
       {/* Header */}
       <div className="mb-4 flex items-center gap-3">
@@ -417,6 +418,7 @@ export default function CoursesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
+                whileHover={{ y: -4 }}
                 className="border-border bg-background/50 rounded-xl border border-dashed p-5 opacity-60"
               >
                 <div className="mb-3 flex items-center gap-2">

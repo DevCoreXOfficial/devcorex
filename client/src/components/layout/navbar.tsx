@@ -12,6 +12,7 @@ import {
   Users,
   Zap,
   Cpu,
+  Code2,
 } from "lucide-react";
 import {
   FaYoutube,
@@ -46,6 +47,7 @@ const navItems = [
   { key: "termux", href: "/termux", icon: Terminal },
   { key: "Termux:API", href: "/termux/api", icon: Cpu },
   { key: "coreTermux", href: "/core-termux", icon: Zap },
+  { key: "software", href: "/software", icon: Code2 },
   { key: "courses", href: "/courses", icon: BookOpen },
   { key: "community", href: "/#community", icon: Users },
 ];

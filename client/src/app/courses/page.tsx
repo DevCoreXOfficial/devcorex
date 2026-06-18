@@ -139,8 +139,8 @@ const courses: CourseItem[] = [
 
 const upcomingCourses = [
   {
-    title: "Bash Script",
-    desc: "Shell scripting for automation",
+    title: "CLI App",
+    desc: "CLI applications and automation",
     icon: Terminal,
   },
   {

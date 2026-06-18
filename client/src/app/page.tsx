@@ -26,7 +26,7 @@ import Image from "next/image";
 const installCommand =
   "curl -fsSL https://raw.githubusercontent.com/DevCoreXOfficial/core-termux/main/install.sh | bash";
 
-const words = ["Websites", "Mobile Apps", "Bash Scripts", "Web Apps", "APIs & Backend"];
+const words = ["Websites", "Mobile Apps", "CLI Apps", "Web Apps", "APIs & Backend"];
 
 export default function Home() {
   const [wordIndex, setWordIndex] = useState(0);
@@ -184,7 +184,7 @@ export default function Home() {
                   {[
                     "Websites & Web Applications",
                     "Mobile Apps (Expo + React Native)",
-                    "Bash Scripts & Automation",
+                    "CLI Apps & Automation",
                     "APIs & Backend Services",
                   ].map((item) => (
                     <li

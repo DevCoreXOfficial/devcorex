@@ -22,7 +22,7 @@ export function ToolTerminal({
       </div>
       <button
         onClick={onCopy}
-        className={`absolute top-2 right-2 rounded-md p-1.5 transition-colors ${
+        className={`absolute top-2 right-2 cursor-pointer rounded-md p-1.5 transition-colors ${
           copied
             ? "bg-green-400/20 text-green-400"
             : "bg-neutral-800 text-neutral-300 hover:bg-neutral-700 hover:text-white"
@@ -96,7 +96,7 @@ export function CodeBlock({
       </div>
       <button
         onClick={onCopy}
-        className={`absolute top-2 right-2 rounded-md p-1.5 transition-colors ${
+        className={`absolute top-2 right-2 cursor-pointer rounded-md p-1.5 transition-colors ${
           copied
             ? "bg-green-400/20 text-green-400"
             : "bg-neutral-800 text-neutral-300 hover:bg-neutral-700 hover:text-white"

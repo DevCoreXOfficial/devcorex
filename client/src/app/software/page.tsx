@@ -18,6 +18,7 @@ import {
   Clock,
   CalendarDays,
   Coffee,
+  Workflow,
   Send,
   Copy,
   Check,
@@ -39,7 +40,7 @@ const projectTypes = [
   { id: "website", icon: Globe, title: "Website", desc: "Full multi-page site with CMS, blog, or portfolio", color: "text-green-500", bgColor: "bg-green-500/10" },
   { id: "web-app", icon: Layers, title: "Web Application", desc: "Interactive platform, dashboard, or SaaS", color: "text-purple-500", bgColor: "bg-purple-500/10" },
   { id: "mobile-app", icon: Smartphone, title: "Mobile App", desc: "Cross-platform iOS & Android with Expo", color: "text-pink-500", bgColor: "bg-pink-500/10" },
-  { id: "bash-script", icon: Terminal, title: "Bash Script", desc: "Automation, CLI tools, or dev utilities", color: "text-orange-500", bgColor: "bg-orange-500/10" },
+  { id: "cli-app", icon: Terminal, title: "CLI App", desc: "CLI tools, automation, or dev utilities", color: "text-orange-500", bgColor: "bg-orange-500/10" },
   { id: "api-backend", icon: Server, title: "API / Backend", desc: "REST API, database, and server architecture", color: "text-cyan-500", bgColor: "bg-cyan-500/10" },
 ];
 
@@ -81,7 +82,7 @@ const techStack = [
   { label: "Automation", items: [
     { name: "Bash", icon: SiGnubash },
     { name: "CI/CD", icon: FaGear },
-    { name: "n8n", icon: SiNextdotjs },  // workflow placeholder
+    { name: "n8n", icon: Workflow },
   ]},
   { label: "Infrastructure", items: [
     { name: "Vercel", icon: SiVercel },

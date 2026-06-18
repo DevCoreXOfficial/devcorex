@@ -124,7 +124,7 @@ export function Footer() {
 
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
           <p className="text-muted-foreground text-center text-sm sm:text-left sm:text-base">
-            Made with ❤ by DevCoreX {currentYear}
+            Made with ❤ by DevCoreX <span className="text-foreground/50">· ℒ ♡</span> {currentYear}
           </p>
           <p className="text-muted-foreground flex items-center gap-2 text-sm sm:text-base">
             Built with <Terminal className="h-4 w-4" /> using DevCoreX Tools

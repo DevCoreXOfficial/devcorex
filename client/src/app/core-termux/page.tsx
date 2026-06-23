@@ -21,6 +21,12 @@ import {
   Copy,
   Check,
   RotateCcw,
+  Brain,
+  Mic,
+  Settings,
+  Eye,
+  RefreshCw,
+  Trash2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -55,14 +61,14 @@ const modules: Array<{
   pgCommand?: string;
 }> = [
   {
-    id: "language",
+    id: "lang",
     title: "Language Packages",
     description: "Programming languages and runtimes via pkg",
     icon: Code2,
     color: "text-blue-500",
     bgColor: "bg-blue-500/10",
-    command: "core install language",
-    href: "/core-termux/language",
+    command: "core install lang",
+    href: "/core-termux/lang",
     tools: [
       {
         name: "Node.js LTS",
@@ -76,7 +82,7 @@ const modules: Array<{
       { name: "C/C++", pkg: "clang", desc: "LLVM C/C++ compiler" },
       { name: "Go", pkg: "golang", desc: "Go programming language" },
     ],
-    installCmd: "core install language",
+    installCmd: "core install lang",
   },
   {
     id: "db",
@@ -240,14 +246,14 @@ const modules: Array<{
     installCmd: "core install editor",
   },
   {
-    id: "tools",
+    id: "dev",
     title: "Development Tools",
     description: "Essential CLI tools for development",
     icon: Wrench,
     color: "text-orange-500",
     bgColor: "bg-orange-500/10",
-    command: "core install tools",
-    href: "/core-termux/tools",
+    command: "core install dev",
+    href: "/core-termux/dev",
     tools: [
       {
         name: "GitHub CLI",
@@ -281,18 +287,25 @@ const modules: Array<{
         desc: "Image manipulation suite",
       },
       { name: "Shfmt", pkg: "shfmt", desc: "Shell script formatter" },
+      { name: "Make", pkg: "make", desc: "Build automation tool" },
+      { name: "Udocker", pkg: "udocker", desc: "Run Docker containers without root" },
+      { name: "Ncurses Utils", pkg: "ncurses-utils", desc: "Terminal UI manipulation tools" },
+      { name: "Tmate", pkg: "tmate", desc: "Instant terminal sharing" },
+      { name: "Translate Shell", pkg: "translate-shell", desc: "Command-line translator" },
+      { name: "html2text", pkg: "html2text", desc: "HTML to plain text converter" },
+      { name: "Bc", pkg: "bc", desc: "Arbitrary precision calculator" },
     ],
-    installCmd: "core install tools",
+    installCmd: "core install dev",
   },
   {
-    id: "node",
+    id: "npm",
     title: "Node.js Modules",
     description: "Global npm packages",
     icon: Package,
     color: "text-green-500",
     bgColor: "bg-green-500/10",
-    command: "core install node",
-    href: "/core-termux/node",
+    command: "core install npm",
+    href: "/core-termux/npm",
     tools: [
       {
         name: "TypeScript",
@@ -330,8 +343,10 @@ const modules: Array<{
         npm: "ncu",
         desc: "Find outdated dependencies",
       },
+      { name: "Markserv", npm: "markserv", desc: "Markdown live-preview server" },
+      { name: "PSQL Format", npm: "psqlformat", desc: "PostgreSQL query formatter" },
     ],
-    installCmd: "core install node",
+    installCmd: "core install npm",
   },
   {
     id: "shell",
@@ -379,16 +394,16 @@ const modules: Array<{
     installCmd: "core install ui",
   },
   {
-    id: "automation",
+    id: "auto",
     title: "Automation",
     description: "Automation tools like n8n",
     icon: Workflow,
     color: "text-indigo-500",
     bgColor: "bg-indigo-500/10",
-    command: "core install automation",
-    href: "/core-termux/automation",
+    command: "core install auto",
+    href: "/core-termux/auto",
     tools: [{ name: "n8n", npm: "n8n", desc: "Workflow automation platform" }],
-    installCmd: "core install automation",
+    installCmd: "core install auto",
   },
 ];
 
@@ -471,7 +486,7 @@ export default function CoreTermuxPage() {
                 </Button>
               </div>
               <div className="overflow-x-auto p-4">
-                <pre className="font-mono text-sm whitespace-nowrap text-green-400">
+                <pre className="font-mono text-sm whitespace-nowrap text-emerald-600 dark:text-emerald-400">
                   <code className="pr-5">{installCommand}</code>
                 </pre>
               </div>
@@ -571,8 +586,8 @@ export default function CoreTermuxPage() {
                       </Link>
                     )}
                     <pre className="bg-muted hidden rounded px-2 py-1 font-mono text-xs sm:block">
-                      <code className="text-green-400">{mod.command}</code>
-                    </pre>
+                       <code className="text-emerald-600 dark:text-emerald-400">{mod.command}</code>
+                     </pre>
                     {expandedModule === mod.id ? (
                       <ChevronUp className="text-muted-foreground h-5 w-5" />
                     ) : (
@@ -633,7 +648,7 @@ export default function CoreTermuxPage() {
                                   {tool.desc}
                                 </p>
                                 {tool.cmd && (
-                                  <code className="mt-1 block text-xs text-green-400">
+                                  <code className="mt-1 block text-xs text-emerald-600 dark:text-emerald-400">
                                     Command: {tool.cmd}
                                   </code>
                                 )}
@@ -657,10 +672,10 @@ export default function CoreTermuxPage() {
                               PostgreSQL Manager:
                             </p>
                             <pre className="bg-muted inline-block rounded px-2 py-1 font-mono text-xs">
-                              <code className="text-green-400">
-                                {mod.pgCommand}
-                              </code>
-                            </pre>
+                               <code className="text-emerald-600 dark:text-emerald-400">
+                                 {mod.pgCommand}
+                               </code>
+                             </pre>
                           </div>
                         )}
                       </div>
@@ -684,6 +699,9 @@ export default function CoreTermuxPage() {
             <h2 className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl">
               Main Commands
             </h2>
+            <p className="text-muted-foreground text-base sm:text-lg">
+              Click on any command to see full documentation
+            </p>
           </motion.div>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -692,76 +710,105 @@ export default function CoreTermuxPage() {
                 cmd: "core --version",
                 desc: "Show current version",
                 icon: Terminal,
+                href: "/core-termux/version",
               },
               {
-                cmd: "core setup",
-                desc: "Interactive installation wizard",
-                icon: Zap,
+                cmd: "core brain",
+                desc: "Second brain — save and search memories",
+                icon: Brain,
+                href: "/core-termux/brain",
               },
               {
-                cmd: "core install <module> --tool",
+                cmd: "core env",
+                desc: "Manage environment variables",
+                icon: Settings,
+                href: "/core-termux/env",
+              },
+              {
+                cmd: "core install",
                 desc: "Install specific modules",
                 icon: Package,
+                href: "/core-termux/install",
               },
               {
-                cmd: "core show <module> --tool",
+                cmd: "core show",
                 desc: "Show tool documentation",
-                icon: Workflow,
+                icon: Eye,
+                href: "/core-termux/show",
               },
               {
-                cmd: "core update <module> --tool",
+                cmd: "core update",
                 desc: "Update modules or framework",
                 icon: ArrowRight,
+                href: "/core-termux/update",
               },
               {
-                cmd: "core uninstall <module> --tool",
+                cmd: "core uninstall",
                 desc: "Remove installed modules",
-                icon: Box,
+                icon: Trash2,
+                href: "/core-termux/uninstall",
               },
               {
-                cmd: "core reinstall <module> --tool",
+                cmd: "core reinstall",
                 desc: "Reinstall specific tools or modules",
                 icon: RotateCcw,
+                href: "/core-termux/reinstall",
               },
               {
-                cmd: "core open <module>",
+                cmd: "core voice",
+                desc: "Speech-to-agent via microphone",
+                icon: Mic,
+                href: "/core-termux/voice",
+              },
+              {
+                cmd: "core open",
                 desc: "Open documentation in browser",
                 icon: Palette,
+                href: "/core-termux/open",
               },
               {
-                cmd: "core list <module> --tool",
+                cmd: "core list",
                 desc: "List available tools in modules",
                 icon: Layers,
+                href: "/core-termux/list",
               },
               {
                 cmd: "core pg",
                 desc: "PostgreSQL database manager",
                 icon: Database,
+                href: "/core-termux/pg",
               },
               {
-                cmd: "core init <template>",
+                cmd: "core init",
                 desc: "Configure existing projects",
                 icon: Code2,
+                href: "/core-termux/init",
               },
             ].map((item) => (
-              <motion.div
-                key={item.cmd}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -4 }}
-                className="border-border bg-muted/30 hover:border-foreground/20 rounded-xl border p-4 transition-colors"
-              >
-                <div className="mb-2 flex items-center gap-2">
-                  <item.icon className="text-primary h-4 w-4" />
-                  <code className="font-mono text-sm font-semibold text-green-400">
-                    {item.cmd}
-                  </code>
-                </div>
-                <p className="text-muted-foreground text-xs sm:text-sm">
-                  {item.desc}
-                </p>
-              </motion.div>
+              <Link key={item.cmd} href={item.href}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  className="border-border bg-muted/30 hover:border-primary/50 hover:bg-muted/50 group cursor-pointer rounded-xl border p-4 transition-all"
+                >
+                  <div className="mb-3 flex items-center gap-3">
+                    <div className="bg-primary/10 group-hover:bg-primary/20 rounded-lg p-2 transition-colors">
+                      <item.icon className="text-primary h-5 w-5" />
+                    </div>
+                    <div className="flex-1">
+                      <code className="font-mono text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+                        {item.cmd}
+                      </code>
+                    </div>
+                    <ArrowRight className="text-muted-foreground group-hover:text-primary h-4 w-4 opacity-0 transition-all group-hover:opacity-100" />
+                  </div>
+                  <p className="text-muted-foreground text-xs sm:text-sm">
+                    {item.desc}
+                  </p>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>

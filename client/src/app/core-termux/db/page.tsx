@@ -124,7 +124,7 @@ export default function DatabasesPage() {
             <div className="flex flex-wrap gap-4">
               <div className="border-border relative max-w-full overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
                 <div className="overflow-x-auto p-4">
-                  <pre className="font-mono text-sm whitespace-nowrap text-green-400">
+                  <pre className="font-mono text-sm whitespace-nowrap text-emerald-600 dark:text-emerald-400">
                     <code>core install db</code>
                   </pre>
                 </div>
@@ -225,7 +225,7 @@ export default function DatabasesPage() {
                                     key={cmd.cmd}
                                     className="flex items-center gap-3"
                                   >
-                                    <code className="font-mono text-xs text-green-400">
+                                    <code className="font-mono text-xs text-emerald-600 dark:text-emerald-400">
                                       {cmd.cmd}
                                     </code>
                                     <span className="text-muted-foreground text-xs">

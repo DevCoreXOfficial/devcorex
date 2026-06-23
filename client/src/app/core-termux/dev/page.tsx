@@ -13,115 +13,115 @@ const devTools = [
     name: "GitHub CLI",
     pkg: "gh",
     desc: "Official GitHub command-line tool",
-    install: "core install tools --gh",
+    install: "core install dev --gh",
   },
   {
     name: "Wget",
     pkg: "wget",
     desc: "File downloader",
-    install: "core install tools --wget",
+    install: "core install dev --wget",
   },
   {
     name: "Curl",
     pkg: "curl",
     desc: "HTTP client and transfer tool",
-    install: "core install tools --curl",
+    install: "core install dev --curl",
   },
   {
     name: "Fzf",
     pkg: "fzf",
     desc: "Command-line fuzzy finder",
-    install: "core install tools --fzf",
+    install: "core install dev --fzf",
   },
   {
     name: "LSD",
     pkg: "lsd",
     desc: "Modern ls replacement with icons and colors",
-    install: "core install tools --lsd",
+    install: "core install dev --lsd",
   },
   {
     name: "Bat",
     pkg: "bat",
     desc: "Modern cat replacement with syntax highlighting",
-    install: "core install tools --bat",
+    install: "core install dev --bat",
   },
   {
     name: "jq",
     pkg: "jq",
     desc: "Lightweight JSON processor",
-    install: "core install tools --jq",
+    install: "core install dev --jq",
   },
   {
     name: "Tree",
     pkg: "tree",
     desc: "Recursive directory listing",
-    install: "core install tools --tree",
+    install: "core install dev --tree",
   },
   {
     name: "Proot",
     pkg: "proot",
     desc: "Chroot alternative for user-space",
-    install: "core install tools --proot",
+    install: "core install dev --proot",
   },
   {
     name: "Cloudflared",
     pkg: "cloudflared",
     desc: "Cloudflare Tunnel client",
-    install: "core install tools --cloudflared",
+    install: "core install dev --cloudflared",
   },
   {
     name: "ImageMagick",
     pkg: "imagemagick",
     desc: "Image manipulation suite",
-    install: "core install tools --imagemagick",
+    install: "core install dev --imagemagick",
   },
   {
     name: "Shfmt",
     pkg: "shfmt",
     desc: "Shell script formatter",
-    install: "core install tools --shfmt",
+    install: "core install dev --shfmt",
   },
   {
     name: "Make",
     pkg: "make",
     desc: "Build automation tool",
-    install: "core install tools --make",
+    install: "core install dev --make",
   },
   {
     name: "Udocker",
     pkg: "udocker",
     desc: "Run Docker containers without root",
-    install: "core install tools --udocker",
+    install: "core install dev --udocker",
   },
   {
     name: "Tmate",
     pkg: "tmate",
     desc: "Instant terminal sharing",
-    install: "core install tools --tmate",
+    install: "core install dev --tmate",
   },
   {
     name: "Ncurses Utils",
     pkg: "ncurses-utils",
     desc: "Terminal UI manipulation tools",
-    install: "core install tools --ncurses",
+    install: "core install dev --ncurses-utils",
   },
   {
     name: "Translate Shell",
     pkg: "translate-shell",
     desc: "Command-line translator",
-    install: "core install tools --translate",
+    install: "core install dev --translate-shell",
   },
   {
     name: "html2text",
     pkg: "html2text",
     desc: "HTML to plain text converter",
-    install: "core install tools --html2text",
+    install: "core install dev --html2text",
   },
   {
-    name: "bc",
+    name: "Bc",
     pkg: "bc",
     desc: "Arbitrary precision calculator",
-    install: "core install tools --bc",
+    install: "core install dev --bc",
   },
 ];
 
@@ -156,8 +156,8 @@ export default function ToolsPage() {
             <div className="flex flex-wrap gap-4">
               <div className="border-border relative max-w-full overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
                 <div className="overflow-x-auto p-4">
-                  <pre className="font-mono text-sm whitespace-nowrap text-green-400">
-                    <code>core install tools</code>
+                  <pre className="font-mono text-sm whitespace-nowrap text-emerald-600 dark:text-emerald-400">
+                    <code>core install dev</code>
                   </pre>
                 </div>
               </div>
@@ -217,4 +217,3 @@ export default function ToolsPage() {
     </div>
   );
 }
-

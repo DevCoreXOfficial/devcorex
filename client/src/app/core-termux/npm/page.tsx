@@ -14,64 +14,64 @@ const nodeModules = [
     npm: "typescript",
     cmd: "tsc",
     desc: "TypeScript compiler",
-    install: "core install node --typescript",
+    install: "core install npm --typescript",
   },
   {
     name: "NestJS CLI",
     npm: "@nestjs/cli",
     cmd: "nest",
     desc: "NestJS framework CLI",
-    install: "core install node --nestjs",
+    install: "core install npm --nestjs-cli",
   },
   {
     name: "Prettier",
     npm: "prettier",
     desc: "Code formatter",
-    install: "core install node --prettier",
+    install: "core install npm --prettier",
   },
   {
     name: "Live Server",
     npm: "live-server",
     desc: "Development server with live reload",
-    install: "core install node --live-server",
+    install: "core install npm --live-server",
   },
   {
     name: "Localtunnel",
     npm: "localtunnel",
     cmd: "lt",
     desc: "Expose localhost to the internet",
-    install: "core install node --localtunnel",
+    install: "core install npm --localtunnel",
   },
   {
     name: "Vercel CLI",
     npm: "vercel",
     cmd: "vercel",
     desc: "Vercel deployment CLI",
-    install: "core install node --vercel",
+    install: "core install npm --vercel",
   },
   {
     name: "Markserv",
     npm: "markserv",
     desc: "Markdown live-preview server",
-    install: "core install node --markserv",
+    install: "core install npm --markserv",
   },
   {
     name: "PSQL Format",
     npm: "psqlformat",
     desc: "PostgreSQL query formatter",
-    install: "core install node --psqlformat",
+    install: "core install npm --psqlformat",
   },
   {
     name: "NPM Check Updates",
     npm: "ncu",
     desc: "Find outdated dependencies",
-    install: "core install node --ncu",
+    install: "core install npm --ncu",
   },
   {
     name: "Ngrok",
     npm: "ngrok",
     desc: "Secure tunnel to localhost",
-    install: "core install node --ngrok",
+    install: "core install npm --ngrok",
   },
 ];
 
@@ -104,7 +104,7 @@ export default function NodePage() {
               Node.js Modules
             </Badge>
             <h1 className="mb-6 text-4xl font-bold sm:text-5xl md:text-6xl">
-              Node Modules
+              NPM Modules
             </h1>
             <p className="text-muted-foreground mb-8 max-w-2xl text-lg sm:text-xl">
               Global npm packages for your development workflow on Termux.
@@ -112,8 +112,8 @@ export default function NodePage() {
             <div className="flex flex-wrap gap-4">
               <div className="border-border relative max-w-full overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
                 <div className="overflow-x-auto p-4">
-                  <pre className="font-mono text-sm whitespace-nowrap text-green-400">
-                    <code>core install node</code>
+                  <pre className="font-mono text-sm whitespace-nowrap text-emerald-600 dark:text-emerald-400">
+                    <code>core install npm</code>
                   </pre>
                 </div>
               </div>
@@ -185,7 +185,7 @@ export default function NodePage() {
                 </div>
                 <p className="text-muted-foreground mb-1 text-xs">{pkg.desc}</p>
                 {pkg.cmd && (
-                  <code className="text-xs text-green-400">
+                  <code className="text-xs text-emerald-600 dark:text-emerald-400">
                     Command: {pkg.cmd}
                   </code>
                 )}
@@ -228,4 +228,3 @@ export default function NodePage() {
     </div>
   );
 }
-

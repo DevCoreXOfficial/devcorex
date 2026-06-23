@@ -76,23 +76,42 @@ pnpm --filter client lint
 |-------|-------------|
 | `/` | **Home** — Hero, install terminal, module grid, community links |
 | `/termux` | **Termux** — What is Termux, benefits, Core-Termux comparison |
-| `/core-termux` | **Core-Termux** — Full documentation with expandable module accordions |
-| `/core-termux/<module>` | **Module pages** — Detailed guides for: ai, automation, db, editor, language, node, shell, tools, ui |
+| `/core-termux` | **Core-Termux** — Full documentation with modules and clickable commands |
+| `/core-termux/<module>` | **Module pages** — Detailed guides for: ai, auto, db, editor, lang, npm, shell, ui |
+| `/core-termux/<command>` | **Command pages** — Dedicated docs for: brain, env, voice, install, show, update, uninstall, reinstall, open, list, pg, init, version |
 | `/courses` | **Courses** — Programming courses with YouTube embed facade pattern |
 
 ### Core-Termux Modules
 
 The CORE-TERMUX framework provides automated setup for these development tools on Termux:
 
-- **Language** — Node.js, Python, Perl, PHP, Rust, C/C++
-- **Databases** — PostgreSQL, MariaDB, SQLite, MongoDB
-- **AI** — Ollama, Codex, Claude Code, OpenCode, Engram, CodeGraph, and more
-- **Editor** — Neovim + NvChad with Copilot and CodeCompanion
-- **Tools** — GitHub CLI, Curl, LSD, Bat, jq, Fzf, and more CLI essentials
-- **Node** — TypeScript, Prettier, NestJS CLI, Vercel CLI, Ngrok, Live Server
-- **Shell** — ZSH with powerlevel10k, autosuggestions, syntax highlighting
-- **UI** — Termux font, cursor, extra keys customization
-- **Automation** — n8n workflow automation
+- **lang** — Node.js, Python, Perl, PHP, Rust, C/C++, Go
+- **db** — PostgreSQL, MariaDB, SQLite, MongoDB
+- **ai** — Ollama, Codex, Claude Code, OpenCode, Engram, CodeGraph, and more
+- **editor** — Neovim + NvChad with Copilot and CodeCompanion
+- **dev** — GitHub CLI, Curl, LSD, Bat, jq, Fzf, Make, udocker, and more CLI essentials
+- **npm** — TypeScript, Prettier, NestJS CLI, Vercel CLI, Ngrok, Live Server, Markserv
+- **shell** — ZSH with powerlevel10k, autosuggestions, syntax highlighting
+- **ui** — Termux font, cursor, extra keys customization
+- **auto** — n8n workflow automation
+
+### Core-Termux Commands
+
+| Command | Description |
+|---------|-------------|
+| `core --version` | Show current version |
+| `core brain` | Second brain — save and search memories |
+| `core env` | Manage environment variables |
+| `core voice` | Speech-to-agent via microphone |
+| `core install` | Install specific modules or tools |
+| `core show` | Show tool documentation |
+| `core update` | Update modules or framework |
+| `core uninstall` | Remove installed modules |
+| `core reinstall` | Reinstall specific tools or modules |
+| `core open` | Open documentation in browser |
+| `core list` | List available tools in modules |
+| `core pg` | PostgreSQL database manager |
+| `core init` | Configure existing projects with templates |
 
 ## Architecture Decisions
 

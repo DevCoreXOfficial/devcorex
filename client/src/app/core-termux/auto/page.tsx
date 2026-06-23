@@ -18,7 +18,7 @@ const features = [
 ];
 
 const commands = [
-  { cmd: "core install automation", desc: "Install n8n" },
+  { cmd: "core install auto", desc: "Install n8n" },
   { cmd: "n8n start", desc: "Start n8n server" },
   { cmd: "n8n webhook", desc: "Start n8n in webhook mode" },
 ];
@@ -61,8 +61,8 @@ export default function AutomationPage() {
             <div className="flex flex-wrap gap-4">
               <div className="border-border relative max-w-full overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
                 <div className="overflow-x-auto p-4">
-                  <pre className="font-mono text-sm whitespace-nowrap text-green-400">
-                    <code>core install automation</code>
+                  <pre className="font-mono text-sm whitespace-nowrap text-emerald-600 dark:text-emerald-400">
+                    <code>core install auto</code>
                   </pre>
                 </div>
               </div>
@@ -110,9 +110,9 @@ export default function AutomationPage() {
           >
             <h3 className="mb-4 text-xl font-semibold">Installation</h3>
             <ToolTerminal
-              command="core install automation --n8n"
+              command="core install auto --n8n"
               copied={copied}
-              onCopy={() => copyInstall("core install automation --n8n")}
+              onCopy={() => copyInstall("core install auto --n8n")}
             />
           </motion.div>
 
@@ -127,7 +127,7 @@ export default function AutomationPage() {
               <div className="space-y-3">
                 {commands.map((cmd) => (
                   <div key={cmd.cmd} className="flex items-center gap-4">
-                    <code className="font-mono text-sm text-green-400">
+                    <code className="font-mono text-sm text-emerald-600 dark:text-emerald-400">
                       {cmd.cmd}
                     </code>
                     <span className="text-muted-foreground text-sm">

@@ -13,43 +13,43 @@ const languages = [
     name: "Node.js LTS",
     pkg: "nodejs-lts",
     desc: "Long-term support release of Node.js",
-    install: "core install language --nodejs",
+    install: "core install lang --nodejs-lts",
   },
   {
     name: "Python",
     pkg: "python",
     desc: "Python 3 interpreter",
-    install: "core install language --python",
+    install: "core install lang --python",
   },
   {
     name: "Perl",
     pkg: "perl",
     desc: "Perl scripting language",
-    install: "core install language --perl",
+    install: "core install lang --perl",
   },
   {
     name: "PHP",
     pkg: "php",
     desc: "PHP interpreter",
-    install: "core install language --php",
+    install: "core install lang --php",
   },
   {
     name: "Rust",
     pkg: "rust",
     desc: "Rust compiler and Cargo",
-    install: "core install language --rust",
+    install: "core install lang --rust",
   },
   {
     name: "C/C++",
     pkg: "clang",
     desc: "LLVM C/C++ compiler",
-    install: "core install language --clang",
+    install: "core install lang --clang",
   },
   {
     name: "Go",
     pkg: "golang",
     desc: "Go programming language",
-    install: "core install language --golang",
+    install: "core install lang --golang",
   },
 ];
 
@@ -83,8 +83,8 @@ export default function LanguagePage() {
             <div className="flex flex-wrap gap-4">
               <div className="border-border relative max-w-full overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
                 <div className="overflow-x-auto p-4">
-                  <pre className="font-mono text-sm whitespace-nowrap text-green-400">
-                    <code>core install language</code>
+                  <pre className="font-mono text-sm whitespace-nowrap text-emerald-600 dark:text-emerald-400">
+                    <code>core install lang</code>
                   </pre>
                 </div>
               </div>
@@ -153,8 +153,8 @@ export default function LanguagePage() {
               Install specific languages:
             </p>
             <div className="border-border/50 overflow-x-auto rounded-lg border bg-neutral-900 p-3">
-              <pre className="font-mono text-xs whitespace-nowrap text-green-400">
-                <code>{`core install language --nodejs --python --perl --php --rust --clang --golang`}</code>
+              <pre className="font-mono text-xs whitespace-nowrap text-emerald-600 dark:text-emerald-400">
+                <code>{`core install lang --python --rust --golang`}</code>
               </pre>
             </div>
           </motion.div>

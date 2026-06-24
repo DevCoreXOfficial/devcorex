@@ -53,7 +53,7 @@ export default function Home() {
               className="mt-6 mb-8 sm:mt-0 sm:mb-12"
             >
               <Image
-                src="/devcorex.png"
+                src="/devcorex.webp"
                 alt="DevCoreX Logo"
                 width={160}
                 height={160}

@@ -109,7 +109,7 @@ export function Navbar() {
       <nav className="flex h-14 items-center justify-between px-3 sm:h-16 sm:px-4 md:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src="/devcorex.png"
+            src="/devcorex.webp"
             alt="DevCoreX"
             width={28}
             height={28}
@@ -189,7 +189,7 @@ export function Navbar() {
                   <div className="p-4 sm:p-6">
                     <div className="mb-6 flex items-center gap-2">
                       <Image
-                        src="/devcorex.png"
+                        src="/devcorex.webp"
                         alt="DevCoreX"
                         width={28}
                         height={28}

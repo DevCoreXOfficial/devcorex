@@ -69,7 +69,7 @@ export function Footer() {
           <div className="sm:col-span-2 md:col-span-2">
             <Link href="/" className="mb-4 flex items-center gap-2">
               <Image
-                src="/devcorex.png"
+                src="/devcorex.webp"
                 alt="DevCoreX"
                 width={32}
                 height={32}

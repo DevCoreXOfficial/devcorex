@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   authors: [{ name: "DevCoreX" }],
   icons: {
     icon: "/favicon.ico",
-    apple: "/devcorex.png",
+    apple: "/devcorex.webp",
   },
   openGraph: {
     title: "DevCoreX - Software Development Community",

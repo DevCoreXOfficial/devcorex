@@ -347,7 +347,7 @@ export default function Home() {
               </div>
               <h3 className="mb-2 text-xl font-bold">AI Tools</h3>
               <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
-                18+ AI coding assistants pre-configured: Claude Code,
+                21+ AI coding assistants pre-configured: Claude Code,
                 OpenCode, Ollama, Codex CLI, and more. Run open-source LLMs
                 locally on your Termux.
               </p>

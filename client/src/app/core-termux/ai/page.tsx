@@ -261,6 +261,17 @@ const aiTools: AITool[] = [
     bgColor: "bg-indigo-400/10",
     builtin: true,
   },
+  {
+    id: "freebuff",
+    name: "Freebuff",
+    description:
+      "A 100% free coding agent, right from your terminal. No subscription, no setup, no lock-in.",
+    install: "core install ai --freebuff",
+    source: "https://github.com/CodebuffAI/codebuff",
+    color: "text-green-400",
+    bgColor: "bg-green-400/10",
+    builtin: true,
+  },
 ];
 
 export default function AIToolsPage() {
@@ -319,7 +330,7 @@ export default function AIToolsPage() {
               Available AI Tools
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg">
-              20 AI coding assistants and tools
+              21 AI coding assistants and tools
             </p>
           </motion.div>
 

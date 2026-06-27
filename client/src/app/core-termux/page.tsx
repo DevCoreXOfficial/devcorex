@@ -215,6 +215,11 @@ const modules: Array<{
         npm: "command-code",
         desc: "The coding agent that learns your coding taste",
       },
+      {
+        name: "Freebuff",
+        special: "freebuff",
+        desc: "100% free coding agent — right from your terminal",
+      },
     ],
     installCmd: "core install ai",
   },

@@ -14,7 +14,6 @@ import {
   ChevronUp,
   Package,
   Box,
-  Zap,
   Palette,
   Workflow,
   ArrowRight,
@@ -25,7 +24,6 @@ import {
   Mic,
   Settings,
   Eye,
-  RefreshCw,
   Trash2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -212,6 +210,11 @@ const modules: Array<{
         npm: "@moonshot-ai/kimi-code",
         desc: "Kimi Code CLI — The Starting Point for Next-Gen Agents",
       },
+      {
+        name: "Command Code",
+        npm: "command-code",
+        desc: "The coding agent that learns your coding taste",
+      },
     ],
     installCmd: "core install ai",
   },
@@ -288,11 +291,27 @@ const modules: Array<{
       },
       { name: "Shfmt", pkg: "shfmt", desc: "Shell script formatter" },
       { name: "Make", pkg: "make", desc: "Build automation tool" },
-      { name: "Udocker", pkg: "udocker", desc: "Run Docker containers without root" },
-      { name: "Ncurses Utils", pkg: "ncurses-utils", desc: "Terminal UI manipulation tools" },
+      {
+        name: "Udocker",
+        pkg: "udocker",
+        desc: "Run Docker containers without root",
+      },
+      {
+        name: "Ncurses Utils",
+        pkg: "ncurses-utils",
+        desc: "Terminal UI manipulation tools",
+      },
       { name: "Tmate", pkg: "tmate", desc: "Instant terminal sharing" },
-      { name: "Translate Shell", pkg: "translate-shell", desc: "Command-line translator" },
-      { name: "html2text", pkg: "html2text", desc: "HTML to plain text converter" },
+      {
+        name: "Translate Shell",
+        pkg: "translate-shell",
+        desc: "Command-line translator",
+      },
+      {
+        name: "html2text",
+        pkg: "html2text",
+        desc: "HTML to plain text converter",
+      },
       { name: "Bc", pkg: "bc", desc: "Arbitrary precision calculator" },
     ],
     installCmd: "core install dev",
@@ -343,8 +362,16 @@ const modules: Array<{
         npm: "ncu",
         desc: "Find outdated dependencies",
       },
-      { name: "Markserv", npm: "markserv", desc: "Markdown live-preview server" },
-      { name: "PSQL Format", npm: "psqlformat", desc: "PostgreSQL query formatter" },
+      {
+        name: "Markserv",
+        npm: "markserv",
+        desc: "Markdown live-preview server",
+      },
+      {
+        name: "PSQL Format",
+        npm: "psqlformat",
+        desc: "PostgreSQL query formatter",
+      },
     ],
     installCmd: "core install npm",
   },
@@ -418,10 +445,6 @@ export default function CoreTermuxPage() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const copyCommand = (cmd: string) => {
-    navigator.clipboard.writeText(cmd);
-  };
-
   const [stars, setStars] = useState<number | null>(null);
 
   useEffect(() => {
@@ -456,8 +479,8 @@ export default function CoreTermuxPage() {
               CORE-TERMUX
             </h1>
             <p className="text-muted-foreground mb-8 max-w-2xl text-lg sm:text-xl">
-              Modular Dev Environment for Termux (Android). Automate installations, updates,
-              and configurations with simple commands.
+              Modular Dev Environment for Termux (Android). Automate
+              installations, updates, and configurations with simple commands.
             </p>
 
             <div className="border-border relative mb-6 overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
@@ -514,9 +537,7 @@ export default function CoreTermuxPage() {
                   {stars !== null && (
                     <span className="flex items-center gap-1 text-xs font-normal">
                       <FaGithub className="h-3.5 w-3.5" />
-                      {stars >= 1000
-                        ? `${(stars / 1000).toFixed(1)}k`
-                        : stars}
+                      {stars >= 1000 ? `${(stars / 1000).toFixed(1)}k` : stars}
                     </span>
                   )}
                 </Link>
@@ -586,8 +607,10 @@ export default function CoreTermuxPage() {
                       </Link>
                     )}
                     <pre className="bg-muted hidden rounded px-2 py-1 font-mono text-xs sm:block">
-                       <code className="text-emerald-600 dark:text-emerald-400">{mod.command}</code>
-                     </pre>
+                      <code className="text-emerald-600 dark:text-emerald-400">
+                        {mod.command}
+                      </code>
+                    </pre>
                     {expandedModule === mod.id ? (
                       <ChevronUp className="text-muted-foreground h-5 w-5" />
                     ) : (
@@ -672,10 +695,10 @@ export default function CoreTermuxPage() {
                               PostgreSQL Manager:
                             </p>
                             <pre className="bg-muted inline-block rounded px-2 py-1 font-mono text-xs">
-                               <code className="text-emerald-600 dark:text-emerald-400">
-                                 {mod.pgCommand}
-                               </code>
-                             </pre>
+                              <code className="text-emerald-600 dark:text-emerald-400">
+                                {mod.pgCommand}
+                              </code>
+                            </pre>
                           </div>
                         )}
                       </div>

@@ -36,8 +36,8 @@ const aiTools: AITool[] = [
     description: "Alibaba's AI coding assistant",
     install: "core install ai --qwen-code",
     source: "https://github.com/QwenLM/qwen-code",
-    color: "text-orange-500",
-    bgColor: "bg-orange-500/10",
+    color: "text-purple-400/80",
+    bgColor: "bg-purple-400/10",
     npm: "@qwen-code/qwen-code",
   },
   {
@@ -57,8 +57,8 @@ const aiTools: AITool[] = [
       "Mistral Vibe is a command-line coding assistant powered by Mistral's models",
     install: "core install ai --mistral-vibe",
     source: "https://github.com/mistralai/mistral-vibe",
-    color: "text-purple-500",
-    bgColor: "bg-purple-500/10",
+    color: "text-orange-500",
+    bgColor: "bg-orange-500/10",
     pip: "mistral-vibe",
   },
   {
@@ -87,8 +87,8 @@ const aiTools: AITool[] = [
     description: "OpenClaw — Personal AI Assistant",
     install: "core install ai --openclaw",
     source: "https://github.com/openclaw/openclaw",
-    color: "text-cyan-500",
-    bgColor: "bg-cyan-500/10",
+    color: "text-red-500",
+    bgColor: "bg-red-500/10",
     npm: "openclaw",
   },
   {
@@ -97,8 +97,8 @@ const aiTools: AITool[] = [
     description: "Run open-source LLMs locally on Termux",
     install: "core install ai --ollama",
     source: "https://ollama.com",
-    color: "text-green-500",
-    bgColor: "bg-green-500/10",
+    color: "text-white",
+    bgColor: "bg-white/10",
     pkg: "ollama",
     models: [
       {
@@ -123,13 +123,13 @@ const aiTools: AITool[] = [
   },
   {
     id: "codex",
-    name: "Codex",
+    name: "Codex CLI",
     description:
       "Codex CLI is a coding agent from OpenAI that runs locally on your computer",
     install: "core install ai --codex",
     source: "https://github.com/openai/codex",
-    color: "text-red-500",
-    bgColor: "bg-red-500/10",
+    color: "text-blue-300",
+    bgColor: "bg-white/9",
     pkg: "codex",
   },
   {
@@ -222,8 +222,7 @@ const aiTools: AITool[] = [
   {
     id: "hermes-agent",
     name: "Hermes Agent",
-    description:
-      "The self-improving AI agent built by Nous Research",
+    description: "The self-improving AI agent built by Nous Research",
     install: "core install ai --hermes-agent",
     source: "https://github.com/nousresearch/hermes-agent",
     color: "text-yellow-500",
@@ -233,8 +232,7 @@ const aiTools: AITool[] = [
   {
     id: "mimocode",
     name: "MiMoCode",
-    description:
-      "Xiaomi's AI coding agent — fast, local, and open-source",
+    description: "Xiaomi's AI coding agent — fast, local, and open-source",
     install: "core install ai --mimocode",
     source: "https://github.com/XiaomiMiMo/MiMo-Code",
     color: "text-orange-500",
@@ -251,8 +249,18 @@ const aiTools: AITool[] = [
     color: "text-sky-500",
     bgColor: "bg-sky-500/10",
     builtin: true,
-  }
-
+  },
+  {
+    id: "command-code",
+    name: "Command Code",
+    description:
+      "The coding agent that does it all. Learns the way you code. Until coding feels like thinking",
+    install: "core install ai --command-code",
+    source: "https://github.com/CommandCodeAI/command-code",
+    color: "text-indigo-400",
+    bgColor: "bg-indigo-400/10",
+    builtin: true,
+  },
 ];
 
 export default function AIToolsPage() {
@@ -311,7 +319,7 @@ export default function AIToolsPage() {
               Available AI Tools
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg">
-              12 AI coding assistants and tools
+              20 AI coding assistants and tools
             </p>
           </motion.div>
 

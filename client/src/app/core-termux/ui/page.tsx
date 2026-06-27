@@ -113,7 +113,7 @@ export default function UIPage() {
               Available Customizations
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg">
-              3 UI components
+              4 UI components
             </p>
           </motion.div>
 
@@ -185,9 +185,15 @@ export default function UIPage() {
                 "core install ui --font      # Install only font",
                 "core install ui --cursor   # Install only cursor",
                 "core install ui --extra-keys  # Install only extra keys",
+                "core install ui --banner   # Install only banner",
               ]}
               copied={copiedId === "ui-cmds"}
-              onCopy={() => copyInstall("ui-cmds", "core install ui --font\ncore install ui --cursor\ncore install ui --extra-keys")}
+              onCopy={() =>
+                copyInstall(
+                  "ui-cmds",
+                  "core install ui --font\ncore install ui --cursor\ncore install ui --extra-keys\ncore install ui --banner",
+                )
+              }
             />
           </motion.div>
         </div>

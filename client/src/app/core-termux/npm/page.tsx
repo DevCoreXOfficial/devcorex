@@ -199,30 +199,6 @@ export default function NodePage() {
               </motion.div>
             ))}
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="border-border bg-muted/30 mt-8 rounded-xl border p-6"
-          >
-            <h3 className="mb-2 text-lg font-semibold">
-              Localtunnel for Android
-            </h3>
-            <p className="text-muted-foreground mb-4 text-sm">
-              The localtunnel package includes an automatic fix for Android that
-              replaces <code>openurl</code> with <code>termux-open-url</code>.
-            </p>
-            <CodeBlock
-              lines={[
-                "# No extra setup needed - fix is applied automatically",
-                "lt --port 3000",
-              ]}
-              copyCommand="lt --port 3000"
-              copied={copiedId === "lt-port"}
-              onCopy={() => copyInstall("lt-port", "lt --port 3000")}
-            />
-          </motion.div>
         </div>
       </section>
     </div>

@@ -16,7 +16,7 @@ export function ToolTerminal({
   return (
     <div className="border-border/50 relative max-w-full overflow-hidden rounded-lg border bg-neutral-900 dark:bg-neutral-950">
       <div className="overflow-x-auto p-3 pr-12">
-        <pre className="font-mono text-xs whitespace-nowrap text-emerald-600 dark:text-emerald-400 sm:text-sm">
+        <pre className="font-mono text-xs whitespace-nowrap text-[#00FF00] sm:text-sm">
           <code>{command}</code>
         </pre>
       </div>
@@ -24,7 +24,7 @@ export function ToolTerminal({
         onClick={onCopy}
         className={`absolute top-2 right-2 cursor-pointer rounded-md p-1.5 transition-colors ${
           copied
-            ? "bg-green-400/20 text-green-400"
+            ? "bg-green-500/20 text-green-500"
             : "bg-neutral-800 text-neutral-300 hover:bg-neutral-700 hover:text-white"
         }`}
         title="Copy"
@@ -73,7 +73,7 @@ export function CodeBlock({
   return (
     <div className="border-border/50 relative max-w-full overflow-hidden rounded-lg border bg-neutral-900 dark:bg-neutral-950">
       <div className="overflow-x-auto p-3 pr-12">
-        <pre className="font-mono text-xs text-emerald-600 dark:text-emerald-400 sm:text-sm">
+        <pre className="font-mono text-xs text-[#00FF00] sm:text-sm">
           {lines.map((line, i) => {
             const trimmed = line.trimStart();
             const isComment =
@@ -87,7 +87,7 @@ export function CodeBlock({
               trimmed.startsWith("http") ||
               trimmed.startsWith("←");
             return (
-              <code key={i} className={`block ${isComment ? "text-muted-foreground" : isOutput ? "text-amber-400" : "text-emerald-600 dark:text-emerald-400"}`}>
+              <code key={i} className={`block ${isComment ? "text-muted-foreground" : isOutput ? "text-amber-400" : "text-[#00FF00]"}`}>
                 {line}
               </code>
             );

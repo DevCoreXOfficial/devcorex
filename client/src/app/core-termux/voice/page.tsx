@@ -60,7 +60,7 @@ export default function VoicePage() {
             <div className="flex flex-wrap gap-4">
               <div className="border-border relative max-w-full overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
                 <div className="overflow-x-auto p-4">
-                  <pre className="font-mono text-sm whitespace-nowrap text-emerald-600 dark:text-emerald-400">
+                  <pre className="font-mono text-sm whitespace-nowrap text-[#00FF00]">
                     <code>core voice opencode</code>
                   </pre>
                 </div>
@@ -94,7 +94,7 @@ export default function VoicePage() {
               className="border-border bg-muted/30 rounded-xl border p-5"
             >
               <h3 className="mb-2 text-base font-semibold">Termux:API</h3>
-              <code className="bg-muted block rounded px-2 py-1 font-mono text-xs text-emerald-600 dark:text-emerald-400">
+              <code className="bg-muted block rounded px-2 py-1 font-mono text-xs text-slate-900 dark:text-[#00FF00]">
                 pkg install termux-api
               </code>
             </motion.div>
@@ -106,7 +106,7 @@ export default function VoicePage() {
               className="border-border bg-muted/30 rounded-xl border p-5"
             >
               <h3 className="mb-2 text-base font-semibold">Neovim</h3>
-              <code className="bg-muted block rounded px-2 py-1 font-mono text-xs text-emerald-600 dark:text-emerald-400">
+              <code className="bg-muted block rounded px-2 py-1 font-mono text-xs text-slate-900 dark:text-[#00FF00]">
                 core install editor
               </code>
             </motion.div>
@@ -158,7 +158,7 @@ export default function VoicePage() {
                       <Terminal className="text-muted-foreground h-4 w-4" />
                     </div>
                     <div>
-                      <code className="font-mono text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+                      <code className="font-mono text-sm font-semibold text-slate-900 dark:text-[#00FF00]">
                         {cmd.cmd}
                       </code>
                       <p className="text-muted-foreground mt-0.5 text-xs">
@@ -198,7 +198,7 @@ export default function VoicePage() {
                   transition={{ delay: index * 0.03 }}
                   className="border-border bg-background rounded-xl border p-4"
                 >
-                  <code className="font-mono text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+                  <code className="font-mono text-sm font-semibold text-slate-900 dark:text-[#00FF00]">
                     {agent.name}
                   </code>
                   <p className="text-muted-foreground mt-1 font-mono text-xs">
@@ -220,7 +220,7 @@ export default function VoicePage() {
             </h2>
             <div className="border-border/50 overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
               <div className="overflow-x-auto p-4">
-                <pre className="font-mono text-xs text-emerald-600 dark:text-emerald-400 sm:text-sm">
+                <pre className="font-mono text-xs text-[#00FF00] sm:text-sm">
                   <code>{`$ core voice opencode
 
     ➜ Listening through the microphone...

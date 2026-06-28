@@ -11,11 +11,8 @@ import {
   Camera,
   MapPin,
   Bell,
-  MessageSquare,
   Phone,
   Wifi,
-  Lightbulb,
-  Vibrate,
   Volume2,
   Monitor,
 } from "lucide-react";
@@ -261,7 +258,7 @@ export default function TermuxApiPage() {
                   Inside Termux, install the API package:
                 </p>
                 <div className="border-border/50 rounded-lg border bg-neutral-900 p-3 dark:bg-neutral-950">
-                  <pre className="font-mono text-xs text-green-400">
+                  <pre className="font-mono text-xs text-[#00FF00]">
                     <code>pkg install termux-api</code>
                   </pre>
                 </div>

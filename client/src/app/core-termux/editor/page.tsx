@@ -387,14 +387,14 @@ export default function EditorPage() {
                   className="h-7 text-neutral-300 hover:text-white"
                 >
                   {copied ? (
-                    <Check className="h-4 w-4 text-green-400" />
+                    <Check className="h-4 w-4 text-[#00FF00]" />
                   ) : (
                     <Copy className="h-4 w-4" />
                   )}
                 </Button>
               </div>
               <div className="overflow-x-auto p-4">
-                <pre className="font-mono text-sm text-green-400">
+                <pre className="font-mono text-sm text-[#00FF00]">
                   <code>core install editor</code>
                 </pre>
               </div>
@@ -656,7 +656,7 @@ export default function EditorPage() {
               Configuration Structure
             </h2>
             <div className="border-border overflow-x-auto rounded-xl border bg-neutral-900 p-4 sm:p-6 dark:bg-neutral-950">
-              <pre className="font-mono text-xs text-green-400 sm:text-sm">
+              <pre className="font-mono text-xs text-[#00FF00] sm:text-sm">
                 <code>{`nvim/
 ├── init.lua                    # Main entry, lazy.nvim bootstrap
 ├── lazy-lock.json             # Plugin lockfile

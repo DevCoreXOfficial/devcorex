@@ -112,7 +112,7 @@ export default function NodePage() {
             <div className="flex flex-wrap gap-4">
               <div className="border-border relative max-w-full overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
                 <div className="overflow-x-auto p-4">
-                  <pre className="font-mono text-sm whitespace-nowrap text-emerald-600 dark:text-emerald-400">
+                  <pre className="font-mono text-sm whitespace-nowrap text-[#00FF00]">
                     <code>core install npm</code>
                   </pre>
                 </div>
@@ -185,7 +185,7 @@ export default function NodePage() {
                 </div>
                 <p className="text-muted-foreground mb-1 text-xs">{pkg.desc}</p>
                 {pkg.cmd && (
-                  <code className="text-xs text-emerald-600 dark:text-emerald-400">
+                  <code className="text-xs text-[#00FF00]">
                     Command: {pkg.cmd}
                   </code>
                 )}

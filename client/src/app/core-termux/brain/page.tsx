@@ -139,7 +139,7 @@ export default function BrainPage() {
             <div className="flex flex-wrap gap-4">
               <div className="border-border relative max-w-full overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
                 <div className="overflow-x-auto p-4">
-                  <pre className="font-mono text-sm whitespace-nowrap text-emerald-600 dark:text-emerald-400">
+                  <pre className="font-mono text-sm whitespace-nowrap text-[#00FF00]">
                     <code>core brain</code>
                   </pre>
                 </div>
@@ -213,7 +213,7 @@ export default function BrainPage() {
                       <cmd.icon className="text-muted-foreground h-4 w-4" />
                     </div>
                     <div>
-                      <code className="font-mono text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+                      <code className="font-mono text-sm font-semibold text-slate-900 dark:text-[#00FF00]">
                         {cmd.cmd}
                       </code>
                       <p className="text-muted-foreground mt-0.5 text-xs">
@@ -247,7 +247,7 @@ export default function BrainPage() {
             </p>
             <div className="border-border/50 overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
               <div className="overflow-x-auto p-4">
-                <pre className="font-mono text-xs text-emerald-600 sm:text-sm dark:text-emerald-400">
+                <pre className="font-mono text-xs text-[#00FF00] sm:text-sm">
                   <code>{`---
 title: React Hook Form + Zod validation
 tags: [react, forms, typescript, zod]

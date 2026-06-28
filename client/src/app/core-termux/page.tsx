@@ -507,14 +507,14 @@ export default function CoreTermuxPage() {
                   className="h-7 text-neutral-300 hover:text-white"
                 >
                   {copied ? (
-                    <Check className="h-4 w-4 text-green-400" />
+                    <Check className="h-4 w-4 dark:text-green-500 text-[#00FF00]" />
                   ) : (
                     <Copy className="h-4 w-4" />
                   )}
                 </Button>
               </div>
               <div className="overflow-x-auto p-4">
-                <pre className="font-mono text-sm whitespace-nowrap text-emerald-600 dark:text-emerald-400">
+                <pre className="font-mono text-sm whitespace-nowrap dark:text-green-500 text-[#00FF00]">
                   <code className="pr-5">{installCommand}</code>
                 </pre>
               </div>
@@ -612,7 +612,7 @@ export default function CoreTermuxPage() {
                       </Link>
                     )}
                     <pre className="bg-muted hidden rounded px-2 py-1 font-mono text-xs sm:block">
-                      <code className="text-emerald-600 dark:text-emerald-400">
+                      <code className="text-[#00FF00]">
                         {mod.command}
                       </code>
                     </pre>
@@ -676,7 +676,7 @@ export default function CoreTermuxPage() {
                                   {tool.desc}
                                 </p>
                                 {tool.cmd && (
-                                  <code className="mt-1 block text-xs text-emerald-600 dark:text-emerald-400">
+                                  <code className="mt-1 block text-xs text-slate-900 dark:text-[#00FF00]">
                                     Command: {tool.cmd}
                                   </code>
                                 )}
@@ -700,7 +700,7 @@ export default function CoreTermuxPage() {
                               PostgreSQL Manager:
                             </p>
                             <pre className="bg-muted inline-block rounded px-2 py-1 font-mono text-xs">
-                              <code className="text-emerald-600 dark:text-emerald-400">
+                              <code className="text-slate-900 dark:text-[#00FF00]">
                                 {mod.pgCommand}
                               </code>
                             </pre>
@@ -826,7 +826,7 @@ export default function CoreTermuxPage() {
                       <item.icon className="text-primary h-5 w-5" />
                     </div>
                     <div className="flex-1">
-                      <code className="font-mono text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+                      <code className="font-mono text-sm font-semibold text-slate-900 dark:text-[#00FF00]">
                         {item.cmd}
                       </code>
                     </div>

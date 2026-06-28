@@ -88,7 +88,7 @@ export default function UIPage() {
             <div className="flex flex-wrap gap-4">
               <div className="border-border relative max-w-full overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
                 <div className="overflow-x-auto p-4">
-                  <pre className="font-mono text-sm whitespace-nowrap text-green-400">
+                  <pre className="font-mono text-sm whitespace-nowrap text-[#00FF00]">
                     <code>core install ui</code>
                   </pre>
                 </div>

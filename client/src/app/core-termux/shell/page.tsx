@@ -100,7 +100,7 @@ export default function ShellPage() {
             <div className="flex flex-wrap gap-4">
               <div className="border-border relative max-w-full overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
                 <div className="overflow-x-auto p-4">
-                  <pre className="font-mono text-sm whitespace-nowrap text-green-400">
+                  <pre className="font-mono text-sm whitespace-nowrap text-[#00FF00]">
                     <code>core install shell</code>
                   </pre>
                 </div>
@@ -193,7 +193,7 @@ export default function ShellPage() {
             </p>
             <div className="border-border/50 max-w-full overflow-hidden rounded-lg border bg-neutral-900 p-3">
               <div className="overflow-x-auto">
-                <pre className="font-mono text-xs text-green-400">
+                <pre className="font-mono text-xs text-[#00FF00]">
                   <code>{`# Session 1
 $ cd projects/my-app
 $ exit

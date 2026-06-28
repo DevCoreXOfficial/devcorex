@@ -87,7 +87,7 @@ export default function InitPage() {
             <div className="flex flex-wrap gap-4">
               <div className="border-border relative max-w-full overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
                 <div className="overflow-x-auto p-4">
-                  <pre className="font-mono text-sm whitespace-nowrap text-emerald-600 dark:text-emerald-400">
+                  <pre className="font-mono text-sm whitespace-nowrap text-[#00FF00]">
                     <code>cd my-project &amp;&amp; core init &lt;template&gt;</code>
                   </pre>
                 </div>
@@ -128,7 +128,7 @@ export default function InitPage() {
               >
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                   <div>
-                    <code className="font-mono text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+                    <code className="font-mono text-sm font-semibold text-slate-900 dark:text-[#00FF00]">
                       {item.cmd}
                     </code>
                     <p className="text-muted-foreground mt-0.5 text-xs">
@@ -164,7 +164,7 @@ export default function InitPage() {
                   transition={{ delay: index * 0.05 }}
                   className="border-border bg-background rounded-xl border p-5"
                 >
-                  <code className="font-mono text-base font-semibold text-emerald-600 dark:text-emerald-400">
+                  <code className="font-mono text-base font-semibold text-slate-900 dark:text-[#00FF00]">
                     core init {template.name}
                   </code>
                   <p className="text-muted-foreground mt-1 mb-3 text-sm">

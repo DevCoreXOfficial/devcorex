@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import { Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ToolTerminal } from "@/components/terminal-block";
 
 const modules = [
   { name: "lang", desc: "Programming languages and runtimes" },
@@ -50,7 +49,7 @@ export default function ListPage() {
             <div className="flex flex-wrap gap-4">
               <div className="border-border relative max-w-full overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
                 <div className="overflow-x-auto p-4">
-                  <pre className="font-mono text-sm whitespace-nowrap text-emerald-600 dark:text-emerald-400">
+                  <pre className="font-mono text-sm whitespace-nowrap text-[#00FF00]">
                     <code>core list &lt;module&gt;</code>
                   </pre>
                 </div>
@@ -91,7 +90,7 @@ export default function ListPage() {
               >
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                   <div>
-                    <code className="font-mono text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+                    <code className="font-mono text-sm font-semibold text-slate-900 dark:text-[#00FF00]">
                       {item.cmd}
                     </code>
                     <p className="text-muted-foreground mt-0.5 text-xs">
@@ -127,7 +126,7 @@ export default function ListPage() {
                   transition={{ delay: index * 0.03 }}
                   className="border-border bg-background rounded-xl border p-4"
                 >
-                  <code className="font-mono text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+                  <code className="font-mono text-sm font-semibold text-slate-900 dark:text-[#00FF00]">
                     core list {mod.name}
                   </code>
                   <p className="text-muted-foreground mt-1 text-xs">

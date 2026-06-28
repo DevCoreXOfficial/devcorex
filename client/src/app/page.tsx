@@ -493,14 +493,14 @@ function HomeTerminal({ command }: { command: string }) {
         </div>
         <Button variant="ghost" size="sm" onClick={copyCommand} className="h-7 text-neutral-300 hover:text-white">
           {copied ? (
-            <Check className="h-4 w-4 text-green-400" />
+            <Check className="h-4 w-4 text-[#00FF00] dark:text-green-500" />
           ) : (
             <Copy className="h-4 w-4" />
           )}
         </Button>
       </div>
       <div className="overflow-x-auto p-3 sm:p-4">
-        <pre className="font-mono text-xs whitespace-nowrap text-green-400 sm:text-sm">
+        <pre className="font-mono text-xs whitespace-nowrap text-[#00FF00] dark:text-green-500 sm:text-sm">
           <code className="pr-4 break-all">{command}</code>
         </pre>
       </div>

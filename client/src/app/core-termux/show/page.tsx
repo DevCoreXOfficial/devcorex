@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import { Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ToolTerminal, CodeBlock } from "@/components/terminal-block";
 
 const examples = [
   { cmd: "core show ai --opencode", desc: "Show OpenCode documentation" },
@@ -45,7 +44,7 @@ export default function ShowPage() {
             <div className="flex flex-wrap gap-4">
               <div className="border-border relative max-w-full overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
                 <div className="overflow-x-auto p-4">
-                  <pre className="font-mono text-sm whitespace-nowrap text-emerald-600 dark:text-emerald-400">
+                  <pre className="font-mono text-sm whitespace-nowrap text-[#00FF00]">
                     <code>core show &lt;module&gt; --&lt;tool&gt;</code>
                   </pre>
                 </div>
@@ -87,7 +86,7 @@ export default function ShowPage() {
               >
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                   <div>
-                    <code className="font-mono text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+                    <code className="font-mono text-sm font-semibold text-slate-900 dark:text-[#00FF00]">
                       {item.cmd}
                     </code>
                     <p className="text-muted-foreground mt-0.5 text-xs">
@@ -125,7 +124,7 @@ export default function ShowPage() {
                 >
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                      <code className="font-mono text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+                      <code className="font-mono text-sm font-semibold text-slate-900 dark:text-[#00FF00]">
                         {ex.cmd}
                       </code>
                       <p className="text-muted-foreground mt-0.5 text-xs">
@@ -154,7 +153,7 @@ export default function ShowPage() {
               Colorized Output
             </h2>
             <p className="text-muted-foreground mb-4 text-sm sm:text-base">
-              If <code>bat</code> is installed, documentation is displayed with syntax
+              If <code>glow</code> is installed, documentation is displayed with syntax
               highlighting. Otherwise, plain text is shown.
             </p>
           </motion.div>

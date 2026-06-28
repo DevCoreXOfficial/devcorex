@@ -83,7 +83,7 @@ export default function LanguagePage() {
             <div className="flex flex-wrap gap-4">
               <div className="border-border relative max-w-full overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
                 <div className="overflow-x-auto p-4">
-                  <pre className="font-mono text-sm whitespace-nowrap text-emerald-600 dark:text-emerald-400">
+                  <pre className="font-mono text-sm whitespace-nowrap text-[#00FF00]">
                     <code>core install lang</code>
                   </pre>
                 </div>
@@ -153,7 +153,7 @@ export default function LanguagePage() {
               Install specific languages:
             </p>
             <div className="border-border/50 overflow-x-auto rounded-lg border bg-neutral-900 p-3">
-              <pre className="font-mono text-xs whitespace-nowrap text-emerald-600 dark:text-emerald-400">
+              <pre className="font-mono text-xs whitespace-nowrap text-[#00FF00]">
                 <code>{`core install lang --python --rust --golang`}</code>
               </pre>
             </div>

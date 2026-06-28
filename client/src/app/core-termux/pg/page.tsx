@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { Database } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ToolTerminal, CodeBlock } from "@/components/terminal-block";
+import { CodeBlock } from "@/components/terminal-block";
 
 const commands = [
   { cmd: "core pg", desc: "Show help" },
@@ -58,7 +58,7 @@ export default function PgPage() {
             <div className="flex flex-wrap gap-4">
               <div className="border-border relative max-w-full overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
                 <div className="overflow-x-auto p-4">
-                  <pre className="font-mono text-sm whitespace-nowrap text-emerald-600 dark:text-emerald-400">
+                  <pre className="font-mono text-sm whitespace-nowrap text-[#00FF00]">
                     <code>core pg</code>
                   </pre>
                 </div>
@@ -126,7 +126,7 @@ export default function PgPage() {
                       <Database className="text-muted-foreground h-4 w-4" />
                     </div>
                     <div>
-                      <code className="font-mono text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+                      <code className="font-mono text-sm font-semibold text-slate-900 dark:text-[#00FF00]">
                         {cmd.cmd}
                       </code>
                       <p className="text-muted-foreground mt-0.5 text-xs">

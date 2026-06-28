@@ -268,7 +268,7 @@ const aiTools: AITool[] = [
       "A 100% free coding agent, right from your terminal. No subscription, no setup, no lock-in.",
     install: "core install ai --freebuff",
     source: "https://github.com/CodebuffAI/codebuff",
-    color: "text-green-400",
+    color: "text-[#00FF00]",
     bgColor: "bg-green-400/10",
     builtin: true,
   },
@@ -305,7 +305,7 @@ export default function AIToolsPage() {
             <div className="flex flex-wrap gap-4">
               <div className="border-border relative max-w-full overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
                 <div className="overflow-x-auto p-4">
-                  <pre className="font-mono text-sm whitespace-nowrap text-green-400">
+                  <pre className="font-mono text-sm whitespace-nowrap text-[#00FF00]">
                     <code>core install ai</code>
                   </pre>
                 </div>
@@ -405,7 +405,7 @@ export default function AIToolsPage() {
                               </p>
                               <div className="border-border/50 relative max-w-full overflow-hidden rounded-lg border bg-neutral-900">
                                 <div className="overflow-x-auto p-3">
-                                  <pre className="font-mono text-xs whitespace-nowrap text-green-400">
+                                  <pre className="font-mono text-xs whitespace-nowrap text-[#00FF00]">
                                     <code>
                                       ollama run {tool.models[0].name}
                                     </code>
@@ -450,14 +450,14 @@ export default function AIToolsPage() {
             <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
               <div className="border-border/50 relative max-w-full overflow-hidden rounded-lg border bg-neutral-900">
                 <div className="overflow-x-auto p-3">
-                  <pre className="font-mono text-xs whitespace-nowrap text-green-400">
+                  <pre className="font-mono text-xs whitespace-nowrap text-[#00FF00]">
                     <code>ollama pull llama3</code>
                   </pre>
                 </div>
               </div>
               <div className="border-border/50 relative max-w-full overflow-hidden rounded-lg border bg-neutral-900">
                 <div className="overflow-x-auto p-3">
-                  <pre className="font-mono text-xs whitespace-nowrap text-green-400">
+                  <pre className="font-mono text-xs whitespace-nowrap text-[#00FF00]">
                     <code>ollama run llama3</code>
                   </pre>
                 </div>

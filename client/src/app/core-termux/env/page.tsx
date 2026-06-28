@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Settings, ExternalLink, Terminal } from "lucide-react";
+import { Settings, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -64,7 +64,7 @@ export default function EnvPage() {
             <div className="flex flex-wrap gap-4">
               <div className="border-border relative max-w-full overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
                 <div className="overflow-x-auto p-4">
-                  <pre className="font-mono text-sm whitespace-nowrap text-emerald-600 dark:text-emerald-400">
+                  <pre className="font-mono text-sm whitespace-nowrap text-[#00FF00]">
                     <code>core env set</code>
                   </pre>
                 </div>
@@ -133,7 +133,7 @@ export default function EnvPage() {
                       <Terminal className="text-muted-foreground h-4 w-4" />
                     </div>
                     <div>
-                      <code className="font-mono text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+                      <code className="font-mono text-sm font-semibold text-slate-900 dark:text-[#00FF00]">
                         {cmd.cmd}
                       </code>
                       <p className="text-muted-foreground mt-0.5 text-xs">
@@ -163,11 +163,11 @@ export default function EnvPage() {
             </h2>
             <div className="border-border/50 overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
               <div className="overflow-x-auto p-4">
-                <pre className="font-mono text-xs text-emerald-600 dark:text-emerald-400 sm:text-sm">
+                <pre className="font-mono text-xs text-[#00FF00] sm:text-sm">
                   <code>{`$ core env set
 
     ┌─────────────────────────────────────────┐
-    │         Set Environment Variable          │
+    │         Set Environment Variable               │
     └─────────────────────────────────────────┘
 
     ┌─ Variable name

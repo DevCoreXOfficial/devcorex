@@ -70,7 +70,7 @@ const modules: Array<{
     tools: [
       {
         name: "Node.js LTS",
-        pkg: "nodejs-lts",
+        pkg: "nodejs",
         desc: "Long-term support release of Node.js",
       },
       { name: "Python", pkg: "python", desc: "Python 3 interpreter" },
@@ -377,6 +377,11 @@ const modules: Array<{
         npm: "psqlformat",
         desc: "PostgreSQL query formatter",
       },
+      {
+        name: "Turbopack",
+        npm: "turbopack",
+        desc: "Next.js bundler",
+      },
     ],
     installCmd: "core install npm",
   },
@@ -507,14 +512,14 @@ export default function CoreTermuxPage() {
                   className="h-7 text-neutral-300 hover:text-white"
                 >
                   {copied ? (
-                    <Check className="h-4 w-4 dark:text-green-500 text-[#00FF00]" />
+                    <Check className="h-4 w-4 text-[#00FF00] dark:text-green-500" />
                   ) : (
                     <Copy className="h-4 w-4" />
                   )}
                 </Button>
               </div>
               <div className="overflow-x-auto p-4">
-                <pre className="font-mono text-sm whitespace-nowrap dark:text-green-500 text-[#00FF00]">
+                <pre className="font-mono text-sm whitespace-nowrap text-[#00FF00] dark:text-green-500">
                   <code className="pr-5">{installCommand}</code>
                 </pre>
               </div>
@@ -612,9 +617,7 @@ export default function CoreTermuxPage() {
                       </Link>
                     )}
                     <pre className="bg-muted hidden rounded px-2 py-1 font-mono text-xs sm:block">
-                      <code className="text-[#00FF00]">
-                        {mod.command}
-                      </code>
+                      <code className="text-[#00FF00]">{mod.command}</code>
                     </pre>
                     {expandedModule === mod.id ? (
                       <ChevronUp className="text-muted-foreground h-5 w-5" />

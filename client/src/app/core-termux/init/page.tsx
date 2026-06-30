@@ -12,24 +12,23 @@ const templates = [
   {
     name: "next",
     desc: "Next.js with preconfigured dependencies",
-    example: "cd my-next-app && core init next",
+    example: "cd next-app && core init next",
     features: [
       "Axios, Lucide React, Framer Motion",
       "Zod, React Hook Form, TanStack Query",
       "Zustand, Tailwind CSS",
       "Prettier with Tailwind plugin",
-      "DevCoreX landing page included",
+      "Turbopack support",
     ],
   },
   {
     name: "react",
     desc: "React + Vite with modern structure",
-    example: "cd my-react-app && core init react",
+    example: "cd react-app && core init react",
     features: [
       "Same deps as Next.js",
-      "Custom Button component",
-      "DevCoreX landing page",
       "src/App.tsx entry point",
+      "Tailwind CSS configured",
     ],
   },
   {
@@ -88,7 +87,9 @@ export default function InitPage() {
               <div className="border-border relative max-w-full overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
                 <div className="overflow-x-auto p-4">
                   <pre className="font-mono text-sm whitespace-nowrap text-[#00FF00]">
-                    <code>cd my-project &amp;&amp; core init &lt;template&gt;</code>
+                    <code>
+                      cd my-project &amp;&amp; core init &lt;template&gt;
+                    </code>
                   </pre>
                 </div>
               </div>
@@ -116,7 +117,10 @@ export default function InitPage() {
           <div className="mb-12 space-y-4">
             {[
               { cmd: "core init", desc: "Show help" },
-              { cmd: "core init <template>", desc: "Configure with specific template" },
+              {
+                cmd: "core init <template>",
+                desc: "Configure with specific template",
+              },
             ].map((item, index) => (
               <motion.div
                 key={item.cmd}
@@ -174,12 +178,17 @@ export default function InitPage() {
                     <ToolTerminal
                       command={template.example}
                       copied={copiedId === template.name}
-                      onCopy={() => copyCommand(template.name, template.example)}
+                      onCopy={() =>
+                        copyCommand(template.name, template.example)
+                      }
                     />
                   </div>
                   <div className="space-y-1">
                     {template.features.map((feature) => (
-                      <p key={feature} className="text-muted-foreground text-xs">
+                      <p
+                        key={feature}
+                        className="text-muted-foreground text-xs"
+                      >
                         • {feature}
                       </p>
                     ))}
@@ -201,17 +210,18 @@ export default function InitPage() {
             <CodeBlock
               lines={[
                 "# Next.js project",
-                "npx create-next-app@latest my-app",
+                "pnpm dlx create-next-app@latest my-app",
                 "cd my-app",
                 "core init next",
                 "",
                 "# React + Vite project",
-                "npm create vite@latest my-app -- --template react",
+                "pnpm dlx create-vite@latest my-app",
                 "cd my-app",
                 "core init react",
                 "",
                 "# Express API",
                 "mkdir api && cd api",
+                "pnpm init --yes",
                 "core init express",
               ]}
               copyCommand="core init next"

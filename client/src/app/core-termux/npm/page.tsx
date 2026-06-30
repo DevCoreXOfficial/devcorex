@@ -6,7 +6,8 @@ import { motion } from "framer-motion";
 import { Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ToolTerminal, CodeBlock } from "@/components/terminal-block";
+import { ToolTerminal } from "@/components/terminal-block";
+import { desc, ins } from "framer-motion/client";
 
 const nodeModules = [
   {
@@ -72,6 +73,12 @@ const nodeModules = [
     npm: "ngrok",
     desc: "Secure tunnel to localhost",
     install: "core install npm --ngrok",
+  },
+  {
+    name: "Turbopack",
+    npm: "turbopack",
+    desc: "Next.js bundler",
+    install: "core install npm --turbopack",
   },
 ];
 

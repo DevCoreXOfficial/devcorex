@@ -103,13 +103,13 @@ const devTools = [
     name: "Ncurses Utils",
     pkg: "ncurses-utils",
     desc: "Terminal UI manipulation tools",
-    install: "core install dev --ncurses-utils",
+    install: "core install dev --ncurses",
   },
   {
     name: "Translate Shell",
     pkg: "translate-shell",
     desc: "Command-line translator",
-    install: "core install dev --translate-shell",
+    install: "core install dev --translate",
   },
   {
     name: "html2text",

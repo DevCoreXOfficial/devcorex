@@ -13,7 +13,7 @@ const languages = [
     name: "Node.js LTS",
     pkg: "nodejs-lts",
     desc: "Long-term support release of Node.js",
-    install: "core install lang --nodejs-lts",
+    install: "core install lang --nodejs",
   },
   {
     name: "Python",

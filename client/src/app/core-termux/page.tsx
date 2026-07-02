@@ -220,6 +220,11 @@ const modules: Array<{
         special: "freebuff",
         desc: "100% free coding agent — right from your terminal",
       },
+      {
+        name: "Kimchi",
+        special: "kimchi",
+        desc: "Terminal coding agent powered by Kimchi's multi-model orchestration",
+      },
     ],
     installCmd: "core install ai",
   },

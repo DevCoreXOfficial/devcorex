@@ -272,6 +272,17 @@ const aiTools: AITool[] = [
     bgColor: "bg-green-400/10",
     builtin: true,
   },
+  {
+    id: "kimchi",
+    name: "Kimchi",
+    description:
+      "kimchi gives you an AI-powered development assistant in your terminal that connects to kimchi's LLM infrastructure",
+    install: "core install ai --kimchi",
+    source: "https://github.com/getkimchi/kimchi",
+    color: "text-orange-500",
+    bgColor: "bg-orange-500/10",
+    builtin: true,
+  },
 ];
 
 export default function AIToolsPage() {
@@ -330,7 +341,7 @@ export default function AIToolsPage() {
               Available AI Tools
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg">
-              21 AI coding assistants and tools
+              22 AI coding assistants and tools
             </p>
           </motion.div>
 

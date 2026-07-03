@@ -272,18 +272,29 @@ const aiTools: AITool[] = [
     bgColor: "bg-green-400/10",
     builtin: true,
   },
-  {
-    id: "kimchi",
-    name: "Kimchi",
-    description:
-      "kimchi gives you an AI-powered development assistant in your terminal that connects to kimchi's LLM infrastructure",
-    install: "core install ai --kimchi",
-    source: "https://github.com/getkimchi/kimchi",
-    color: "text-orange-500",
-    bgColor: "bg-orange-500/10",
-    builtin: true,
-  },
-];
+      {
+        id: "kimchi",
+        name: "Kimchi",
+        description:
+          "kimchi gives you an AI-powered development assistant in your terminal that connects to kimchi's LLM infrastructure",
+        install: "core install ai --kimchi",
+        source: "https://github.com/getkimchi/kimchi",
+        color: "text-orange-500",
+        bgColor: "bg-orange-500/10",
+        builtin: true,
+      },
+      {
+        id: "kilocode-cli",
+        name: "Kilo Code CLI",
+        description:
+          "The open source coding agent for building with AI in VS Code, JetBrains, or the CLI",
+        install: "core install ai --kilocode-cli",
+        source: "https://github.com/Kilo-Org/kilocode",
+        color: "text-yellow-400",
+        bgColor: "bg-yellow-400/10",
+        builtin: true,
+      },
+    ];
 
 export default function AIToolsPage() {
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -341,7 +352,7 @@ export default function AIToolsPage() {
               Available AI Tools
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg">
-              22 AI coding assistants and tools
+               23 AI coding assistants and tools
             </p>
           </motion.div>
 

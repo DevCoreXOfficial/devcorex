@@ -225,6 +225,11 @@ const modules: Array<{
         special: "kimchi",
         desc: "Terminal coding agent powered by Kimchi's multi-model orchestration",
       },
+      {
+        name: "Kilo Code CLI",
+        special: "kilocode-cli",
+        desc: "The open source coding agent for building with AI",
+      },
     ],
     installCmd: "core install ai",
   },

@@ -97,8 +97,8 @@ const aiTools: AITool[] = [
     description: "Run open-source LLMs locally on Termux",
     install: "core install ai --ollama",
     source: "https://ollama.com",
-    color: "text-white",
-    bgColor: "bg-white/10",
+    color: "text-neutral-800 dark:text-white",
+    bgColor: "bg-neutral-200/50 dark:bg-white/10",
     pkg: "ollama",
     models: [
       {
@@ -294,6 +294,30 @@ const aiTools: AITool[] = [
         bgColor: "bg-yellow-400/10",
         builtin: true,
       },
+      {
+        id: "ctx7",
+        name: "Context7",
+        description:
+          "Up-to-date documentation for AI coding agents — eliminates stale knowledge by providing real-time, version-specific docs via MCP",
+        install: "core install ai --ctx7",
+        source: "https://github.com/upstash/context7",
+        color: "text-emerald-500",
+        bgColor: "bg-emerald-500/10",
+        npm: "ctx7",
+        builtin: true,
+      },
+      {
+        id: "openspec",
+        name: "OpenSpec",
+        description:
+          "Spec-Driven Development framework — forces structured specifications so AI agents produce accurate, maintainable code instead of guess-based coding",
+        install: "core install ai --openspec",
+        source: "https://github.com/Fission-AI/openspec",
+        color: "text-neutral-800 dark:text-white",
+        bgColor: "bg-neutral-200/50 dark:bg-white/10",
+        npm: "@fission-ai/openspec",
+        builtin: true,
+      },
     ];
 
 export default function AIToolsPage() {
@@ -352,7 +376,7 @@ export default function AIToolsPage() {
               Available AI Tools
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg">
-               23 AI coding assistants and tools
+               25 AI coding assistants and tools
             </p>
           </motion.div>
 

@@ -230,6 +230,16 @@ const modules: Array<{
         special: "kilocode-cli",
         desc: "The open source coding agent for building with AI",
       },
+      {
+        name: "Context7",
+        npm: "ctx7",
+        desc: "Up-to-date documentation for AI coding agents via MCP",
+      },
+      {
+        name: "OpenSpec",
+        npm: "@fission-ai/openspec",
+        desc: "Spec-Driven Development framework for AI coding assistants",
+      },
     ],
     installCmd: "core install ai",
   },

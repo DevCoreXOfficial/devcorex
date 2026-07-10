@@ -91,6 +91,30 @@ const databases = [
       "Rich Query Language",
     ],
   },
+  {
+    id: "redis",
+    name: "Redis",
+    description:
+      "In-memory data structure store used as database, cache, and message broker.",
+    install: "core install db --redis",
+    source: "https://redis.io",
+    color: "text-red-500",
+    bgColor: "bg-red-500/10",
+    pkg: "redis",
+    features: [
+      "In-Memory Store",
+      "Cache",
+      "Message Broker",
+      "Data Structures",
+      "Persistence",
+    ],
+    commands: [
+      { cmd: "redis-server --daemonize yes", desc: "Start Redis server" },
+      { cmd: "redis-cli", desc: "Open Redis CLI" },
+      { cmd: "redis-cli PING", desc: "Test connectivity (should reply PONG)" },
+      { cmd: "redis-cli SHUTDOWN", desc: "Stop Redis server" },
+    ],
+  },
 ];
 
 export default function DatabasesPage() {
@@ -118,7 +142,7 @@ export default function DatabasesPage() {
               Database Tools
             </h1>
             <p className="text-muted-foreground mb-8 max-w-2xl text-lg sm:text-xl">
-              PostgreSQL, MariaDB, SQLite, and MongoDB for your Termux
+              PostgreSQL, MariaDB, SQLite, MongoDB, and Redis for your Termux
               development environment.
             </p>
             <div className="flex flex-wrap gap-4">
@@ -149,7 +173,7 @@ export default function DatabasesPage() {
               Available Databases
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg">
-              4 database management systems
+              5 database management systems
             </p>
           </motion.div>
 

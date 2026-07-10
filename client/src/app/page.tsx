@@ -9,7 +9,6 @@ import {
   BookOpen,
   Code2,
   Rocket,
-  Copy,
   Check,
   ArrowRight,
   Send,
@@ -18,18 +17,91 @@ import {
   Globe,
   Palette,
   Code,
+  Circle,
+  Database,
+  Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 
-const installCommand =
-  "curl -fsSL https://raw.githubusercontent.com/DevCoreXOfficial/core-termux/main/install.sh | bash";
-
 const words = ["Websites", "Mobile Apps", "CLI Apps", "Web Apps", "APIs & Backend"];
+
+const terminalCommands = [
+  {
+    cmd: "core install ai --opencode --claude-code",
+    output: "Installing OpenCode... done\nInstalling Claude Code... done",
+  },
+  {
+    cmd: "core brain save",
+    output: "? Title: React patterns\n✔ Memory saved to frontend/react-patterns.md",
+  },
+  {
+    cmd: "core pg start",
+    output: "Starting PostgreSQL server... done\nServer running on port 5432",
+  },
+  {
+    cmd: "core init next",
+    output: "? Package manager: pnpm\n✔ Next.js configured with Turbopack",
+  },
+  {
+    cmd: "core voice opencode",
+    output: "Listening through microphone...\nLaunching opencode with prompt...",
+  },
+];
+
+function useTypingAnimation(
+  commands: typeof terminalCommands,
+  typingSpeed = 40,
+  pauseAfterType = 1200,
+  pauseAfterOutput = 2000
+) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [showOutput, setShowOutput] = useState(false);
+  const [isTyping, setIsTyping] = useState(true);
+
+  const current = commands[currentIndex];
+
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (isTyping && displayText.length < current.cmd.length) {
+      timeout = setTimeout(() => {
+        setDisplayText(current.cmd.slice(0, displayText.length + 1));
+      }, typingSpeed);
+    } else if (isTyping && displayText.length === current.cmd.length) {
+      timeout = setTimeout(() => {
+        setIsTyping(false);
+        setShowOutput(true);
+      }, pauseAfterType);
+    } else if (!isTyping && showOutput) {
+      timeout = setTimeout(() => {
+        setShowOutput(false);
+        setDisplayText("");
+        setIsTyping(true);
+        setCurrentIndex((prev) => (prev + 1) % commands.length);
+      }, pauseAfterOutput);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [
+    displayText,
+    isTyping,
+    showOutput,
+    current,
+    commands,
+    typingSpeed,
+    pauseAfterType,
+    pauseAfterOutput,
+  ]);
+
+  return { displayText, showOutput, current, isTyping, currentIndex };
+}
 
 export default function Home() {
   const [wordIndex, setWordIndex] = useState(0);
+  const { displayText, showOutput, current, isTyping, currentIndex } = useTypingAnimation(terminalCommands);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -40,6 +112,19 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
+      {/* Circuit background pattern */}
+      <div className="pointer-events-none fixed inset-0 -z-10 opacity-[0.03] dark:opacity-[0.05]">
+        <svg width="100%" height="100%">
+          <defs>
+            <pattern id="circuit-page" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M0 20 H12 M28 20 H40 M20 0 V12 M20 28 V40" stroke="currentColor" strokeWidth="0.5" />
+              <circle cx="20" cy="20" r="1.5" fill="none" stroke="currentColor" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#circuit-page)" className="text-foreground" />
+        </svg>
+      </div>
+
       <section
         id="hero"
         className="px-4 py-16 sm:px-6 sm:py-20 md:py-32 lg:px-8"
@@ -150,7 +235,63 @@ export default function Home() {
             transition={{ delay: 0.7 }}
             className="mb-12 sm:mb-16"
           >
-            <HomeTerminal command={installCommand} />
+            <div className="border-border relative overflow-hidden rounded-xl border bg-neutral-900 shadow-lg dark:bg-neutral-950">
+              {/* Terminal header */}
+              <div className="border-border flex items-center justify-between border-b bg-neutral-800/50 px-3 py-2 sm:px-4 sm:py-3">
+                <div className="flex items-center gap-2">
+                  <div className="flex gap-1.5">
+                    <div className="h-2.5 w-2.5 rounded-full bg-red-500 sm:h-3 sm:w-3" />
+                    <div className="h-2.5 w-2.5 rounded-full bg-yellow-500 sm:h-3 sm:w-3" />
+                    <div className="h-2.5 w-2.5 rounded-full bg-green-500 sm:h-3 sm:w-3" />
+                  </div>
+                  <span className="text-muted-foreground text-[10px] sm:text-xs">
+                    core — termux
+                  </span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Circle className="h-2 w-2 fill-green-500 text-green-500" />
+                  <span className="text-muted-foreground text-[10px]">active</span>
+                </div>
+              </div>
+
+              {/* Terminal body */}
+              <div className="min-h-[120px] p-3 font-mono text-xs sm:min-h-[140px] sm:p-4 sm:text-sm">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentIndex}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    <div className="mb-2 flex items-center gap-2">
+                      <span className="text-[#00FF00] dark:text-green-500">~</span>
+                      <span className="text-[#00FF00] dark:text-green-500">$</span>
+                      <span className="text-white">
+                        {displayText}
+                        {isTyping && (
+                          <span className="ml-0.5 inline-block h-4 w-2 animate-pulse bg-[#00FF00] dark:bg-green-500" />
+                        )}
+                      </span>
+                    </div>
+                    {showOutput && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="whitespace-pre-line text-xs text-neutral-400"
+                      >
+                        {current.output}
+                      </motion.div>
+                    )}
+                  </motion.div>
+                </AnimatePresence>
+
+                <div className="mt-3 flex items-center gap-2 border-t border-neutral-800 pt-3">
+                  <span className="text-[#00FF00] dark:text-green-500">~</span>
+                  <span className="text-[#00FF00] dark:text-green-500">$</span>
+                  <span className="h-4 w-2 animate-pulse bg-[#00FF00]/60 dark:bg-green-500/60" />
+                </div>
+              </div>
+            </div>
           </motion.div>
 
 
@@ -180,22 +321,22 @@ export default function Home() {
                   bash scripts, APIs &mdash; whatever you need, built from
                   scratch with modern tools.
                 </p>
-                <ul className="space-y-2">
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   {[
-                    "Websites & Web Applications",
-                    "Mobile Apps (Expo + React Native)",
-                    "CLI Apps & Automation",
-                    "APIs & Backend Services",
+                    { text: "Websites & Web Apps", icon: Globe },
+                    { text: "Mobile Apps (React Native)", icon: Code },
+                    { text: "CLI Apps & Automation", icon: Terminal },
+                    { text: "APIs & Backend Services", icon: Database },
                   ].map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-center gap-2 text-sm"
+                    <div
+                      key={item.text}
+                      className="border-border bg-muted/30 flex items-center gap-2.5 rounded-lg border p-3"
                     >
-                      <Check className="h-4 w-4 flex-shrink-0 text-green-400" />
-                      <span>{item}</span>
-                    </li>
+                      <item.icon className="text-primary h-4 w-4 shrink-0" />
+                      <span className="text-sm">{item.text}</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
               <div className="flex flex-col justify-center gap-4">
                 <Button
@@ -209,29 +350,27 @@ export default function Home() {
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <div className="flex flex-col gap-3 sm:flex-row">
+                <div className="flex gap-3">
                   <Button
-                    size="lg"
                     variant="secondary"
                     asChild
-                    className="flex-1 px-6 py-5 text-base"
+                    className="flex-1"
                   >
                     <Link href="https://t.me/DarlinMunoz" target="_blank">
-                      <Send className="mr-2 h-5 w-5" />
+                      <Send className="mr-2 h-4 w-4" />
                       Telegram
                     </Link>
                   </Button>
                   <Button
-                    size="lg"
                     variant="outline"
                     asChild
-                    className="flex-1 px-6 py-5 text-base"
+                    className="flex-1"
                   >
                     <Link
                       href="https://wa.me/+593959167797"
                       target="_blank"
                     >
-                      <Phone className="mr-2 h-5 w-5" />
+                      <Phone className="mr-2 h-4 w-4" />
                       WhatsApp
                     </Link>
                   </Button>
@@ -327,35 +466,40 @@ export default function Home() {
             className="mb-10 text-center"
           >
             <h2 className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl">
-              Featured Core-Termux Modules
+              Featured{" "}
+              <span className="bg-gradient-to-r from-primary to-emerald-600 bg-clip-text text-transparent dark:to-emerald-400">
+                Core-Termux
+              </span>{" "}
+              Modules
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg">
               The most powerful tools in the ecosystem
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ delay: 0 }}
               whileHover={{ y: -6 }}
-              className="group relative overflow-hidden rounded-2xl border bg-gradient-to-br from-purple-500/5 to-transparent p-6 sm:p-8"
+              className="group relative overflow-hidden rounded-2xl border bg-gradient-to-br from-purple-500/5 to-transparent p-6"
             >
               <div className="bg-purple-500/10 mb-4 inline-flex rounded-xl p-3">
                 <FaBrain className="h-6 w-6 text-purple-500" />
               </div>
-              <h3 className="mb-2 text-xl font-bold">AI Tools</h3>
+              <h3 className="mb-1 text-xl font-bold">AI Tools</h3>
+              <p className="text-muted-foreground mb-1 text-xs">21+ agents</p>
               <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
-                21+ AI coding assistants pre-configured: Claude Code,
-                OpenCode, Ollama, Codex CLI, and more. Run open-source LLMs
-                locally on your Termux.
+                Claude Code, OpenCode, Ollama, Codex CLI, and more. Run
+                open-source LLMs locally on your Termux.
               </p>
               <ul className="mb-6 space-y-1.5">
                 {[
                   "Claude Code, OpenCode, Codex CLI",
                   "Ollama — run LLMs locally",
-                  "Smart completions with Copilot",
+                  "Copilot + CodeCompanion AI",
                 ].map((f) => (
                   <li
                     key={f}
@@ -375,25 +519,26 @@ export default function Home() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ delay: 0.08 }}
               whileHover={{ y: -6 }}
-              className="group relative overflow-hidden rounded-2xl border bg-gradient-to-br from-pink-500/5 to-transparent p-6 sm:p-8"
+              className="group relative overflow-hidden rounded-2xl border bg-gradient-to-br from-pink-500/5 to-transparent p-6"
             >
               <div className="bg-pink-500/10 mb-4 inline-flex rounded-xl p-3">
                 <FaCode className="h-6 w-6 text-pink-500" />
               </div>
-              <h3 className="mb-2 text-xl font-bold">Code Editor</h3>
+              <h3 className="mb-1 text-xl font-bold">Code Editor</h3>
+              <p className="text-muted-foreground mb-1 text-xs">Neovim + NvChad</p>
               <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
-                Fully configured Neovim with NvChad, optimized for Termux on
-                Android. LSP support for 16+ languages, GitHub Copilot, and a
-                beautiful UI.
+                Fully configured Neovim with NvChad, optimized for Termux.
+                LSP for 16+ languages, GitHub Copilot, and a beautiful UI.
               </p>
               <ul className="mb-6 space-y-1.5">
                 {[
-                  "16+ language LSPs (TS, Python, Go, Rust)",
-                  "GitHub Copilot + CodeCompanion AI",
+                  "16+ language LSPs",
+                  "GitHub Copilot + CodeCompanion",
                   "NvChad with Eldritch theme",
                 ].map((f) => (
                   <li
@@ -408,6 +553,46 @@ export default function Home() {
               <Button variant="outline" asChild className="w-full">
                 <Link href="/core-termux/editor">
                   Explore Code Editor
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.16 }}
+              whileHover={{ y: -6 }}
+              className="group relative overflow-hidden rounded-2xl border bg-gradient-to-br from-green-500/5 to-transparent p-6"
+            >
+              <div className="bg-green-500/10 mb-4 inline-flex rounded-xl p-3">
+                <Database className="h-6 w-6 text-green-500" />
+              </div>
+              <h3 className="mb-1 text-xl font-bold">Databases</h3>
+              <p className="text-muted-foreground mb-1 text-xs">5 systems</p>
+              <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
+                PostgreSQL, MariaDB, SQLite, MongoDB, and Redis. Full
+                database stack with manager commands built-in.
+              </p>
+              <ul className="mb-6 space-y-1.5">
+                {[
+                  "PostgreSQL with core pg manager",
+                  "Redis for caching & messaging",
+                  "MongoDB for document storage",
+                ].map((f) => (
+                  <li
+                    key={f}
+                    className="flex items-center gap-2 text-xs text-muted-foreground"
+                  >
+                    <Check className="h-3 w-3 flex-shrink-0 text-green-400" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <Button variant="outline" asChild className="w-full">
+                <Link href="/core-termux/db">
+                  Explore Databases
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -432,7 +617,7 @@ export default function Home() {
 
       <section
         id="community"
-        className="px-4 py-12 sm:px-6 sm:py-16 md:py-24 lg:px-8"
+        className="border-t px-4 py-12 sm:px-6 sm:py-16 md:py-24 lg:px-8"
       >
         <div className="container mx-auto max-w-3xl text-center">
           <motion.div
@@ -465,45 +650,6 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-    </div>
-  );
-}
-
-function HomeTerminal({ command }: { command: string }) {
-  const [copied, setCopied] = useState(false);
-
-  const copyCommand = () => {
-    navigator.clipboard.writeText(command);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  return (
-    <div className="border-border relative overflow-hidden rounded-xl border bg-neutral-900 dark:bg-neutral-950">
-      <div className="border-border/50 flex items-center justify-between border-b bg-neutral-800/50 px-3 py-2 sm:px-4 sm:py-3">
-        <div className="flex items-center gap-2">
-          <div className="flex gap-1.5">
-            <div className="h-2.5 w-2.5 rounded-full bg-red-500 sm:h-3 sm:w-3" />
-            <div className="h-2.5 w-2.5 rounded-full bg-yellow-500 sm:h-3 sm:w-3" />
-            <div className="h-2.5 w-2.5 rounded-full bg-green-500 sm:h-3 sm:w-3" />
-          </div>
-          <span className="text-muted-foreground text-[10px] sm:text-xs">
-            terminal
-          </span>
-        </div>
-        <Button variant="ghost" size="sm" onClick={copyCommand} className="h-7 text-neutral-300 hover:text-white">
-          {copied ? (
-            <Check className="h-4 w-4 text-[#00FF00] dark:text-green-500" />
-          ) : (
-            <Copy className="h-4 w-4" />
-          )}
-        </Button>
-      </div>
-      <div className="overflow-x-auto p-3 sm:p-4">
-        <pre className="font-mono text-xs whitespace-nowrap text-[#00FF00] dark:text-green-500 sm:text-sm">
-          <code className="pr-4 break-all">{command}</code>
-        </pre>
-      </div>
     </div>
   );
 }

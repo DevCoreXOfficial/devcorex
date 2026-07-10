@@ -25,6 +25,7 @@ import {
   Settings,
   Eye,
   Trash2,
+  Circle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -33,6 +34,78 @@ import { ToolTerminal } from "@/components/terminal-block";
 
 const installCommand =
   "curl -fsSL https://raw.githubusercontent.com/DevCoreXOfficial/core-termux/main/install.sh | bash";
+
+const terminalCommands = [
+  {
+    cmd: "core install ai --opencode --claude-code",
+    output: "Installing OpenCode... done\nInstalling Claude Code... done",
+  },
+  {
+    cmd: "core brain save",
+    output: "? Title: React patterns\n✔ Memory saved to frontend/react-patterns.md",
+  },
+  {
+    cmd: "core pg start",
+    output: "Starting PostgreSQL server... done\nServer running on port 5432",
+  },
+  {
+    cmd: "core init next",
+    output: "? Package manager: pnpm\n✔ Next.js configured with Turbopack",
+  },
+  {
+    cmd: "core voice opencode",
+    output: "Listening through microphone...\nLaunching opencode with prompt...",
+  },
+];
+
+function useTypingAnimation(
+  commands: typeof terminalCommands,
+  typingSpeed = 40,
+  pauseAfterType = 1200,
+  pauseAfterOutput = 2000
+) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [showOutput, setShowOutput] = useState(false);
+  const [isTyping, setIsTyping] = useState(true);
+
+  const current = commands[currentIndex];
+
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (isTyping && displayText.length < current.cmd.length) {
+      timeout = setTimeout(() => {
+        setDisplayText(current.cmd.slice(0, displayText.length + 1));
+      }, typingSpeed);
+    } else if (isTyping && displayText.length === current.cmd.length) {
+      timeout = setTimeout(() => {
+        setIsTyping(false);
+        setShowOutput(true);
+      }, pauseAfterType);
+    } else if (!isTyping && showOutput) {
+      timeout = setTimeout(() => {
+        setShowOutput(false);
+        setDisplayText("");
+        setIsTyping(true);
+        setCurrentIndex((prev) => (prev + 1) % commands.length);
+      }, pauseAfterOutput);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [
+    displayText,
+    isTyping,
+    showOutput,
+    current,
+    commands,
+    typingSpeed,
+    pauseAfterType,
+    pauseAfterOutput,
+  ]);
+
+  return { displayText, showOutput, current, isTyping, currentIndex };
+}
 
 interface Tool {
   name: string;
@@ -85,7 +158,7 @@ const modules: Array<{
   {
     id: "db",
     title: "Databases",
-    description: "PostgreSQL, MariaDB, SQLite, MongoDB",
+    description: "PostgreSQL, MariaDB, SQLite, MongoDB, Redis",
     icon: Database,
     color: "text-green-500",
     bgColor: "bg-green-500/10",
@@ -104,6 +177,11 @@ const modules: Array<{
       },
       { name: "SQLite", pkg: "sqlite", desc: "Lightweight embedded database" },
       { name: "MongoDB", pkg: "mongodb", desc: "NoSQL document database" },
+      {
+        name: "Redis",
+        pkg: "redis",
+        desc: "In-memory data structure store, cache, and message broker",
+      },
     ],
     installCmd: "core install db",
     pgCommand: "core pg",
@@ -338,6 +416,16 @@ const modules: Array<{
         desc: "HTML to plain text converter",
       },
       { name: "Bc", pkg: "bc", desc: "Arbitrary precision calculator" },
+      {
+        name: "OpenSSH",
+        pkg: "openssh",
+        desc: "SSH server and client for secure remote access",
+      },
+      {
+        name: "Tmux",
+        pkg: "tmux",
+        desc: "Terminal multiplexer for managing multiple sessions",
+      },
     ],
     installCmd: "core install dev",
   },
@@ -468,6 +556,33 @@ export default function CoreTermuxPage() {
   const [expandedModule, setExpandedModule] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [moduleCopied, setModuleCopied] = useState(false);
+  const { displayText, showOutput, current, isTyping, currentIndex } = useTypingAnimation(terminalCommands);
+
+  // Install command typing animation
+  const [installDisplayText, setInstallDisplayText] = useState("");
+  const [installIsTyping, setInstallIsTyping] = useState(true);
+  const [installShowDone, setInstallShowDone] = useState(false);
+
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
+    if (installIsTyping && installDisplayText.length < installCommand.length) {
+      timeout = setTimeout(() => {
+        setInstallDisplayText(installCommand.slice(0, installDisplayText.length + 1));
+      }, 30);
+    } else if (installIsTyping && installDisplayText.length === installCommand.length) {
+      timeout = setTimeout(() => {
+        setInstallIsTyping(false);
+        setInstallShowDone(true);
+      }, 800);
+    } else if (!installIsTyping && installShowDone) {
+      timeout = setTimeout(() => {
+        setInstallShowDone(false);
+        setInstallDisplayText("");
+        setInstallIsTyping(true);
+      }, 3000);
+    }
+    return () => clearTimeout(timeout);
+  }, [installDisplayText, installIsTyping, installShowDone]);
 
   const copyInstall = () => {
     navigator.clipboard.writeText(installCommand);
@@ -496,6 +611,19 @@ export default function CoreTermuxPage() {
 
   return (
     <div className="min-h-screen pt-20 pb-16">
+      {/* Circuit background pattern */}
+      <div className="pointer-events-none fixed inset-0 -z-10 opacity-[0.03] dark:opacity-[0.05]">
+        <svg width="100%" height="100%">
+          <defs>
+            <pattern id="circuit-core" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M0 20 H12 M28 20 H40 M20 0 V12 M20 28 V40" stroke="currentColor" strokeWidth="0.5" />
+              <circle cx="20" cy="20" r="1.5" fill="none" stroke="currentColor" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#circuit-core)" className="text-foreground" />
+        </svg>
+      </div>
+
       <section className="border-border border-b px-4 py-12 sm:px-6 md:py-20 lg:px-8">
         <div className="container mx-auto max-w-5xl">
           <motion.div
@@ -506,7 +634,9 @@ export default function CoreTermuxPage() {
               Modular Framework
             </Badge>
             <h1 className="mb-6 text-4xl font-bold sm:text-5xl md:text-6xl">
-              CORE-TERMUX
+              <span className="bg-gradient-to-r from-primary to-emerald-600 bg-clip-text text-transparent dark:to-emerald-400">
+                CORE-TERMUX
+              </span>
             </h1>
             <p className="text-muted-foreground mb-8 max-w-2xl text-lg sm:text-xl">
               Modular Dev Environment for Termux (Android). Automate
@@ -539,9 +669,22 @@ export default function CoreTermuxPage() {
                 </Button>
               </div>
               <div className="overflow-x-auto p-4">
-                <pre className="font-mono text-sm whitespace-nowrap text-[#00FF00] dark:text-green-500">
-                  <code className="pr-5">{installCommand}</code>
-                </pre>
+                <div className="flex items-center gap-2">
+                  <span className="text-[#00FF00] dark:text-green-500">$</span>
+                  <pre className="font-mono text-sm whitespace-nowrap text-[#00FF00] dark:text-green-500">
+                    <code>
+                      {installDisplayText}
+                      {installIsTyping && (
+                        <span className="ml-0.5 inline-block h-4 w-2 animate-pulse bg-[#00FF00] dark:bg-green-500" />
+                      )}
+                    </code>
+                  </pre>
+                </div>
+                {installShowDone && (
+                  <div className="mt-2 font-mono text-xs text-neutral-400">
+                    Installation script ready. Run in Termux to install.
+                  </div>
+                )}
               </div>
             </div>
 
@@ -577,6 +720,81 @@ export default function CoreTermuxPage() {
         </div>
       </section>
 
+      {/* Interactive Terminal */}
+      <section className="px-4 py-12 sm:px-6 md:py-16 lg:px-8">
+        <div className="container mx-auto max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <p className="text-muted-foreground mb-4 text-[10px] font-medium uppercase tracking-widest">
+              See it in action
+            </p>
+            <div className="mx-auto max-w-2xl">
+              <div className="overflow-hidden rounded-xl border border-border bg-neutral-900 shadow-lg dark:bg-neutral-950">
+                {/* Terminal header */}
+                <div className="border-border flex items-center justify-between border-b bg-neutral-800/50 px-4 py-2.5">
+                  <div className="flex items-center gap-2">
+                    <div className="flex gap-1.5">
+                      <div className="h-3 w-3 rounded-full bg-red-500" />
+                      <div className="h-3 w-3 rounded-full bg-yellow-500" />
+                      <div className="h-3 w-3 rounded-full bg-green-500" />
+                    </div>
+                    <span className="text-muted-foreground ml-2 text-xs">
+                      core — termux
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Circle className="h-2 w-2 fill-green-500 text-green-500" />
+                    <span className="text-muted-foreground text-[10px]">active</span>
+                  </div>
+                </div>
+
+                {/* Terminal body */}
+                <div className="min-h-[140px] p-4 font-mono text-sm">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentIndex}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                    >
+                      <div className="mb-2 flex items-center gap-2">
+                        <span className="text-[#00FF00] dark:text-green-500">~</span>
+                        <span className="text-[#00FF00] dark:text-green-500">$</span>
+                        <span className="text-white">
+                          {displayText}
+                          {isTyping && (
+                            <span className="ml-0.5 inline-block h-4 w-2 animate-pulse bg-[#00FF00] dark:bg-green-500" />
+                          )}
+                        </span>
+                      </div>
+                      {showOutput && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 4 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="whitespace-pre-line text-xs text-neutral-400"
+                        >
+                          {current.output}
+                        </motion.div>
+                      )}
+                    </motion.div>
+                  </AnimatePresence>
+
+                  <div className="mt-4 flex items-center gap-2 border-t border-neutral-800 pt-3">
+                    <span className="text-[#00FF00] dark:text-green-500">~</span>
+                    <span className="text-[#00FF00] dark:text-green-500">$</span>
+                    <span className="h-4 w-2 animate-pulse bg-[#00FF00]/60 dark:bg-green-500/60" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       <section
         id="modules"
         className="bg-muted/30 px-4 py-16 sm:px-6 md:py-24 lg:px-8"
@@ -589,7 +807,9 @@ export default function CoreTermuxPage() {
             className="mb-12 text-center"
           >
             <h2 className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl">
-              Modules
+              <span className="bg-gradient-to-r from-primary to-emerald-600 bg-clip-text text-transparent dark:to-emerald-400">
+                Modules
+              </span>
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg">
               Click on a module to see all tools included
@@ -748,7 +968,9 @@ export default function CoreTermuxPage() {
             className="mb-12 text-center"
           >
             <h2 className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl">
-              Main Commands
+              <span className="bg-gradient-to-r from-primary to-emerald-600 bg-clip-text text-transparent dark:to-emerald-400">
+                Main Commands
+              </span>
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg">
               Click on any command to see full documentation

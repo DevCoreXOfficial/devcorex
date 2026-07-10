@@ -123,6 +123,18 @@ const devTools = [
     desc: "Arbitrary precision calculator",
     install: "core install dev --bc",
   },
+  {
+    name: "OpenSSH",
+    pkg: "openssh",
+    desc: "SSH server and client for secure remote access",
+    install: "core install dev --openssh",
+  },
+  {
+    name: "Tmux",
+    pkg: "tmux",
+    desc: "Terminal multiplexer for managing multiple sessions",
+    install: "core install dev --tmux",
+  },
 ];
 
 export default function ToolsPage() {

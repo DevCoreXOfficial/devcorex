@@ -2,5 +2,6 @@
 .codegraph/
 .antigravitycli/
 .atl/
+.mimocode/
 skills-lock.json
 opencode.jsonc

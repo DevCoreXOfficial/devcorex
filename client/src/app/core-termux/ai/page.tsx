@@ -210,7 +210,7 @@ const aiTools: AITool[] = [
   },
   {
     id: "gga",
-    name: "GGA - Gentleman Guardian Angel",
+    name: "Gentleman Guardian Angel",
     description:
       "Provider-agnostic code review using AI. Use Claude, Gemini, Codex, Ollama to enforce your coding standards",
     install: "core install ai --gga",
@@ -318,6 +318,18 @@ const aiTools: AITool[] = [
         npm: "@fission-ai/openspec",
         builtin: true,
       },
+      {
+        id: "qoder",
+        name: "Qoder CLI",
+        description:
+          "A terminal-native AI coding partner — and an agent engine you can build on. Work with Qoder around your codebase from the terminal. Turn ideas into working software — from building and debugging to shipping.",
+        install: "core install ai --qoder",
+        source: "https://qoder.com",
+        color: "text-lime-500",
+        bgColor: "bg-lime-500/10",
+        pkg: "qodercli",
+        builtin: true,
+      },
     ];
 
 export default function AIToolsPage() {
@@ -376,7 +388,7 @@ export default function AIToolsPage() {
               Available AI Tools
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg">
-               25 AI coding assistants and tools
+               26 AI coding assistants and tools
             </p>
           </motion.div>
 
@@ -463,15 +475,15 @@ export default function AIToolsPage() {
                         )}
 
                         <div>
-                          <a
-                            href={tool.source}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-primary inline-flex items-center gap-1.5 text-xs font-medium hover:underline"
-                          >
-                            Source
-                            <ExternalLink className="h-3 w-3" />
-                          </a>
+                        <a
+                          href={tool.source}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1.5 text-xs font-medium transition-all hover:border-primary/40 hover:bg-primary/20 hover:shadow-sm"
+                        >
+                          Source
+                          <ExternalLink className="h-3 w-3" />
+                        </a>
                         </div>
                       </div>
                     </div>

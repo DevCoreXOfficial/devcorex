@@ -51,6 +51,12 @@ const languages = [
     desc: "Go programming language",
     install: "core install lang --golang",
   },
+  {
+    name: "Bun",
+    pkg: "bun",
+    desc: "JavaScript runtime, bundler, test runner, and package manager (all-in-one toolkit)",
+    install: "core install lang --bun",
+  },
 ];
 
 export default function LanguagePage() {

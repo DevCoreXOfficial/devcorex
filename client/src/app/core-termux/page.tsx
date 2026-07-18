@@ -152,6 +152,11 @@ const modules: Array<{
       { name: "Rust", pkg: "rust", desc: "Rust compiler and Cargo" },
       { name: "C/C++", pkg: "clang", desc: "LLVM C/C++ compiler" },
       { name: "Go", pkg: "golang", desc: "Go programming language" },
+      {
+        name: "Bun",
+        pkg: "bun",
+        desc: "JavaScript runtime, bundler, test runner, and package manager (all-in-one toolkit)",
+      },
     ],
     installCmd: "core install lang",
   },
@@ -317,6 +322,11 @@ const modules: Array<{
         name: "OpenSpec",
         npm: "@fission-ai/openspec",
         desc: "Spec-Driven Development framework for AI coding assistants",
+      },
+      {
+        name: "Qoder",
+        pkg: "qodercli",
+        desc: "A terminal-native AI coding partner and agent engine you can build on",
       },
     ],
     installCmd: "core install ai",

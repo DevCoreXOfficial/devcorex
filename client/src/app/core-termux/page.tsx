@@ -42,7 +42,8 @@ const terminalCommands = [
   },
   {
     cmd: "core brain save",
-    output: "? Title: React patterns\n✔ Memory saved to frontend/react-patterns.md",
+    output:
+      "? Title: React patterns\n✔ Memory saved to frontend/react-patterns.md",
   },
   {
     cmd: "core pg start",
@@ -54,7 +55,8 @@ const terminalCommands = [
   },
   {
     cmd: "core voice opencode",
-    output: "Listening through microphone...\nLaunching opencode with prompt...",
+    output:
+      "Listening through microphone...\nLaunching opencode with prompt...",
   },
 ];
 
@@ -62,7 +64,7 @@ function useTypingAnimation(
   commands: typeof terminalCommands,
   typingSpeed = 40,
   pauseAfterType = 1200,
-  pauseAfterOutput = 2000
+  pauseAfterOutput = 2000,
 ) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
@@ -328,6 +330,11 @@ const modules: Array<{
         pkg: "qodercli",
         desc: "A terminal-native AI coding partner and agent engine you can build on",
       },
+      {
+        name: "Cline CLI",
+        special: "cline",
+        desc: "The open source coding agent in your IDE and terminal",
+      },
     ],
     installCmd: "core install ai",
   },
@@ -566,7 +573,8 @@ export default function CoreTermuxPage() {
   const [expandedModule, setExpandedModule] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [moduleCopied, setModuleCopied] = useState(false);
-  const { displayText, showOutput, current, isTyping, currentIndex } = useTypingAnimation(terminalCommands);
+  const { displayText, showOutput, current, isTyping, currentIndex } =
+    useTypingAnimation(terminalCommands);
 
   // Install command typing animation
   const [installDisplayText, setInstallDisplayText] = useState("");
@@ -577,9 +585,14 @@ export default function CoreTermuxPage() {
     let timeout: ReturnType<typeof setTimeout>;
     if (installIsTyping && installDisplayText.length < installCommand.length) {
       timeout = setTimeout(() => {
-        setInstallDisplayText(installCommand.slice(0, installDisplayText.length + 1));
+        setInstallDisplayText(
+          installCommand.slice(0, installDisplayText.length + 1),
+        );
       }, 30);
-    } else if (installIsTyping && installDisplayText.length === installCommand.length) {
+    } else if (
+      installIsTyping &&
+      installDisplayText.length === installCommand.length
+    ) {
       timeout = setTimeout(() => {
         setInstallIsTyping(false);
         setInstallShowDone(true);
@@ -625,12 +638,35 @@ export default function CoreTermuxPage() {
       <div className="pointer-events-none fixed inset-0 -z-10 opacity-[0.03] dark:opacity-[0.05]">
         <svg width="100%" height="100%">
           <defs>
-            <pattern id="circuit-core" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M0 20 H12 M28 20 H40 M20 0 V12 M20 28 V40" stroke="currentColor" strokeWidth="0.5" />
-              <circle cx="20" cy="20" r="1.5" fill="none" stroke="currentColor" strokeWidth="0.5" />
+            <pattern
+              id="circuit-core"
+              x="0"
+              y="0"
+              width="40"
+              height="40"
+              patternUnits="userSpaceOnUse"
+            >
+              <path
+                d="M0 20 H12 M28 20 H40 M20 0 V12 M20 28 V40"
+                stroke="currentColor"
+                strokeWidth="0.5"
+              />
+              <circle
+                cx="20"
+                cy="20"
+                r="1.5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="0.5"
+              />
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#circuit-core)" className="text-foreground" />
+          <rect
+            width="100%"
+            height="100%"
+            fill="url(#circuit-core)"
+            className="text-foreground"
+          />
         </svg>
       </div>
 
@@ -644,7 +680,7 @@ export default function CoreTermuxPage() {
               Modular Framework
             </Badge>
             <h1 className="mb-6 text-4xl font-bold sm:text-5xl md:text-6xl">
-              <span className="bg-gradient-to-r from-primary to-emerald-600 bg-clip-text text-transparent dark:to-emerald-400">
+              <span className="from-primary bg-gradient-to-r to-emerald-600 bg-clip-text text-transparent dark:to-emerald-400">
                 CORE-TERMUX
               </span>
             </h1>
@@ -739,11 +775,11 @@ export default function CoreTermuxPage() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <p className="text-muted-foreground mb-4 text-[10px] font-medium uppercase tracking-widest">
+            <p className="text-muted-foreground mb-4 text-[10px] font-medium tracking-widest uppercase">
               See it in action
             </p>
             <div className="mx-auto max-w-2xl">
-              <div className="overflow-hidden rounded-xl border border-border bg-neutral-900 shadow-lg dark:bg-neutral-950">
+              <div className="border-border overflow-hidden rounded-xl border bg-neutral-900 shadow-lg dark:bg-neutral-950">
                 {/* Terminal header */}
                 <div className="border-border flex items-center justify-between border-b bg-neutral-800/50 px-4 py-2.5">
                   <div className="flex items-center gap-2">
@@ -758,7 +794,9 @@ export default function CoreTermuxPage() {
                   </div>
                   <div className="flex items-center gap-1">
                     <Circle className="h-2 w-2 fill-green-500 text-green-500" />
-                    <span className="text-muted-foreground text-[10px]">active</span>
+                    <span className="text-muted-foreground text-[10px]">
+                      active
+                    </span>
                   </div>
                 </div>
 
@@ -772,8 +810,12 @@ export default function CoreTermuxPage() {
                       exit={{ opacity: 0 }}
                     >
                       <div className="mb-2 flex items-center gap-2">
-                        <span className="text-[#00FF00] dark:text-green-500">~</span>
-                        <span className="text-[#00FF00] dark:text-green-500">$</span>
+                        <span className="text-[#00FF00] dark:text-green-500">
+                          ~
+                        </span>
+                        <span className="text-[#00FF00] dark:text-green-500">
+                          $
+                        </span>
                         <span className="text-white">
                           {displayText}
                           {isTyping && (
@@ -785,7 +827,7 @@ export default function CoreTermuxPage() {
                         <motion.div
                           initial={{ opacity: 0, y: 4 }}
                           animate={{ opacity: 1, y: 0 }}
-                          className="whitespace-pre-line text-xs text-neutral-400"
+                          className="text-xs whitespace-pre-line text-neutral-400"
                         >
                           {current.output}
                         </motion.div>
@@ -794,8 +836,12 @@ export default function CoreTermuxPage() {
                   </AnimatePresence>
 
                   <div className="mt-4 flex items-center gap-2 border-t border-neutral-800 pt-3">
-                    <span className="text-[#00FF00] dark:text-green-500">~</span>
-                    <span className="text-[#00FF00] dark:text-green-500">$</span>
+                    <span className="text-[#00FF00] dark:text-green-500">
+                      ~
+                    </span>
+                    <span className="text-[#00FF00] dark:text-green-500">
+                      $
+                    </span>
                     <span className="h-4 w-2 animate-pulse bg-[#00FF00]/60 dark:bg-green-500/60" />
                   </div>
                 </div>
@@ -817,7 +863,7 @@ export default function CoreTermuxPage() {
             className="mb-12 text-center"
           >
             <h2 className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl">
-              <span className="bg-gradient-to-r from-primary to-emerald-600 bg-clip-text text-transparent dark:to-emerald-400">
+              <span className="from-primary bg-gradient-to-r to-emerald-600 bg-clip-text text-transparent dark:to-emerald-400">
                 Modules
               </span>
             </h2>
@@ -978,7 +1024,7 @@ export default function CoreTermuxPage() {
             className="mb-12 text-center"
           >
             <h2 className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl">
-              <span className="bg-gradient-to-r from-primary to-emerald-600 bg-clip-text text-transparent dark:to-emerald-400">
+              <span className="from-primary bg-gradient-to-r to-emerald-600 bg-clip-text text-transparent dark:to-emerald-400">
                 Main Commands
               </span>
             </h2>

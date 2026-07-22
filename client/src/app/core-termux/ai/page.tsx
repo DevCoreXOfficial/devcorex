@@ -272,65 +272,76 @@ const aiTools: AITool[] = [
     bgColor: "bg-green-400/10",
     builtin: true,
   },
-      {
-        id: "kimchi",
-        name: "Kimchi",
-        description:
-          "kimchi gives you an AI-powered development assistant in your terminal that connects to kimchi's LLM infrastructure",
-        install: "core install ai --kimchi",
-        source: "https://github.com/getkimchi/kimchi",
-        color: "text-orange-500",
-        bgColor: "bg-orange-500/10",
-        builtin: true,
-      },
-      {
-        id: "kilocode-cli",
-        name: "Kilo Code CLI",
-        description:
-          "The open source coding agent for building with AI in VS Code, JetBrains, or the CLI",
-        install: "core install ai --kilocode-cli",
-        source: "https://github.com/Kilo-Org/kilocode",
-        color: "text-yellow-400",
-        bgColor: "bg-yellow-400/10",
-        builtin: true,
-      },
-      {
-        id: "ctx7",
-        name: "Context7",
-        description:
-          "Up-to-date documentation for AI coding agents — eliminates stale knowledge by providing real-time, version-specific docs via MCP",
-        install: "core install ai --ctx7",
-        source: "https://github.com/upstash/context7",
-        color: "text-emerald-500",
-        bgColor: "bg-emerald-500/10",
-        npm: "ctx7",
-        builtin: true,
-      },
-      {
-        id: "openspec",
-        name: "OpenSpec",
-        description:
-          "Spec-Driven Development framework — forces structured specifications so AI agents produce accurate, maintainable code instead of guess-based coding",
-        install: "core install ai --openspec",
-        source: "https://github.com/Fission-AI/openspec",
-        color: "text-neutral-800 dark:text-white",
-        bgColor: "bg-neutral-200/50 dark:bg-white/10",
-        npm: "@fission-ai/openspec",
-        builtin: true,
-      },
-      {
-        id: "qoder",
-        name: "Qoder CLI",
-        description:
-          "A terminal-native AI coding partner — and an agent engine you can build on. Work with Qoder around your codebase from the terminal. Turn ideas into working software — from building and debugging to shipping.",
-        install: "core install ai --qoder",
-        source: "https://qoder.com",
-        color: "text-lime-500",
-        bgColor: "bg-lime-500/10",
-        pkg: "qodercli",
-        builtin: true,
-      },
-    ];
+  {
+    id: "kimchi",
+    name: "Kimchi",
+    description:
+      "kimchi gives you an AI-powered development assistant in your terminal that connects to kimchi's LLM infrastructure",
+    install: "core install ai --kimchi",
+    source: "https://github.com/getkimchi/kimchi",
+    color: "text-orange-500",
+    bgColor: "bg-orange-500/10",
+    builtin: true,
+  },
+  {
+    id: "kilocode-cli",
+    name: "Kilo Code CLI",
+    description:
+      "The open source coding agent for building with AI in VS Code, JetBrains, or the CLI",
+    install: "core install ai --kilocode-cli",
+    source: "https://github.com/Kilo-Org/kilocode",
+    color: "text-yellow-400",
+    bgColor: "bg-yellow-400/10",
+    builtin: true,
+  },
+  {
+    id: "ctx7",
+    name: "Context7",
+    description:
+      "Up-to-date documentation for AI coding agents — eliminates stale knowledge by providing real-time, version-specific docs via MCP",
+    install: "core install ai --ctx7",
+    source: "https://github.com/upstash/context7",
+    color: "text-emerald-500",
+    bgColor: "bg-emerald-500/10",
+    npm: "ctx7",
+    builtin: true,
+  },
+  {
+    id: "openspec",
+    name: "OpenSpec",
+    description:
+      "Spec-Driven Development framework — forces structured specifications so AI agents produce accurate, maintainable code instead of guess-based coding",
+    install: "core install ai --openspec",
+    source: "https://github.com/Fission-AI/openspec",
+    color: "text-neutral-800 dark:text-white",
+    bgColor: "bg-neutral-200/50 dark:bg-white/10",
+    npm: "@fission-ai/openspec",
+    builtin: true,
+  },
+  {
+    id: "qoder",
+    name: "Qoder CLI",
+    description:
+      "A terminal-native AI coding partner — and an agent engine you can build on. Work with Qoder around your codebase from the terminal. Turn ideas into working software — from building and debugging to shipping.",
+    install: "core install ai --qoder",
+    source: "https://qoder.com",
+    color: "text-lime-500",
+    bgColor: "bg-lime-500/10",
+    pkg: "qodercli",
+    builtin: true,
+  },
+  {
+    id: "cline",
+    name: "Cline CLI",
+    description:
+      "Autonomous coding agent as an SDK, IDE extension, or CLI assistant. Run Cline in your terminal",
+    install: "core install ai --cline",
+    source: "https://github.com/cline/cline",
+    color: "text-blue-300",
+    bgColor: "bg-white/9",
+    builtin: true,
+  },
+];
 
 export default function AIToolsPage() {
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -388,7 +399,7 @@ export default function AIToolsPage() {
               Available AI Tools
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg">
-               26 AI coding assistants and tools
+              27 AI coding assistants and tools
             </p>
           </motion.div>
 
@@ -475,15 +486,15 @@ export default function AIToolsPage() {
                         )}
 
                         <div>
-                        <a
-                          href={tool.source}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1.5 text-xs font-medium transition-all hover:border-primary/40 hover:bg-primary/20 hover:shadow-sm"
-                        >
-                          Source
-                          <ExternalLink className="h-3 w-3" />
-                        </a>
+                          <a
+                            href={tool.source}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-primary border-primary/20 bg-primary/10 hover:border-primary/40 hover:bg-primary/20 inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-all hover:shadow-sm"
+                          >
+                            Source
+                            <ExternalLink className="h-3 w-3" />
+                          </a>
                         </div>
                       </div>
                     </div>

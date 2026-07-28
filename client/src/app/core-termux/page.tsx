@@ -261,6 +261,16 @@ const modules: Array<{
         desc: "Pi is a minimal terminal coding harness",
       },
       {
+        name: "Oh-My-Pi",
+        special: "oh-my-pi",
+        desc: "Enhanced AI coding agent with native Rust addons",
+      },
+      {
+        name: "Cursor CLI",
+        special: "cursor-cli",
+        desc: "AI-powered coding agent that runs in your terminal",
+      },
+      {
         name: "Antigravity CLI",
         special: "antigravity-cli",
         desc: "Experience liftoff with the next-gen agent platform",

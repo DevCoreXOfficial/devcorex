@@ -341,6 +341,29 @@ const aiTools: AITool[] = [
     bgColor: "bg-white/9",
     builtin: true,
   },
+  {
+    id: "oh-my-pi",
+    name: "Oh-My-Pi",
+    description:
+      "Enhanced AI coding agent — improved version of Pi, built as a standalone binary with native Rust addons",
+    install: "core install ai --oh-my-pi",
+    source: "https://github.com/can1357/oh-my-pi",
+    color: "text-green-500",
+    bgColor: "bg-green-500/10",
+    builtin: true,
+  },
+  {
+    id: "cursor-cli",
+    name: "Cursor CLI",
+    description:
+      "Cursor CLI is an AI-powered coding agent from Cursor that runs in your terminal",
+    install: "core install ai --cursor-cli",
+    source: "https://cursor.com",
+    color: "text-cyan-500",
+    bgColor: "bg-cyan-500/10",
+    pkg: "cursor-cli",
+    builtin: true,
+  },
 ];
 
 export default function AIToolsPage() {
@@ -399,7 +422,7 @@ export default function AIToolsPage() {
               Available AI Tools
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg">
-              27 AI coding assistants and tools
+              29 AI coding assistants and tools
             </p>
           </motion.div>
 

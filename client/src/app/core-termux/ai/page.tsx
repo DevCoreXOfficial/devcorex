@@ -102,22 +102,22 @@ const aiTools: AITool[] = [
     pkg: "ollama",
     models: [
       {
-        name: "llama3",
-        size: "4.7GB",
+        name: "qwen2.5:3b",
+        size: "1.9GB",
         description:
-          "Meta's latest 8B parameter model, optimized for general dialogue and coding tasks.",
+          "Qwen2.5 models are pretrained on Alibaba's latest large-scale dataset, encompassing up to 18 trillion tokens. The model supports up to 128K tokens and has multilingual support.",
       },
       {
-        name: "qwen2.5-coder",
-        size: "4.7GB",
+        name: "glm-5.2",
+        size: "240GB",
         description:
-          "State-of-the-art coding model from Alibaba, highly capable in programming tasks.",
+          "GLM-5.2 is Z.ai’s flagship model for the era of long-horizon tasks.",
       },
       {
-        name: "codegemma",
-        size: "4.8GB",
+        name: "kimi-k3",
+        size: "590GB",
         description:
-          "Google's lightweight, powerful model fine-tuned for code generation and instruction following.",
+          "Kimi K3 is an open-weight, native multimodal agentic model and our most capable model to date.",
       },
     ],
   },
@@ -285,7 +285,7 @@ const aiTools: AITool[] = [
   },
   {
     id: "kilocode-cli",
-    name: "Kilo Code CLI",
+    name: "KiloCode CLI",
     description:
       "The open source coding agent for building with AI in VS Code, JetBrains, or the CLI",
     install: "core install ai --kilocode-cli",
@@ -348,8 +348,8 @@ const aiTools: AITool[] = [
       "Enhanced AI coding agent — improved version of Pi, built as a standalone binary with native Rust addons",
     install: "core install ai --oh-my-pi",
     source: "https://github.com/can1357/oh-my-pi",
-    color: "text-green-500",
-    bgColor: "bg-green-500/10",
+    color: "text-pink-500",
+    bgColor: "bg-pink-500/10",
     builtin: true,
   },
   {
@@ -359,9 +359,20 @@ const aiTools: AITool[] = [
       "Cursor CLI is an AI-powered coding agent from Cursor that runs in your terminal",
     install: "core install ai --cursor-cli",
     source: "https://cursor.com",
-    color: "text-cyan-500",
-    bgColor: "bg-cyan-500/10",
+    color: "text-neutral-800 dark:text-white",
+    bgColor: "bg-neutral-200/50 dark:bg-white/10",
     pkg: "cursor-cli",
+    builtin: true,
+  },
+  {
+    id: "supercode",
+    name: "SuperCode CLI",
+    description:
+      "The open source SWE agent — AI-powered coding assistant with multi-model support",
+    install: "core install ai --supercode",
+    source: "https://github.com/yashdev9274/supercli",
+    color: "text-emerald-500",
+    bgColor: "bg-emerald-500/10",
     builtin: true,
   },
 ];

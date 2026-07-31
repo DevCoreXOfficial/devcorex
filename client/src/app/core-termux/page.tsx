@@ -321,7 +321,7 @@ const modules: Array<{
         desc: "Terminal coding agent powered by Kimchi's multi-model orchestration",
       },
       {
-        name: "Kilo Code CLI",
+        name: "KiloCode CLI",
         special: "kilocode-cli",
         desc: "The open source coding agent for building with AI",
       },
@@ -344,6 +344,11 @@ const modules: Array<{
         name: "Cline CLI",
         special: "cline",
         desc: "The open source coding agent in your IDE and terminal",
+      },
+      {
+        name: "SuperCode CLI",
+        special: "supercode",
+        desc: "The open source SWE agent",
       },
     ],
     installCmd: "core install ai",

@@ -375,6 +375,28 @@ const aiTools: AITool[] = [
     bgColor: "bg-emerald-500/10",
     builtin: true,
   },
+  {
+    id: "droid-factory",
+    name: "Droid Factory",
+    description:
+      "Run a real agent session from your terminal. Droid plans, edits, executes tools, streams results, and keeps the approval model visible",
+    install: "core install ai --droid-factory",
+    source: "https://app.factory.ai",
+    color: "text-neutral-800 dark:text-white",
+    bgColor: "bg-neutral-200/50 dark:bg-white/10",
+    builtin: true,
+  },
+  {
+    id: "keelcode",
+    name: "KeelCode",
+    description:
+      "Keelcode plans, builds, tests, and verifies the work, then hands you a review-ready pull request",
+    install: "core install ai --keelcode",
+    source: "https://keelcode.ai",
+    color: "text-orange-500",
+    bgColor: "bg-orange-500/10",
+    builtin: true,
+  },
 ];
 
 export default function AIToolsPage() {
@@ -433,7 +455,7 @@ export default function AIToolsPage() {
               Available AI Tools
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg">
-              29 AI coding assistants and tools
+              32 AI coding assistants and tools
             </p>
           </motion.div>
 

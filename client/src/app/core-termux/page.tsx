@@ -350,6 +350,16 @@ const modules: Array<{
         special: "supercode",
         desc: "The open source SWE agent",
       },
+      {
+        name: "Droid Factory",
+        special: "droid-factory",
+        desc: "Droid CLI, exactly where you work",
+      },
+      {
+        name: "KeelCode",
+        special: "keelcode",
+        desc: "The control plane for loop engineering",
+      },
     ],
     installCmd: "core install ai",
   },
@@ -457,6 +467,11 @@ const modules: Array<{
         name: "Tmux",
         pkg: "tmux",
         desc: "Terminal multiplexer for managing multiple sessions",
+      },
+      {
+        name: "SuperFile",
+        pkg: "superfile",
+        desc: "Terminal file manager with TUI, themes, and hotkeys",
       },
     ],
     installCmd: "core install dev",

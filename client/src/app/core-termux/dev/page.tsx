@@ -135,6 +135,12 @@ const devTools = [
     desc: "Terminal multiplexer for managing multiple sessions",
     install: "core install dev --tmux",
   },
+  {
+    name: "SuperFile",
+    pkg: "superfile",
+    desc: "A fancy, modern terminal file manager. Complete your file operations with style.",
+    install: "core install dev --superfile",
+  },
 ];
 
 export default function ToolsPage() {

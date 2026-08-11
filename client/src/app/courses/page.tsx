@@ -67,6 +67,8 @@ interface CourseItem {
   bgColor: string;
   level: string;
   youtubeUrl: string;
+  /** Aspect ratio of the video player: vertical 9:16 (default) or horizontal 16:9 */
+  orientation?: "9:16" | "16:9";
 }
 
 // ---------------------------------------------------------------------------
@@ -135,6 +137,18 @@ const courses: CourseItem[] = [
     level: "Intermediate",
     youtubeUrl: "https://youtu.be/yjluecEckvI?si=N2YnTsxq7q65LWuS",
   },
+  {
+    icon: Terminal,
+    title: "JSON & jq",
+    description:
+      "Process JSON data from the terminal with jq. Parse, filter, and transform APIs and config files right in Termux.",
+    topics: ["JSON", "jq Filters", "Pipes", "Data Extraction", "Termux"],
+    color: "text-teal-500",
+    bgColor: "bg-teal-500/10",
+    level: "Intermediate",
+    youtubeUrl: "https://youtu.be/GsWV_WJI8SM?si=n5TF4zjlfba3U-VA",
+    orientation: "16:9",
+  },
 ];
 
 const upcomingCourses = [
@@ -167,7 +181,9 @@ const upcomingCourses = [
 
 /**
  * Shows a 16:9 thumbnail (hqdefault) before the user interacts.
- * On click, replaces the thumbnail with a 9:16 iframe that autoplays.
+ * On click, replaces the thumbnail with an iframe that autoplays.
+ * The player aspect ratio follows the course's `orientation`: vertical 9:16
+ * (default) or horizontal 16:9.
  *
  * Why facade?
  *  - Each YouTube iframe loads ~500 KB of JS + makes several network requests.
@@ -177,9 +193,14 @@ const upcomingCourses = [
 interface YouTubeEmbedProps {
   videoId: string;
   title: string;
+  orientation?: "9:16" | "16:9";
 }
 
-function YouTubeEmbed({ videoId, title }: YouTubeEmbedProps) {
+function YouTubeEmbed({
+  videoId,
+  title,
+  orientation = "9:16",
+}: YouTubeEmbedProps) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const handlePlay = useCallback(() => {
@@ -229,15 +250,19 @@ function YouTubeEmbed({ videoId, title }: YouTubeEmbedProps) {
           </div>
         </div>
       ) : (
-        // ── Player: 9:16 vertical iframe ────────────────────────────────────
+        // ── Player: vertical (9:16) or horizontal (16:9) iframe ─────────────
         <motion.div
           initial={{ opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.25 }}
           className="mx-auto overflow-hidden rounded-lg bg-black"
-          // Max width so the 9:16 player doesn't get too wide on desktop.
-          // Adjust max-w-[260px] to your taste.
-          style={{ aspectRatio: "9 / 16", maxWidth: "260px" }}
+          // 9:16: cap the width so the vertical player doesn't get too wide on
+          // desktop. 16:9: let it fill the card width.
+          style={
+            orientation === "16:9"
+              ? { aspectRatio: "16 / 9", width: "100%" }
+              : { aspectRatio: "9 / 16", maxWidth: "260px" }
+          }
         >
           <iframe
             src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`}
@@ -303,7 +328,11 @@ function CourseCard({ course, index }: CourseCardProps) {
 
       {/* Embed or fallback */}
       {videoId ? (
-        <YouTubeEmbed videoId={videoId} title={course.title} />
+        <YouTubeEmbed
+          videoId={videoId}
+          title={course.title}
+          orientation={course.orientation}
+        />
       ) : (
         // Fallback: external link if videoId couldn't be parsed
         <Button variant="outline" size="sm" className="w-full" asChild>

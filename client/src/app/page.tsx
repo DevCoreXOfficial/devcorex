@@ -401,13 +401,14 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="mb-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
+          <div className="mb-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
             {[
               { title: "Termux", icon: Terminal, color: "text-neutral-600", bgColor: "bg-neutral-600/10", level: "Beginner" },
               { title: "Neovim", icon: FileCode, color: "text-green-400", bgColor: "bg-green-400/10", level: "Intermediate" },
               { title: "HTML", icon: Globe, color: "text-orange-500", bgColor: "bg-orange-500/10", level: "Beginner" },
               { title: "CSS", icon: Palette, color: "text-blue-500", bgColor: "bg-blue-500/10", level: "Beginner" },
               { title: "JavaScript", icon: Code, color: "text-yellow-500", bgColor: "bg-yellow-500/10", level: "Intermediate" },
+              { title: "JSON & jq", icon: Terminal, color: "text-teal-500", bgColor: "bg-teal-500/10", level: "Intermediate" },
             ].map((course, i) => {
               const Icon = course.icon;
               return (

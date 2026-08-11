@@ -360,6 +360,11 @@ const modules: Array<{
         special: "keelcode",
         desc: "The control plane for loop engineering",
       },
+      {
+        name: "Goose CLI",
+        pkg: "goose",
+        desc: "Your native open source AI agent",
+      },
     ],
     installCmd: "core install ai",
   },

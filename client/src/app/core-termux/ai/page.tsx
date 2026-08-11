@@ -397,6 +397,17 @@ const aiTools: AITool[] = [
     bgColor: "bg-orange-500/10",
     builtin: true,
   },
+  {
+    id: "goose",
+    name: "Goose CLI",
+    description:
+      "your native open source AI agent — desktop app, CLI, and API — for code, workflows, and everything in between",
+    install: "core install ai --goose",
+    source: "https://github.com/block/goose",
+    color: "text-neutral-800 dark:text-white",
+    bgColor: "bg-neutral-200/50 dark:bg-white/10",
+    pkg: "goose",
+  },
 ];
 
 export default function AIToolsPage() {
@@ -455,7 +466,7 @@ export default function AIToolsPage() {
               Available AI Tools
             </h2>
             <p className="text-muted-foreground text-base sm:text-lg">
-              32 AI coding assistants and tools
+              33 AI coding assistants and tools
             </p>
           </motion.div>
 
